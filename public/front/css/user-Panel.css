@@ -1,0 +1,43 @@
+
+
+figure.userfigureImg{
+    border: 1px solid #fff;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background: #ccc;
+    border-radius: 50%;
+}
+
+img.userProfilePic{
+    width: 150px;
+    height: 150px;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+p.userInfoP{
+    color: #1377c5;
+    font-weight: 100;
+}
+a.userInfoEmail{
+    text-decoration: none;
+    color: #1377c5;
+    font-weight: 800;
+}
+
+h2.userInfoHeadline{
+    margin: 0;
+    font-weight: 100;
+    padding-bottom: 20px;
+}
+
+div.userTabContent{
+    background: #f2f2f2;
+    padding: 20px;
+}

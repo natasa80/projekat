@@ -8,7 +8,7 @@ class StaticpageController extends Zend_Controller_Action
 		$request = $this->getRequest();
 		
 		$sitemapPageId = (int) $request->getParam('sitemap_page_id');
-		
+               
 		if ($sitemapPageId <= 0) {
 			throw new Zend_Controller_Router_Exception('Invalid sitemap page id: ' . $sitemapPageId, 404);
 		}
@@ -33,4 +33,6 @@ class StaticpageController extends Zend_Controller_Action
 		
 		$this->view->sitemapPage = $sitemapPage;
 	}
+        
+        
 }

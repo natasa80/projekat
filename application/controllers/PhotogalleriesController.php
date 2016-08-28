@@ -93,5 +93,7 @@ class PhotogalleriesController extends Zend_Controller_Action
 		$this->view->photoGallery = $photoGallery;
 		$this->view->photos = $photos;
 	}
+        
+       
 }
 

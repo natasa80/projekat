@@ -1,0 +1,782 @@
+
+@media (min-width: 0px) { 
+
+    .headerTop,
+    .headerSocial{
+
+        text-align: center;
+    }
+
+    .Logo{
+        margin: 0 auto;
+        float: left;
+    }
+
+    .location{
+        display: none;
+    }
+
+    .shoppingCart {
+
+        float: right;
+    }
+
+    .shoppingCart .badge{
+        position: absolute;
+        right: -10px;
+        background: red;
+    }
+
+    .fa-shopping-basket{
+        font-size: 25px; 
+        color: #333333;
+        line-height: 50px;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+        background: #1377c5;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+    }
+
+    .carousel-caption p{
+        display: none;
+    }
+    .carousel-caption {
+        bottom: 30%;
+    }
+
+    .carousel-caption h3{
+        font-size: 20px;
+    }
+    .carousel-caption .btn{
+        opacity: .7;
+        font-size: 10px;
+    }
+
+
+    .buttonGet{
+        text-align: center;
+    }
+
+
+    .sectionHeadline,
+    .sectionHeadline1,
+    .sectionHeadline2{
+        font-size: 15px;
+    }
+    .sectionHeadlineBlog{
+        font-size: 15px;
+        background: url('style-images/underline2.png') bottom left no-repeat;
+        padding-bottom: 30px;
+    }
+
+    .sec2Img{
+        margin: 0 auto;
+    }
+
+    .sectionHeadline2 { 
+        background: url('style-images/underline.png') no-repeat bottom center;
+    }
+    .sec4Img{
+        margin: 0 auto;
+
+    }
+
+    .img-div:hover div.img-hover1{
+        padding: 5px;
+    }
+
+    .img-div:hover div.img-hover2{
+        padding: 5px;
+    }
+
+    .img-div:hover div.img-hover3{
+        padding: 5px;
+    }
+
+    .section2,
+    .section3,
+    .section4,
+    .section5,
+    .section6,
+    .section8,
+    .section9,
+    .section10,
+    .section11,
+    .section12,
+    .footerBody,
+    .section1Blog,
+    .section2Blog{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .footerBottom{
+        padding-top: 20px;
+    }
+
+    .section4{
+        text-align: center;
+    }
+
+    .nav > li > a {
+        font-size: 14px;
+    }
+
+    .fa-heartbeat,
+    .fa-dribbble,
+    .fa-futbol-o,
+    fa-smile-o{
+        padding-right: 10px;
+    }
+
+    .section5{
+        text-align: center;
+    }
+
+    section.section6 p{
+        padding-bottom: 20px;
+    }
+
+    .section6Articles{
+        width: auto;
+        height: 250px;
+    }
+
+    figure.imageSection8 {
+        margin-bottom: 40px;
+    }
+    .section9 span{
+        font-size: 20px;
+    }
+
+    .section9 span.fa{
+        font-size: 30px;
+    }
+
+    .section9 p{
+        font-size: 12px;
+    }
+
+    .offerP {
+        font-size: 15px;
+    }
+
+    .procentageP {
+        padding-left: 0px;
+        color: #2a2a2a;
+        font-size: 30px;
+        line-height: 75px;
+    }
+    .specialP {
+        font-size: 15px;
+    }
+
+    .smartP {
+        font-size: 25px;
+    }
+    figure.products {
+        margin: 0 auto;
+    }
+    .datePicker{
+        padding-top: 15px;
+    }
+
+    .owl-theme .owl-controls {
+        left: 40%;
+    }
+
+    div.admin{
+        text-align: center;
+    }
+
+    input.subscribeInput{
+        width: 300px;
+        margin: 0 auto;
+
+    }
+
+    button.buttonSubscribe{
+        margin-top: 0;
+    }
+
+    .footerSubscriber{
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .openTime {
+        padding-top: 107px;
+    }
+
+    footer h4 {
+        font-size: 17px;
+    }
+
+    .faqList{
+        text-align: center;
+    }
+
+    .copyright{
+        text-align: center;
+    }
+
+    li.mediaList2 {
+        padding-left: 0px;
+    }
+
+    article.commentsArt {
+        margin-bottom: 30px;
+    }
+
+    div.media-left{
+        display: block;
+    }
+
+    .media{
+        text-align: center;
+    }
+    div.blogMedia{
+        text-align: left;
+    }
+
+    div.blogMedia1{
+        text-align: left;
+    }
+
+    div.media1{
+        text-align: left;
+    }
+    div.showFiltersClick{
+        display: block;
+
+    }
+
+    div.filterMenu{
+        display: none;
+    }
+
+
+    h4.shopH4-1 {
+        margin-top: 10px
+    }
+    .radio, .checkbox {
+        padding: 5px 0px 10px 0px;
+    }
+
+    div.sideContent{
+        text-align: center;
+    }
+
+    div.divAvailable{
+        margin-bottom: 30px;
+    }
+
+    img.detailsImage{
+        margin: 0 auto;
+    }
+    button.detailsButton{
+        width: 250px;
+        margin-bottom: 30px;
+    }
+
+    div.colorsSizes{
+        margin-bottom: 30px;
+    }
+    div.available{
+        padding-top: 30px;
+    }
+
+    div.shopDetailsContent {
+        padding: 20px;
+    }
+    ul.connectList{
+        text-align: center;
+    }
+    input.subscribeInput{
+        width: 250px;
+    }
+
+    section.contactSection{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    h3.contactH3{
+        padding-top: 20px;  
+
+    }
+    iframe.map{
+        height: 200px;       
+    }
+
+    .shoppingCartContent{
+        width: 300px;
+    }
+
+    div.shoppingCartContent tr td{
+        line-height: 25px;
+    }
+    .logInSection{
+        padding: 10px;
+    }
+    section.accountSection{
+        padding: 40px;
+    }
+
+    div.genderDiv{
+        margin-bottom: 30px;
+    }
+    
+    input.accountPass{
+        margin: 0 auto;
+    }
+
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+
+    div.genderDiv{
+        margin-bottom: 0px;
+    }
+
+
+    section.accountSection{
+        padding: 50px 100px;
+    }
+
+
+    div.shoppingCartContent tr td{
+        line-height: 50px;
+    }
+
+    .shoppingCartContent{
+        width: 400px;
+    }
+
+    iframe.map{
+        height: 470px;       
+    }
+
+    input.subscribeInput{
+        width: 300px;
+    }
+
+    div.filterMenu{
+        display: inline-block;
+    }
+
+
+    .radio, .checkbox {
+        padding: 10px 0px 20px 0px;
+    }
+
+
+    h4.shopH4-1 {
+        margin-top: 50px
+    }
+
+
+    div.showFiltersClick{
+        display: none;
+
+    }
+
+
+    .media{
+        text-align: left;
+    }
+
+    div.media-left{
+        display: table-cell;
+    }
+
+    article.commentsArt {
+        margin-bottom: 60px;
+    }
+
+
+    li.mediaList2 {
+        padding-left: 100px;
+    }
+
+
+    footer h4 {
+        font-size: 20px;
+    }
+
+    .headerTop{
+        float: left;
+    }
+
+    .headerSocial{
+        float: right;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+        background: #1377c5;
+        color: #fff;
+    }
+
+    .navbar {
+        margin-bottom: 0px;
+    }
+
+    .carousel-caption p{
+        display: block;
+    }
+
+    .carousel-caption {
+        top: 2%;
+        left: 37%;
+        text-align: right;
+        width: 400px;
+    }
+
+    .carousel-caption h3{
+        font-size: 40px;
+    }
+
+    .carousel-caption p.normalText{
+        font-size: 30px;
+
+    }
+
+    .carousel-caption .btn{
+        opacity: 1;
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .sec2Img{
+        margin: 0 auto;
+    }
+
+    .section2,
+    .section3,
+    .section4{
+        padding: 20px;
+        text-align: center
+    }
+
+    .navLeft{
+        border-bottom: 1px solid #f44027;
+    }
+
+    .section4{
+        text-align: left;
+    }
+    .section4{
+        text-align: center;
+    }
+
+    .section5{
+        text-align: left;
+    }
+
+    .go{
+        margin-top: 10px;
+    }
+
+    .section6Articles{
+        width: 300px;
+    }
+    figure.imageSection8 {
+        margin-bottom: 40px;
+    }
+    figure.imageSection8 {
+        margin-bottom: 40px;
+    }
+
+    .section9 span{
+        font-size: 30px;
+    }
+
+    .section9 span.fa{
+        font-size: 50px;
+    }
+
+    .section9 p{
+        font-size: 20px;
+    }
+    .procentageP{
+        padding-left: 100px;
+        color: #ffbe01;
+        font-size: 55px;
+
+    }
+
+
+    .specialP{
+        font-size: 25px;
+    }
+    .smartP{
+        font-size: 40px;
+    }
+
+    .discountP{
+        line-height: 20px;
+    }
+    .offerP{
+        font-size: 20px;
+    }
+
+    .offerP {
+        font-size: 15px;
+    }
+
+    .procentageP {
+        padding-left: 0px;
+        color: #2a2a2a;
+        font-size: 55px;
+    }
+
+    .datePicker{
+        padding-top: 0px;
+    }
+
+    .owl-theme .owl-controls {
+        left: 80%;
+    }
+
+    .openTime {
+        padding-top: 107px;
+    }
+
+    .faqList{
+        text-align: left;
+    }
+
+    .copyright{
+        text-align: right;
+    }
+
+ 
+
+    h3.contactH3{
+        padding-top: 50px;  
+
+    }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+
+    .location{
+        display: inline-block;
+    }
+
+    .shoppingCart {
+
+        float: none;
+    }
+
+    .shoppingCart .badge{
+        top: -20px;
+        right: -10px;
+
+    }
+
+    .carousel-caption {
+        left: 48%;
+
+    }
+
+    .section4{
+        text-align: left;
+
+    }
+
+    .navLeft{
+        border-right: 1px solid #f44027;
+        border-bottom: 0;
+    }
+    .img-div:hover div.img-hover1{
+        padding: 20px;
+    }
+
+    .img-div:hover div.img-hover2{
+        padding: 20px;
+    }
+
+    .img-div:hover div.img-hover3{
+        padding: 20px;
+    }
+    .sectionHeadline2 { 
+        background: url('style-images/underline2.png') no-repeat bottom left;
+    }
+
+    .section4Tabs{
+        padding-top: 70px;
+    }
+
+    .fa-heartbeat,
+    .fa-dribbble,
+    .fa-futbol-o,
+    .fa-smile-o{
+        padding-right: 10px;
+    }
+    .nav > li > a {
+        font-size: 10px;
+    }
+
+    .section6Articles{
+        width: 220px;
+    }
+
+    figure.imageSection8 {
+        margin-bottom: 40px;
+    }
+
+    .procentageP {
+        padding-left: 100px;
+        color: #ffbe01;
+        font-size: 55px;
+    }
+
+    figure.products {
+        margin: 0 auto;
+    }
+
+    .openTime {
+        padding-top: 105px;
+    }
+
+    div.colorsSizes{
+        margin-bottom: 30px;
+    }
+
+
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+    button.detailsButton{
+        width: auto;
+    }
+
+    div.divAvailable{
+        margin-bottom: 0px;
+        margin-top: 30px;
+    }
+
+    div.shopDetailsContent{
+        text-align: left;
+    }
+
+    .carousel-caption {
+        width: 600px;
+        left: 40%;
+
+    }
+
+    .carousel-caption h3{
+        font-size: 54px;
+    }
+
+    .sectionHeadline,
+    .sectionHeadline1,
+    sectionHeadline2{
+        font-size: 25px;
+        line-height: 20px;
+    }
+
+    .sectionHeadlineBlog{
+        font-size: 25px;
+        line-height: 20px;
+        background: url('style-images/underline.png') bottom left no-repeat;
+        padding-bottom: 30px;
+    }
+
+    .carousel-caption p.normalText{
+        font-size: 36px;
+
+    }
+    .carousel-caption p.smallText{
+        font-size: 14px;
+    }
+
+
+    .sec2Img{
+        margin: 0 auto;
+    }
+
+    .nav > li > a {
+        font-size: 15px;
+    }
+    .section5, .section6{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    section.section6 p{
+        padding-bottom: 50px;
+    }
+
+    .section6Articles{
+        width: 250px;
+    }
+
+    .section2,
+    .section3,
+    .section4,
+    .section5,
+    .section6,
+    .section8,
+    .section9,
+    .section10,
+    .section11,
+    .section12,
+    .footerBody,
+    .section1Blog{
+        padding: 80px 0 80px 0;
+    }
+
+    .section2Blog{
+        padding: 80px 0 30px 0;
+    }
+
+    .offerP {
+        font-size: 20px;
+    }
+
+    input.subscribeInput{
+        width: 280px;
+        margin-top: 18px;
+
+    }
+
+    button.buttonSubscribe{
+        margin-top: 18px;
+    }
+
+    .openTime {
+        padding-top: 105px;
+    }
+
+    .footerSubscriber {
+        margin-top: 50px;
+    }
+
+    div.colorsSizes{
+        margin-bottom: 10px;
+    }
+    div.sideContent{
+        text-align: left;
+    }
+
+ 
+    .logInSection{
+        padding: 0 100px 50px 100px;
+    }
+
+}

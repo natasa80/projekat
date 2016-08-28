@@ -10,18 +10,22 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-		$cmsIndexSlidesDbTable = new Application_Model_DbTable_CmsIndexSlides();
-		
-		$indexSlides = $cmsIndexSlidesDbTable->search(array(
-			'filters' => array(
-				'status' => Application_Model_DbTable_CmsIndexSlides::STATUS_ENABLED
-			),
-			'orders' => array(
-				'order_number' => 'ASC'
-			)
-		));
-		
-		$this->view->indexSlides = $indexSlides;
+//		$cmsIndexSlidesDbTable = new Application_Model_DbTable_CmsIndexSlides();
+//		
+//		$indexSlides = $cmsIndexSlidesDbTable->search(array(
+//			'filters' => array(
+//				'status' => Application_Model_DbTable_CmsIndexSlides::STATUS_ENABLED
+//			),
+//			'orders' => array(
+//				'order_number' => 'ASC'
+//			)
+//		));
+//		
+//		$this->view->indexSlides = $indexSlides;
+    }
+     public function testAction()
+    {
+        /* Initialize action controller here */
     }
 }
 
