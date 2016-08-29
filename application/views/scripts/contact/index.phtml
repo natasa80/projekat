@@ -1,0 +1,71 @@
+ <!-- SECTION 1 SHOP STOP -->
+
+            <div class="locationMap">
+                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5659.11172986437!2d20.406708!3d44.830612!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x293617553f646009!2sCubes!5e0!3m2!1sen!2srs!4v1470412218313" width="800" height="470" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+
+            <section class="contactSection">
+
+                <h3 class="text-uppercase text-center contactH3">keep in touch</h3>
+                <p class="contactP text-center">They will have to make the best of things its an uphill climb</p>
+                <div class="container">
+                <form data-toggle="validator" role="form" id="mainForm">
+
+
+
+                    <div class="row mainForm">
+                        <div class="col-sm-4">
+                            <!-- Name -->
+                            <div class="form-group">
+                                <input data-error="Invalid name! Minimum 4 and maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control contactInputs" id="inputName" placeholder="First Name" data-minlength="4" data-maxlength="15" required>                      
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <!-- Surname -->
+                        <div class="form-group col-sm-4">
+                            <input data-error="Invalid lastname! Minimum 4 and maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control contactInputs" id="inputSurname" placeholder="Last Name" data-minlength="4" data-maxlength="15" required> 
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                        <!-- Phone number -->
+                        <div class="form-group col-sm-4">
+                            <input data-error="Invalid phone number. Minimum 4 characters. Numbers only!" data-minlength="4" pattern="[_0-9]{1,}$" type="text" class="form-control contactInputs" id="inputPhone" placeholder="Phone number" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="row mainForm">
+                        <!-- Email address -->
+                        <div class="form-group col-sm-6">
+                            <input type="email" class="form-control contactInputs" id="inputEmail" placeholder="Email" data-error="Email address you entered is invalid" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <!-- Subject -->
+                            <div class="form-group">
+                                <input type="text" class="form-control contactInputs" id="inputSubject" placeholder="Subject" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mainForm">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <textarea class="form-control contactInputs" rows="5" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mainForm">
+                        <div class="form-group dugme col-xs-12">
+                            <button type="submit" class="btn btn-primary buttonSubmit">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+                    </div>
+            </section>
+
+
+
+
+
