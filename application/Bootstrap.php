@@ -23,11 +23,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
+                    'ServicesPage' => array(
+				'title' => 'Services Page',
+				'subtypes' => array(
+					
+				)
+			),
 		);
 		
 		$rootSitemapPageTypes = array(
 			'StaticPage' => 0,
-			'PhotoGalleriesPage' => 1
+			'PhotoGalleriesPage' => 1,
+                        'ServicesPage' => 1,
 		);
 		
 		Zend_Registry::set('sitemapPageTypes', $sitemapPageTypes);
@@ -47,6 +54,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					$sitemapPageMap['url'],
 					array(
 						'controller' => 'staticpage',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+			}
+                        
+                        if ($sitemapPageMap['type'] == 'ServicesPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'servicespage',
 						'action' => 'index',
 						'sitemap_page_id' => $sitemapPageId
 					)

@@ -662,7 +662,12 @@
    
 
 
- 
+ <?php
+//dodatni css na nasu stranicu
+
+
+$this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/jquery.nstSlider.js'));
+?>
             <script>
                 <?php $this->inlineScript()->captureStart(); ?>
               window.jQuery || document.write('<script src="front/js/vendor/jquery-1.11.2.js"><\/script>')

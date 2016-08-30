@@ -1,24 +1,36 @@
 
+<?php
+//$sitemapPage = $this->sitemapPage;
+$services = $this->services;
 
+//$this->headTitle($sitemapPage['title']);
+//$this->headMeta()->appendName('description', $sitemapPage['description']);
+?>
  <section class="section2 text-center">
                 <div class="container">
                     <h3 class="sectionHeadline">WHAT WE DO</h3>
                     <p class="sectionP">They will have to make the best of things its an uphill climb</p>
 
                     <div class="row">
+                        <?php foreach($services as $service) {?>
                         <div class="col-sm-4">
                             <article>
                                 <div class="img-div">
                                     <img class="img-responsive" src="/front/img/section2-img1.jpg" alt=""/>
                                     <div class="img-hover1">
-                                        <span class="spanHeadline">PET WELLNESS</span>
-                                        <span class="spanSmall">We Take Care On Your Pet</span>
-                                        <span class="fa fa-medkit"></span>
+                                        <span class="spanHeadline"><?php echo $this->escape($service['title']);?></span>
+                                        <span class="spanSmall"><?php echo $this->escape($service['description']);?></span>
+                                        <span class="<?php echo $this->escape($service['icon']);?>"></span>
+                                        <a href="#"><span class="readMore">READ MORE</span><span class="fa fa-angle-double-right"></span></a>
                                     </div>
                                 </div>
                             </article>                       
                         </div> 
-                        <div class="col-sm-4">
+                        <?php }?>
+                        
+                        
+                        
+<!--                        <div class="col-sm-4">
                             <article>
                                 <div class="img-div">
                                     <img src="/front/img/section2-img2.jpg" alt="img2"/>
@@ -54,6 +66,6 @@
                                     </div>
                                 </div>
                             </article>             
-                        </div>
+                        </div>-->
                     </div>
             </section>
