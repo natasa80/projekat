@@ -63,6 +63,11 @@ class ServicesController extends Zend_Controller_Action
        // $this->view->sitemapPage = $sitemapPage;
         
     }
+    
+    public function serviceAction()
+    {
+        /* Initialize action controller here */
+    }
 
 }
 

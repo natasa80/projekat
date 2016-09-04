@@ -1,13 +1,13 @@
 <?php
 
-class ShopController extends Zend_Controller_Action
+class BlogController extends Zend_Controller_Action
 {
     public function indexAction()
     {
         
     }
     
-     public function productAction()
+    public function oneblogAction()
     {
         
     }

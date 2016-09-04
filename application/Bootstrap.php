@@ -29,12 +29,41 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
+                    'AboutUsPage' => array(
+				'title' => 'About Us Page',
+				'subtypes' => array(
+					
+				)
+			),
+                    'ShopPage' => array(
+				'title' => 'Shop Page',
+				'subtypes' => array(
+					
+				)
+			),
+                     'ContactPage' => array(
+				'title' => 'Contact Page',
+				'subtypes' => array(
+					
+				)
+			),
+                    'BlogPage' => array(
+				'title' => 'Blog Page',
+				'subtypes' => array(
+					
+				)
+			),
 		);
 		
 		$rootSitemapPageTypes = array(
 			'StaticPage' => 0,
 			'PhotoGalleriesPage' => 1,
+                        'ShopPage' => 1,
                         'ServicesPage' => 1,
+                        'AboutUsPage' => 1,
+                        'ContactPage' => 1,
+                        'BlogPage' => 1,
+                          
 		);
 		
 		Zend_Registry::set('sitemapPageTypes', $sitemapPageTypes);
@@ -43,8 +72,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$router = Zend_Controller_Front::getInstance()->getRouter();
 		
 		$router instanceof Zend_Controller_Router_Rewrite;
-		
-		$sitmapPagesMap = Application_Model_DbTable_CmsSitemapPages::getSitemapPagesMap();
+                
+               
+        $sitmapPagesMap = Application_Model_DbTable_CmsSitemapPages::getSitemapPagesMap();
 		
 		foreach ($sitmapPagesMap as $sitemapPageId => $sitemapPageMap) {
 			
@@ -59,13 +89,68 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					)
 				));
 			}
+                        //ABOUT US ROUTE
+                        if ($sitemapPageMap['type'] == 'AboutUsPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'aboutus',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+			}
                         
+                        //SERVICES ROUTE
                         if ($sitemapPageMap['type'] == 'ServicesPage') {
 				
 				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
 					$sitemapPageMap['url'],
 					array(
-						'controller' => 'servicespage',
+						'controller' => 'services',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+                                
+                                $router->addRoute('service-route', new Zend_Controller_Router_Route(
+                                $sitemapPageMap['url'] . '/service/:id/:service_slug', array(
+                                 'controller' => 'services',
+                                 'action' => 'service',
+                                 'service_slug' => ''
+                                    )
+                                ));
+                        }
+                        
+                        //SHOP ROUTE
+                         if ($sitemapPageMap['type'] == 'ShopPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'shop',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+                                
+                                $router->addRoute('product-route', new Zend_Controller_Router_Route(
+                                $sitemapPageMap['url'] . '/product/:id/:product_slug', array(
+                                 'controller' => 'shop',
+                                 'action' => 'product',
+                                 'product_slug' => ''
+                                    )
+                                ));
+			}
+                        
+                         //Contact ROUTE
+                        if ($sitemapPageMap['type'] == 'ContactPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'contact',
 						'action' => 'index',
 						'sitemap_page_id' => $sitemapPageId
 					)
@@ -93,7 +178,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					)
 				));
 			}
-		}
+                        
+                        //BLOG ROUTE
+                         if ($sitemapPageMap['type'] == 'BlogPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'blog',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+                                
+                                $router->addRoute('blog-route', new Zend_Controller_Router_Route(
+                                $sitemapPageMap['url'] . '/blog/:id/:blog_slug', array(
+                                 'controller' => 'blog',
+                                 'action' => 'oneblog',
+                                 'blog_slug' => ''
+                                    )
+                                ));
+			}
+                  
+                }
 	}
 }
 
