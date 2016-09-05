@@ -41,7 +41,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
-                     'ContactPage' => array(
+                    'ContactPage' => array(
 				'title' => 'Contact Page',
 				'subtypes' => array(
 					
@@ -100,7 +100,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 						'sitemap_page_id' => $sitemapPageId
 					)
 				));
-			}
+                                
+                                 $router->addRoute('member-route', new Zend_Controller_Router_Route(
+                        $sitemapPageMap['url'] . '/member/:id/:member_slug', array(
+                    'controller' => 'aboutus',
+                    'action' => 'member',
+                    'member_slug' => ''
+                        )
+                ));
+            }
                         
                         //SERVICES ROUTE
                         if ($sitemapPageMap['type'] == 'ServicesPage') {
@@ -115,7 +123,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
                                 
                                 $router->addRoute('service-route', new Zend_Controller_Router_Route(
-                                $sitemapPageMap['url'] . '/service/:id/:service_slug', array(
+                                $sitemapPageMap['url'] . '/:id/:service_slug', array(
                                  'controller' => 'services',
                                  'action' => 'service',
                                  'service_slug' => ''
@@ -192,9 +200,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
                                 
                                 $router->addRoute('blog-route', new Zend_Controller_Router_Route(
-                                $sitemapPageMap['url'] . '/blog/:id/:blog_slug', array(
+                                $sitemapPageMap['url'] . '/:id/:blog_slug', array(
                                  'controller' => 'blog',
-                                 'action' => 'oneblog',
+                                 'action' => 'post',
                                  'blog_slug' => ''
                                     )
                                 ));

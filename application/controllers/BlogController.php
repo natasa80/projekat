@@ -7,7 +7,7 @@ class BlogController extends Zend_Controller_Action
         
     }
     
-    public function oneblogAction()
+    public function postAction()
     {
         
     }

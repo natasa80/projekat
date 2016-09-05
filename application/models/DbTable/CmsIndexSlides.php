@@ -27,6 +27,9 @@ class Application_Model_DbTable_CmsIndexSlides extends Zend_Db_Table_Abstract
 		}
 	}
 	
+        
+   
+        
 	/**
 	 * @param int $id
 	 * @param array $indexSlide Associative array with keys as column names and values as coumn new values

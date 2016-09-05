@@ -664,9 +664,13 @@
 
  <?php
 //dodatni css na nasu stranicu
-
-
+//$this->headLink()->appendStylesheet($this->baseUrl('/front/css/jquery.nstSlider.css'));
+$this->headLink()->appendStylesheet('http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css');
+$this->headLink()->appendStylesheet($this->baseUrl('/front/resources/demos/style.css'));
 $this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/jquery.nstSlider.js'));
+$this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/jquery.mixitup.min.js'));
+$this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'));
+$this->inlineScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js');
 ?>
             <script>
                 <?php $this->inlineScript()->captureStart(); ?>
