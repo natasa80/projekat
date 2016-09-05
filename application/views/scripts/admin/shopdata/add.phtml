@@ -1,0 +1,171 @@
+<?php
+$this->headTitle('New Data');
+$form = $this->form;
+//
+$form->setElementDecorators(array('ViewHelper'));
+?>
+
+
+<div class="page-header">
+    <h1>Members <small>New Data</small></h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <?php echo $this->systemMessagesHtml($this->systemMessages); ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-right" >
+                <div class="btn-group" role="group" aria-label="...">
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'index'), 'default', true); ?>" type="button" 
+                        class="btn btn-default"
+                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to shop data</a>
+
+                </div>  
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" method="post" action="" >
+                    <input type="hidden" name="task" value="save">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>New Data</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="first_name">Address</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('address')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => "enter address",
+                                    'id' => 'address',
+                                ));
+                                ?>
+
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('address')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('address')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="phone">Phone</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('phone')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter phone',
+                                    'id' => 'phone',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('phone')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('phone')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('email')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter member\'s  email',
+                                    'id' => 'email',
+                                    'required' => 'required'
+                                ));
+                                ?>
+                                
+                                <span class="help-block">username@domain</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('email')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('email')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                                
+                            </div>
+                        </div>
+
+                     
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="about_us">About Us</label>
+                            <div class="col-md-4"> 
+                                
+                                 <?php
+                                echo $form->getElement('about_us')->setAttribs(array(
+                                    'class' => 'form-control',
+                                    'id' => 'about_us',
+                                    'rows' => 12
+                                    
+                                ));
+                                ?>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                 <?php if ($form->getElement('about_us')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('about_us')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        
+                       
+                        <!-- Button (Double) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="new_data_cancel"></label>
+                            <div class="col-md-4 text-right">
+                                <a 
+                                    href ="<?php echo $this->url(array('controller'=> 'admin_shopdata', 'action'=> 'index'), 'default', true)?>"
+                                    id="new_data_cancel" name="new_data_cancel" class="btn btn-default">Cancel</a>
+                                <button type="submit" id="new_data_submit" name="new_data_submit" class="btn btn-success">Save</button>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
