@@ -1,3 +1,10 @@
+<?php 
+$services = $this->services;
+$servicesSitemapPages = $this->servicesSitemapPages;
+$members = $this->members;
+//print_r($members);
+//die();
+?>
 
 <!-- CAROUSEL SLIDER START -->
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -86,61 +93,41 @@
                             <div class="col-md-7 section4Tabs">
                                 <h3 class="sectionHeadline2">SERVICES WE OFFER</h3>
                                 <p class="sectionP2">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
+                                 
                                 <div class="row">
                                     <!-- NAVIGATION BUTTONS -->
+                                    
                                     <div class="col-md-4 navLeft">
+                                       
                                         <ul class="nav nav-pills nav-stacked" id="myTabs">
-                                            <li><a href="#care" data-toggle="pill"><span class="fa fa-heartbeat"></span>VETERINARY CARE</a></li>
-                                            <li class="active"><a href="#camp" data-toggle="pill"><span class="fa fa-dribbble"></span>PETS DAY CAMP</a></li>
-                                            <li><a href="#nutrition" data-toggle="pill"><span class="fa fa-futbol-o"></span>PET NUTRITION</a></li>
-                                            <li><a href="#insurance" data-toggle="pill"><span class="fa fa-smile-o"></span>PET INSURANCE</a></li>
+                                              
+                                            <?php foreach($services as $service) { ?>
+                                            <li  id="nav" ><a href="#<?php echo $this->escape($service['id']); ?>" data-toggle="pill"><span class="<?php echo $this->escape($service['icon']); ?>"></span><?php echo $this->escape($service['title']); ?></a></li>
+                                            <?php } ?>
                                         </ul>
+                                        
                                     </div>
                                     <!-- CONTENT -->
                                     <div class="col-md-8">
                                         <div class="tab-content">
-                                            <div class="tab-pane" id="care">
+                                           <?php foreach($services as $service) { ?>
+                                            <div   class="tab-pane" id="<?php echo $this->escape($service['id']); ?>">
                                                 <p>
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                    <?php echo $this->escape($service['description']); ?>
                                                 </p>
                                             </div>
-                                            <div class="tab-pane active" id="camp">
-                                                <p>
-                                                    Trajectory into an orbit which freezes his life support systems and returns Buck Rogers to
-                                                    Earth five-hundred years later. We're gonna do it. On your mark get set and go now. 
-                                                    Got a dream and we just know now we're gonna make our dream come true. Space. The final frontier.
-                                                    These are the voyages of the Starship Enterprise.
+                                         <?php } ?>
 
-                                                </p>
-                                            </div>
-                                            <div class="tab-pane" id="nutrition">
-                                                <p>
-                                                    It is a long established fact that a reader will be distracted by the readable content of a page 
-                                                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                                                    distribution of letters, as opposed to using 'Content here, content here', making it look like 
-                                                    readable English.
-                                                </p>
-                                            </div>
-                                            <div class="tab-pane" id="insurance">
-                                                <p>
-                                                    Contrary to popular belief, Lorem Ipsum is not simply random text.
-                                                    It has roots in a piece of classical Latin literature from 45 BC, 
-                                                    making it over 2000 years old. Richard McClintock, 
-                                                    a Latin professor at Hampden-Sydney College in Virginia,
-                                                    looked up one of the more obscure Latin words, consectetur,
-                                                    from a Lorem Ipsum passage, 
-                                                    and going through the cites of the word in classical literature,
-                                                    discovered the undoubtable source. 
-
-                                                </p>
-                                            </div>
                                         </div>
+                                         
                                     </div>
-
+                                   
                                 </div>
+                                
                             </div>
+                               
                             <div class="col-md-5 section4Img">
-                                <img class="img img-responsive sec4Img" src="/front/img/section4-img.jpg" alt=""/>
+                                <img class="img img-responsive sec4Img" src="<?php echo $this->baseUrl('/front/img/section4-img.jpg'); ?>" alt=""/>
                             </div>
                         </div>
                     </div>
@@ -413,28 +400,34 @@
                     <p class="sectionP">They will have to make the best of things its an uphill climb</p>
 
                     <div class="row">
+                        <?php foreach($members as $member) {
+                                    $memberImgUrl=$this->memberImgUrl($member);
+                                ?>
                         <div class="col-sm-6 col-md-6 col-lg-3">
-
+                             
                             <figure class="imageSection8">
-                                <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
+                               
+                                 
+                                <img class="img img-responsive" src="<?php echo $memberImgUrl; ?>" alt="<?php echo $this->escape($member['first_name'])?>"/>
                                 <div class="imgContent">
                                     <div class="drInfo">
-                                        <h4>DR. JOHN FRANCIS</h4>
-                                        <p class="sectionP">Veterinary Chief</p>
+                                        <h4><?php echo $this->escape($member['first_name'] . ' ' .$member['last_name']); ?></h4>
+                                        <p class="sectionP"><?php echo $this->escape($member['work_title']); ?></p>
                                     </div>
 
                                 </div>
                                 <div class="doctorNetwork">
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-facebook"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
+                                    <a href="<?php echo $this->escape($member['twitter']); ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+                                    <a href="<?php echo $this->escape($member['facebook']); ?>" target="_blank"><span class="fa fa-facebook"></span></a>
+                                    <a href="<?php echo $this->escape($member['google_plus']); ?>" target="_blank"><span class="fa fa-google-plus"></span></a>
+                                    <a href="<?php echo $this->escape($member['linkedin']); ?>" target="_blank"><span class="fa fa-linkedin"></span></a>
                                 </div>
+                                
                             </figure>
-
+                           
                         </div>
-
-                        <div class="col-sm-6 col-md-6 col-lg-3">
+                         <?php }?>
+<!--                        <div class="col-sm-6 col-md-6 col-lg-3">
                             <figure class="imageSection8">
                                 <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
                                 <div class="imgContent">
@@ -490,7 +483,7 @@
                                 </div>
                             </figure>
 
-                        </div>
+                        </div>-->
                     </div>
             </section>
 
@@ -700,16 +693,9 @@
                             </article>
                         </div>
 
-
                     </div>
                 </div>
             </section>
-
-
-
-
-
-
 
 
             <!-- SECTION 10 STOP -->
@@ -911,3 +897,20 @@
             </section>
             <!-- SECTION 13 STOP -->
         
+<script>
+    <?php $this->inlineScript()->captureStart(); ?>
+        
+        
+        var selector1 = '#nav';
+        var selector2 = '.tab-pane';
+
+$(selector1).on('click', function(){
+   $(selector1).removeClass('active');
+   $(this).addClass('active');
+   
+   $(selector2).on('click', function(){
+   $(selector2).removeClass('active');
+   $(this).addClass('active');
+});
+    <?php $this->inlineScript()->captureEnd(); ?>
+    </script>

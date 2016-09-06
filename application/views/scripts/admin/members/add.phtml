@@ -196,7 +196,107 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
                         </div>
                         
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="twitter">Twitter</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('twitter')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter twitter link',
+                                    'id' => 'twitter',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('twitter')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('twitter')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="facebook">Facebook</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('facebook')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter facebook link',
+                                    'id' => 'facebook',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('facebook')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('facebook')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
                         
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="google_plus">Google Plus</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('google_plus')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter google_plus link',
+                                    'id' => 'google_plus',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('google_plus')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('google_plus')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="linkedin">Linkedin</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('linkedin')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter linkedin link',
+                                    'id' => 'linkedin',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('linkedin')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('linkedin')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
                         
                         
                         <!-- Button (Double) -->

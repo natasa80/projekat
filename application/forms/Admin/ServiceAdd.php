@@ -30,6 +30,26 @@ class Application_Form_Admin_ServiceAdd extends Zend_Form
         $description->addFilter('StringTrim')
                 ->setRequired(true);
         $this->addElement($description);
+        
+        //na nivou elementa, ako imamo true parametar, i oko izbaci gresku za tu validaciju i ne ispituje dalje 
+        $servicePhoto = new Zend_Form_Element_File('service_photo');
+        $servicePhoto->addValidator('Count', true, 1)//ogranicavamo broj fajlova koji se mogu uploud-ovati 
+                    ->addValidator('MimeType', true, array('image/jpeg', 'image/gif', 'image/png'))
+                    ->addValidator('ImageSize', false, array(
+                        'minwidth' => 150,
+                        'minheight' => 150,
+                        'maxwidth' => 2000,
+                        'maxheight' => 2000
+                    ))
+                    ->addValidator('Size', false, array(
+                        'max' => '10MB'
+                    ))
+                    // disable move file to destination when calling method getValues
+                    ->setValueDisabled(true)
+                    ->setRequired(false);
+        
+            $this->addElement($servicePhoto);
+                
                 
     }
 

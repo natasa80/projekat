@@ -16,14 +16,38 @@ class Application_Form_Admin_MemberAdd extends Zend_Form
         //treba sada da se ubaci u formu
         $this->addElement($firstName);
         
-          $lastName = new Zend_Form_Element_Text('last_name');//atribut je isti kao sa forme
+        $twitter = new Zend_Form_Element_Text('twitter');//atribut je isti kao sa forme
         
         
+        $twitter->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($twitter);
+        
+        $facebook = new Zend_Form_Element_Text('facebook');
+        $facebook->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($facebook);
+        
+        $googlePlus = new Zend_Form_Element_Text('google_plus');
+        $googlePlus->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($googlePlus);
+        
+        $linkedin = new Zend_Form_Element_Text('linkedin');
+        $linkedin->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($linkedin);
+        
+        
+        $lastName = new Zend_Form_Element_Text('last_name');
         $lastName->addFilter('StringTrim')
                 ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
                 ->setRequired(true);
         $this->addElement($lastName);
-        
         
         $workTitle = new Zend_Form_Element_Text('work_title');
         $workTitle->addFilter('StringTrim')

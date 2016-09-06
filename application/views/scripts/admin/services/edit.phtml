@@ -29,15 +29,15 @@ $form->setElementDecorators(array('ViewHelper'));
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" method="post" action="">
+                <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
                     <input type="hidden" name="task" value="update">
 
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Edit Service - <?php echo $this->escape($this->member['title']) ?></legend>
+                        <legend>Edit Service - <?php echo $this->escape($this->service['title']) ?></legend>
 
-                        <fieldset>
+                       
 
                            
 
@@ -123,6 +123,32 @@ $form->setElementDecorators(array('ViewHelper'));
                                     <?php } ?>
                                 </div>
                             </div>
+                            
+                                <!-- Image -->
+                        
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="service_photo">Photo</label>
+                            <div class="col-md-4"> 
+                                <div>
+                                    <a href="#" class="thumbnail">
+                                        <img src="<?php echo $this->serviceImgUrl($this->service);?>">
+                                    </a>
+                                    
+                                </div>
+                                <input type="file" name="service_photo" id="service_photo" class="form-control  input-md">
+                                <span class="help-block">Change Photo</span>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                 <?php if ($form->getElement('service_photo')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('service_photo')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
 
                             <!-- Button (Double) -->
                             <div class="form-group">
@@ -130,8 +156,8 @@ $form->setElementDecorators(array('ViewHelper'));
                                 <div class="col-md-4 text-right">
                                     <a 
                                         href ="<?php echo $this->url(array('controller'=> 'admin_services', 'action'=> 'index'), 'default', true)?>"
-                                        id="new_member_cancel" name="new_service_cancel" class="btn btn-default">Cancel</a>
-                                    <button type="submit" id="new_member_submit" name="new_service_submit" class="btn btn-success">Save</button>
+                                        id="new_service_cancel" name="new_service_cancel" class="btn btn-default">Cancel</a>
+                                    <button type="submit" id="new_service_submit" name="new_service_submit" class="btn btn-success">Save</button>
                                 </div>
 
                             </div>

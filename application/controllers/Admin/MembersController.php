@@ -84,7 +84,7 @@ class Admin_MembersController extends Zend_Controller_Action {
                         //open uploaded photo in temporary directory
                         $memberPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 
-                        $memberPhoto->fit(150, 150);
+                        $memberPhoto->fit(273, 408);
                         $memberPhoto->save(PUBLIC_PATH . '/uploads/members/' . $memberId . '.jpg');
                     } catch (Exception $ex) {
 
@@ -183,7 +183,7 @@ class Admin_MembersController extends Zend_Controller_Action {
                         //open uploaded photo in temporary directory
                         $memberPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 
-                        $memberPhoto->fit(150, 150);
+                        $memberPhoto->fit(273, 408);
 
                         $memberPhoto->save(PUBLIC_PATH . '/uploads/members/' . $member['id'] . '.jpg');
                     } catch (Exception $ex) {

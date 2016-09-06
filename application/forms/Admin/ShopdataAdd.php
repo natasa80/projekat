@@ -6,8 +6,6 @@ class Application_Form_Admin_ShopdataAdd extends Zend_Form
     public function init() {
         
         $address = new Zend_Form_Element_Text('address');//atribut je isti kao sa forme
-        //$firstName->addFilter(new Zend_Filter_StringTrim);
-        //$firstName->addValidator(new Zend_Validate_StringLength(array('min' => 3, 'max' => 255)));
         
         $address->addFilter('StringTrim')
                 ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))//false znaci da ako posle ovog ima jos validatora da ne prekida ispitivanje i validaciju i ako ne prodje ovu

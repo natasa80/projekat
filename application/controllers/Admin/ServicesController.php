@@ -48,20 +48,49 @@ class Admin_ServicesController extends Zend_Controller_Action {
 
                 //check form is valid
                 if (!$form->isValid($request->getPost())) {//sve sto je u post zahtevu prosledi formi na validaciju
-                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for new member');
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for new service');
                 }
 
                 //get form data//vrednosti iz forme se uzimaju preko getVaues i upisuju u niz
                 //to su filtrirani i validirani podaci
                 $formData = $form->getValues();
-
+                 unset($formData['service_photo']);
 
                 //insertujemo zapis u bazu
                 $cmsServicesTable = new Application_Model_DbTable_CmsServices();
-                $cmsServicesTable->insertService($formData);
-                // do actual task
-                //save to database etc
-                //set system message
+                
+                $serviceId = $cmsServicesTable->insertService($formData);
+                
+                if ($form->getElement('service_photo')->isUploaded()) {
+                    //photo is uploaded 
+
+                    $fileInfos = $form->getElement('service_photo')->getFileInfo('service_photo');
+                    $fileInfo = $fileInfos['service_photo'];
+                    //$fileInfo = $_FILES["service_photo"];
+
+
+                    try {
+                        //open uploaded photo in temporary directory
+                        $servicePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+
+                        $servicePhoto->fit(250, 350);
+                        $servicePhoto->save(PUBLIC_PATH . '/uploads/services/section2-' . $serviceId . '.jpg');
+                    } catch (Exception $ex) {
+
+                        $flashMessenger->addMessage('Member has been saved, but error occured during image processing', 'errors');
+
+                        //redirect to same or another page
+                        $redirector = $this->getHelper('Redirector');
+                        $redirector->setExit(true)
+                                ->gotoRoute(array(
+                                    'controller' => 'admin_services',
+                                    'action' => 'edit',
+                                    'id' => $serviceId
+                                        ), 'default', true);
+                    }
+                }
+                
+           
                 $flashMessenger->addMessage('Service has been saved', 'success');
 
                 //redirect to same or another page
@@ -133,7 +162,28 @@ class Admin_ServicesController extends Zend_Controller_Action {
                 //to su filtrirani i validirani podaci
                 $formData = $form->getValues();
 
+                unset($formData['service_photo']);
 
+                if ($form->getElement('service_photo')->isUploaded()) {
+                    //photo is uploaded 
+
+                    $fileInfos = $form->getElement('service_photo')->getFileInfo('service_photo');
+                    $fileInfo = $fileInfos['service_photo'];
+                    //$fileInfo = $_FILES["service_photo"];
+
+
+                    try {
+                        //open uploaded photo in temporary directory
+                        $servicePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+
+                        $servicePhoto->fit(250, 350);
+
+                        $servicePhoto->save(PUBLIC_PATH . '/uploads/services/section2-' . $service['id'] . '.jpg');
+                    } catch (Exception $ex) {
+
+                        throw new Application_Model_Exception_InvalidInput('Error occured during image processing');
+                    }
+                }
                 //iUpdate postojeceg zapisa u tabeli
                 
                 $cmsServicesTable->updateService($service['id'], $formData);
