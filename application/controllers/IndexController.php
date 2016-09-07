@@ -10,18 +10,18 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-//		$cmsIndexSlidesDbTable = new Application_Model_DbTable_CmsIndexSlides();
-//		
-//		$indexSlides = $cmsIndexSlidesDbTable->search(array(
-//			'filters' => array(
-//				'status' => Application_Model_DbTable_CmsIndexSlides::STATUS_ENABLED
-//			),
-//			'orders' => array(
-//				'order_number' => 'ASC'
-//			)
-//		));
-//		
-//		$this->view->indexSlides = $indexSlides;
+		$cmsIndexSlidesDbTable = new Application_Model_DbTable_CmsIndexSlides();
+		
+		$indexSlides = $cmsIndexSlidesDbTable->search(array(
+			'filters' => array(
+				'status' => Application_Model_DbTable_CmsIndexSlides::STATUS_ENABLED
+			),
+			'orders' => array(
+				'order_number' => 'ASC'
+			)
+		));
+		
+		
         
         //prikaz servisa
         $cmsServicesDbTable = new Application_Model_DbTable_CmsServices();
@@ -62,6 +62,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->services = $services;
         $this->view->servicesSitemapPages = $servicesSitemapPages;
         $this->view->members = $members;
+        $this->view->indexSlides = $indexSlides;
         
         
     }

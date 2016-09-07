@@ -2,6 +2,7 @@
 $services = $this->services;
 $servicesSitemapPages = $this->servicesSitemapPages;
 $members = $this->members;
+$indexSlides = $this->indexSlides;
 //print_r($members);
 //die();
 ?>
@@ -9,66 +10,48 @@ $members = $this->members;
 <!-- CAROUSEL SLIDER START -->
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
+                 
+                
                 <ol class="carousel-indicators">
-                    <li data-target="/front/#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="/front/#myCarousel" data-slide-to="1"></li>
-                    <li data-target="/front/#myCarousel" data-slide-to="2"></li>
-                    <li data-target="/front/#myCarousel" data-slide-to="3"></li>
+                      
+                    <?php 
+                     $i = 0; 
+                     foreach ($indexSlides as $index=>$slide) { 
+                         ?>
+                        <li data-target="/front/#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0 ) ? "active" : ""; ?>"></li>
+                        <?php 
+                        $i++;
+                
+                    } 
+                    ?>
+               
                 </ol>
-
+                 
                 <!-- Wrapper for slides -->
+              
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="/front/img/slide1.jpg" alt=""/>
-                        <div class="carousel-caption">
-                            <h3>DOG CAT PET CARE</h3>
-                            <p class="normalText">We Take Good Care For</p>
-                            <p class="normalText">Your Lovely Pet</p>
-                            <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
-                            <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
-                            <button class="btn btn-default purchaseLear">PURCHASE</button>
-                            <button class="btn btn-default purchaseLear">LEARN MORE</button>
+                     <?php 
+                     $i = 0; 
+                     foreach ($indexSlides as $index=>$slide) { 
+                         ?>
+                        <div class="item <?php echo ($i == 0 ) ? "active" : ""; ?>">
+                            <img src="<?php echo $this->indexSlideImgUrl($slide); ?>" alt="<?php echo $this->escape($slide['title']); ?>"/>
+                            <div class="carousel-caption">
+                                <h3>DOG CAT PET CARE</h3>
+                                <p class="normalText">We Take Good Care For</p>
+                                <p class="normalText">Your Lovely Pet</p>
+                                <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
+                                <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
+                                <button class="btn btn-default purchaseLear">PURCHASE</button>
+                                <button class="btn btn-default purchaseLear">LEARN MORE</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="/front/img/slider-2.jpg" alt=""/>
-                        <div class="carousel-caption">
-                            <h3>DOG CAT PET CARE</h3>
-                            <p class="normalText">We Take Good Care For</p>
-                            <p class="normalText">Your Lovely Pet</p>
-                            <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
-                            <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
-                            <button class="btn btn-default purchaseLear">PURCHASE</button>
-                            <button class="btn btn-default purchaseLear">LEARN MORE</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="/front/img/slider-3.jpg" alt=""/>
-                        <div class="carousel-caption">
-                            <h3>DOG CAT PET CARE</h3>
-                            <p class="normalText">We Take Good Care For</p>
-                            <p class="normalText">Your Lovely Pet</p>
-                            <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
-                            <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
-                            <button class="btn btn-default purchaseLear">PURCHASE</button>
-                            <button class="btn btn-default purchaseLear">LEARN MORE</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="/front/img/slider-4.jpg" alt=""/>
-                        <div class="carousel-caption">
-                            <h3>DOG CAT PET CARE</h3>
-                            <p class="normalText">We Take Good Care For</p>
-                            <p class="normalText">Your Lovely Pet</p>
-                            <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
-                            <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
-                            <button class="btn btn-default purchaseLear">PURCHASE</button>
-                            <button class="btn btn-default purchaseLear">LEARN MORE</button>
-                        </div>
-                    </div>
+                        <?php 
+                        $i++;
+                
+                    } 
+                    ?>
+                    
                 </div>
 
                 <!-- Left and right controls -->
@@ -80,161 +63,9 @@ $members = $this->members;
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+               
             </div>
-            <!-- CAROUSEL SLIDER STOP -->
-            <!-- SECTION 4 START -->
-            <section class="section4">
-                <div class="container">
-
-                    <div class="offer">
-
-                        <div class="row">
-
-                            <div class="col-md-7 section4Tabs">
-                                <h3 class="sectionHeadline2">SERVICES WE OFFER</h3>
-                                <p class="sectionP2">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
-                                 
-                                <div class="row">
-                                    <!-- NAVIGATION BUTTONS -->
-                                    
-                                    <div class="col-md-4 navLeft">
-                                       
-                                        <ul class="nav nav-pills nav-stacked" id="myTabs">
-                                              
-                                            <?php foreach($services as $service) { ?>
-                                            <li  id="nav" ><a href="#<?php echo $this->escape($service['id']); ?>" data-toggle="pill"><span class="<?php echo $this->escape($service['icon']); ?>"></span><?php echo $this->escape($service['title']); ?></a></li>
-                                            <?php } ?>
-                                        </ul>
-                                        
-                                    </div>
-                                    <!-- CONTENT -->
-                                    <div class="col-md-8">
-                                        <div class="tab-content">
-                                           <?php foreach($services as $service) { ?>
-                                            <div   class="tab-pane" id="<?php echo $this->escape($service['id']); ?>">
-                                                <p>
-                                                    <?php echo $this->escape($service['description']); ?>
-                                                </p>
-                                            </div>
-                                         <?php } ?>
-
-                                        </div>
-                                         
-                                    </div>
-                                   
-                                </div>
-                                
-                            </div>
-                               
-                            <div class="col-md-5 section4Img">
-                                <img class="img img-responsive sec4Img" src="<?php echo $this->baseUrl('/front/img/section4-img.jpg'); ?>" alt=""/>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </section>
-            <!-- SECTION 4 STOP -->
             
-             <section class="section3">
-                <div class="container">
-                    <div class="text-center">
-                        <h3 class="sectionHeadline1">GET AN APPOINTMENT</h3>
-                        <p class="sectionP1">They will have to make the best of things its an uphill climb</p>
-                    </div>
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-3 ">
-
-                                <div class="form-group">                          
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="First Name">
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="form-group">                          
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Last Name">
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="form-group">  
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email adress">
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="form-group">  
-                                    <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="Phone Number">
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <select class="form-control select">
-                                    <option selected>Pet Category</option>
-                                    <option>Category 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
-                                    <option>Category 4</option>
-                                </select>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <select class="form-control">
-                                    <option selected>Service Type</option>
-                                    <option>Type 1</option>
-                                    <option>Type 2</option>
-                                    <option>Type 3</option>
-                                    <option>Type 4</option>
-                                </select>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="form-group">
-                                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                    <input type="hidden" id="dtp_input2" value="" /><br/>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                    </div>
-                                    <input type="hidden" id="dtp_input3" value="" /><br/>
-                                </div>
-
-
-                            </div>
-                            <div class="col-sm-12">
-
-                                <div class="form-group">
-                                    <textarea class="form-control textarea" rows="5" id="comment" placeholder="Anything we should know about your pet"></textarea>
-                                </div>   
-
-                            </div> 
-
-                        </div>
-                    </form>
-                    <div class="buttonGet">
-                        <button class="btn btn-default appointmentButton">GET AN APPOINTMENT</button>
-                    </div>
-                </div>
-            </section>
-
-
-            <!-- SECTION3 STOP -->
 
 
             
