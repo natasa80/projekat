@@ -34,7 +34,37 @@ class Application_Form_Admin_ShopdataAdd extends Zend_Form
                 ->setRequired(false);
         $this->addElement($aboutUs);
         
-       
+        $twitter = new Zend_Form_Element_Text('twitter');//atribut je isti kao sa forme
+        
+        
+        $twitter->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($twitter);
+        
+        $facebook = new Zend_Form_Element_Text('facebook');
+        $facebook->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($facebook);
+        
+        $googlePlus = new Zend_Form_Element_Text('google_plus');
+        $googlePlus->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($googlePlus);
+        
+        $linkedin = new Zend_Form_Element_Text('linkedin');
+        $linkedin->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($linkedin);
+        
+        $city = new Zend_Form_Element_Text('city');
+        $city->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
+                ->setRequired(FALSE);
+        $this->addElement($city);
                 
     }
 

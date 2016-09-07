@@ -1,0 +1,142 @@
+<?php
+$this->headTitle('New Working Hours');
+$form = $this->form;
+//
+$form->setElementDecorators(array('ViewHelper'));
+?>
+
+
+<div class="page-header">
+    <h1>Members <small>New Working Hours</small></h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <?php echo $this->systemMessagesHtml($this->systemMessages); ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-right" >
+                <div class="btn-group" role="group" aria-label="...">
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'index'), 'default', true); ?>" type="button" 
+                        class="btn btn-default"
+                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to shop data</a>
+
+                </div>  
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" method="post" action="" >
+                    <input type="hidden" name="task" value="save">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>New Working Hours</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="day">Day</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('day')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => "enter day",
+                                    'id' => 'day',
+                                ));
+                                ?>
+
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('day')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('day')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+                          <div class="form-group">
+                             
+                            <label class="col-md-4 control-label" for="order_number">Order</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('order_number')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter order in week',
+                                    'id' => 'order_number',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('order_number')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('order_number')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                             
+                            <label class="col-md-4 control-label" for="time">Open Time</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('time')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter time',
+                                    'id' => 'time',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('time')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('time')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+
+                        
+                       
+                       
+                        <!-- Button (Double) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="new_data_cancel"></label>
+                            <div class="col-md-4 text-right">
+                                <a 
+                                    href ="<?php echo $this->url(array('controller'=> 'admin_shopdata', 'action'=> 'index'), 'default', true)?>"
+                                    id="new_data_cancel" name="new_data_cancel" class="btn btn-default">Cancel</a>
+                                <button type="submit" id="new_data_submit" name="new_data_submit" class="btn btn-success">Save</button>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

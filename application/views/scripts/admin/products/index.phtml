@@ -1,6 +1,6 @@
 
 <?php
-$this->headTitle('Shop Data');
+$this->headTitle('Products');
 ?>
 
 
@@ -12,7 +12,7 @@ $this->headTitle('Shop Data');
         </div>
     </div>
 
-    <h1>Shop Data</h1>
+    <h1>Products</h1>
 </div>
 
 <div class="row">
@@ -20,10 +20,14 @@ $this->headTitle('Shop Data');
         <div class="panel panel-default">
             <div class="panel-heading text-right" >
                 <div class="btn-group" role="group" aria-label="...">
-                   
-                    <a  href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'add'), 'default', true); ?>" type="button" 
+                    <button data-action="save-order" 
+                            class="btn btn-success" 
+                            style="display: none;"><i class="glyphicon glyphicon-save"></i>Save Order</button>
+
+                    <button data-action="toggle-sort" class="btn btn-default" ><i class="glyphicon glyphicon-list"></i>Change Order</button>
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'add'), 'default', true); ?>" type="button" 
                         class="btn btn-default"
-                        ><i class="glyphicon glyphicon-plus"></i>Add Data</a>
+                        ><i class="glyphicon glyphicon-plus"></i>Add product</a>
 
                 </div>  
             </div>
@@ -32,67 +36,69 @@ $this->headTitle('Shop Data');
                 <table id="rows-table" class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            
+                            <th></th>
+                            <th class="text-center">Img</th>
                             <th class="text-center">Status</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Twitter</th>
-                            <th>Facebook</th>
-                            <th>Google Plus</th>
-                            <th>Linkedin</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Producer</th>
+                            <th>Category</th>
+                            <th>Pet-Category</th>
                             <th class="text-center">#</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($this->informations as $data) {
-                            if ($data['status'] == Application_Model_DbTable_CmsShopData ::STATUS_DISABLED) {
+                        foreach ($this->products as $product) {
+                            if ($product['status'] == Application_Model_DbTable_CmsMembers::STATUS_DISABLED) {
                                 ?>
 
-                                <tr data-id="<?php echo $this->escape($data['id']); ?>" class="danger">
+                                <tr data-product-id="<?php echo $this->escape($product['id']); ?>" class="danger">
                                     <td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor:pointer;"></i></td>
+                                    <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
                                     <td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
-                                    <td><?php echo $this->escape($data['address']); ?></td>
-                                     <td><?php echo $this->escape($data['city']); ?></td>
-                                    <td><?php echo $this->escape($data['phone']); ?></td>
-                                    <td><?php echo $this->escape($data['email']); ?></td>
-                                    <td><?php echo $this->escape($data['twitter']); ?></td>
-                                    <td><?php echo $this->escape($data['facebook']); ?></td>
-                                    <td><?php echo $this->escape($data['google_plus']); ?></td>
-                                    <td><?php echo $this->escape($data['linkedin']); ?></td>
-                                    
+                                    <td><?php echo $this->escape($product['title']); ?></td>
+                                    <td><?php echo $this->escape($product['price']); ?></td>
+                                    <td><?php echo $this->escape($producers[$product['producer_id']]['name']); ?></td>
+                                    <td><?php echo $this->escape($category[$product['category_id']]['title']); ?></td>
+                                    <td><?php echo $this->escape($pet[$product['pet_id']]['short_title']); ?></td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                             <a 
-                                                href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'edit', 'id' => $data['id']), 'default', true); ?>" 
+                                                href="<?php echo $this->productUrl($product); ?>" 
+                                                target="_blank"
+                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                            <a 
+                                                href="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'edit', 'id' => $product['id']), 'default', true); ?>" 
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                                            <button  data-id="<?php echo $this->escape($data['id']); ?>" data-action="enable" type="button" class="btn btn-default" title="enable"><i class="glyphicon glyphicon-ok"></i></button>
-                                            <button  data-id="<?php echo $this->escape($data['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                            <button data-productName="<?php echo $this->escape($product['first_name'] . ' ' . $product['last_name']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="enable" type="button" class="btn btn-default" title="enable"><i class="glyphicon glyphicon-ok"></i></button>
+                                            <button data-productName="<?php echo $this->escape($product['first_name'] . ' ' . $product['last_name']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
                                 <?php
                             } else {
                                 ?>
-                                <tr data-id="<?php echo $this->escape($data['id']); ?>">
+                                <tr data-product-id="<?php echo $this->escape($product['id']); ?>">
+                                    <td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor:pointer;"></i></td>
+                                    <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
                                     <td class="text-center"><span class="badge alert-success" title="enabled"><i class="glyphicon glyphicon-ok"></i></span></td>
-                                    <td><?php echo $this->escape($data['address']); ?></td>
-                                    <td><?php echo $this->escape($data['city']); ?></td>
-                                    <td><?php echo $this->escape($data['phone']); ?></td>
-                                    <td><?php echo $this->escape($data['email']); ?></td>
-                                    <td><?php echo $this->escape($data['twitter']); ?></td>
-                                    <td><?php echo $this->escape($data['facebook']); ?></td>
-                                    <td><?php echo $this->escape($data['google_plus']); ?></td>
-                                    <td><?php echo $this->escape($data['linkedin']); ?></td>
+                                    <td><?php echo $this->escape($product['title']); ?></td>
+                                    <td><?php echo $this->escape($product['price']); ?></td>
+                                    <td><?php echo $this->escape($this->producers[$product['producer_id']]['name']); ?></td>
+                                    <td><?php echo $this->escape($this->categories[$product['category_id']]['title']); ?></td>
+                                    <td><?php echo $this->escape($this->pets[$product['pet_id']]['short_title']); ?></td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                             <a 
-                                                href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'edit', 'id' => $data['id']), 'default', true); ?>"
+                                                href="<?php echo $this->productUrl($product); ?>" 
+                                                target="_blank"
+                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                            <a 
+                                                href="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'edit', 'id' => $product['id']), 'default', true); ?>"
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                                            <button  data-id="<?php echo $this->escape($data['id']); ?>" data-action="disable" type="button" class="btn btn-default" title="disable"><i class="glyphicon glyphicon-remove"></i></button>
-                                            <button  data-id="<?php echo $this->escape($data['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                            <button data-productName="<?php echo $this->escape($product['name']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="disable" type="button" class="btn btn-default" title="disable"><i class="glyphicon glyphicon-remove"></i></button>
+                                            <button data-productName="<?php echo $this->escape($product['name']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -106,7 +112,6 @@ $this->headTitle('Shop Data');
                         }
                         ?>
 
-
                     </tbody>
                 </table>
 
@@ -115,81 +120,18 @@ $this->headTitle('Shop Data');
     </div>
 </div>
 
-
-
-
-
-
-
-<div class="row">
-    <div class="col-md-6">
-        
-        <div class="panel panel-default">
-          
-            <div class="panel-heading " >
-                <h3 >Working Time</h3>
-                <div  class="btn-group" role="group" aria-label="...">
-                
-                  <a  href="<?php echo $this->url(array('controller' =>'admin_shopdata', 'action'=>'addhours'), 'default', true); ?>" type="button" 
-                    class="btn btn-default"
-                    ><i  class="glyphicon glyphicon-plus"></i>Add Hours</a>
-                  
-                </div>  
-            </div>
-            <div class="panel-body">
-               
-                				<table id="rows-table" class="table table-striped table-hover">
-					<thead>
-						<tr>
-                                                        
-                                                        <th class="text-center ">Day</th>
-                                                        <th class="text-center">Time</th>
-                                                        
-							<th class="text-center">#</th>
-						</tr>
-					</thead>
-					<tbody>
-                                            <?php 
-                                            foreach ($this->workingHours as $workingHour) {?>
-                                                
-							<td class="text-center"><?php echo $this->escape($workingHour['day']); ?></td>
-                                                        <td class="text-center"><?php echo $this->escape($workingHour['time']); ?></td>
-							<td class="text-center">
-								<div class="btn-group btn-group" role="group" aria-label="...">
-                                                                        
-									<a 
-                                                                            href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'edithours', 'id' => $workingHour['id']), 'default', true); ?>" 
-                                                                           type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
-									
-                                                                        
-								</div>
-							</td>
-						</tr>
-                                           
-                                                <?php
-                                            }
-                                            ?>
-                                                
-						
-					</tbody>
-				</table>
-               
-            </div>
-        </div>
-    </div>
-</div>
 <!-- /.modal-content je po defaultu sakriven MODAL DIALOG-->
-<form method="post" action="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'delete'), "default", true); ?>" id="delete-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'delete'), "default", true); ?>" id="delete-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
     <input type="hidden" name="task" value="delete">
     <input type="hidden" name="id" value="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Delete data</h4>
+                <h4 class="modal-title">Delete product</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete data </p>
+                <p>Are you sure you want to delete product: <span class="osoba" class="btn btn-tumblr"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -200,17 +142,17 @@ $this->headTitle('Shop Data');
 </form><!-- /.modal -->
 
 <!-- /.modal-content je po defaultu sakriven MODAL DIALOG-->
-<form method="post" action="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'disable'), "default", true); ?>" id="disable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'disable'), "default", true); ?>" id="disable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
     <input type="hidden" name="task" value="disable">
     <input type="hidden" name="id" value="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Disable data</h4>
+                <h4 class="modal-title">Disable product</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to disable data</p>
+                <p>Are you sure you want to disable product: <span class="osoba" class="btn btn-tumblr"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -221,17 +163,17 @@ $this->headTitle('Shop Data');
 </form><!-- /.modal -->
 
 <!-- /.modal-content je po defaultu sakriven MODAL DIALOG-->
-<form method="post" action="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'enable'), "default", true); ?>" id="enable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'enable'), "default", true); ?>" id="enable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
     <input type="hidden" name="task" value="enable">
     <input type="hidden" name="id" value="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Enable data</h4>
+                <h4 class="modal-title">Enable product</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to enable data </p>
+                <p>Are you sure you want to enable product: <span class="osoba" class="btn btn-tumblr"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -243,7 +185,7 @@ $this->headTitle('Shop Data');
 
 
 
-<form method="post" action="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'updateorder'), "default", true); ?>" style="display: none;" id="save-order-form">
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'updateorder'), "default", true); ?>" style="display: none;" id="save-order-form">
 
     <input type="hidden" name="task" value="saveOrder">
     <input type="hidden" name="sorted_ids" value="">
@@ -273,21 +215,24 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
 
 
         //verzija preko attr fje
-        //var memberId = target.attr('data-member-id'); //ovde pun naziv sa data
+        //var productId = target.attr('data-product-id'); //ovde pun naziv sa data
 
         //verzija preko datat fje
-        var dataId = target.data('id');//ovde ime bez data
+        var productId = target.data('product-id');//ovde ime bez data
 
 
-        //var memberName = target.attr('data-member-id');
-        //alert(memberId);
+        //var productName = target.attr('data-product-id');
+        //alert(productId);
         //set value for input field with name "id"
 
 
-        $('#delete-warning-dialog').find('[name="id"]').val(dataId);
+        $('#delete-warning-dialog').find('[name="id"]').val(productId);
 
         $('#delete-warning-dialog').modal('show');
 
+
+        var productData = target.attr('data-productName');
+        $('.osoba').text(productData);
 
 
     });
@@ -300,16 +245,19 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
         //calculate target element
         var target = $(this).is('[data-action="disable"]') ? $(this) : $(this).closest('[data-action="disable"]');
 
-        var dataId = target.attr('data-id');
+        var productId = target.attr('data-product-id');
 
         //verzija preko datat fje
-        //var memberId =target.data('memberId');
-        //var memberName = target.attr('data-member-id');
-        //alert(memberId);
+        //var productId =target.data('productId');
+        //var productName = target.attr('data-product-id');
+        //alert(productId);
         //set value for input field with name "id"
-        $('#disable-warning-dialog').find('[name="id"]').val(dataId);
+        $('#disable-warning-dialog').find('[name="id"]').val(productId);
 
         $('#disable-warning-dialog').modal('show');
+
+        var productData = target.attr('data-productName');
+        $('.osoba').text(productData);
 
     });
 
@@ -321,12 +269,19 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
         //calculate target element
         var target = $(this).is('[data-action="enable"]') ? $(this) : $(this).closest('[data-action="enable"]');
 
-        var dataId = target.attr('data-id');
+        var productId = target.attr('data-product-id');
 
-        $('#enable-warning-dialog').find('[name="id"]').val(dataId);
+        //verzija preko datat fje
+        //var productId =target.data('productId');
+        //var productName = target.attr('data-product-id');
+        //alert(productId);
+        //set value for input field with name "id"
+        $('#enable-warning-dialog').find('[name="id"]').val(productId);
 
         $('#enable-warning-dialog').modal('show');
 
+        var productData = target.attr('data-productName');
+        $('.osoba').text(productData);
 
     });
 
@@ -394,8 +349,8 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
         e.preventDefault();
         e.stopPropagation();
 
-        var dataSortedIds = $('#rows-table > tbody').sortable('toArray', {
-            attribute: 'data-id'
+        var productSortedIds = $('#rows-table > tbody').sortable('toArray', {
+            attribute: 'data-product-id'
         });
 
 
@@ -406,7 +361,7 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
         //find element with name "sorted_ids" in save form and set its value
         //with string wich are sorted ids separated with comma
         //ex. "12, 3, 4..."
-        saveOrderForm.find('[name="sorted_ids"]').val(dataSortedIds.join(','));
+        saveOrderForm.find('[name="sorted_ids"]').val(productSortedIds.join(','));
 
         //trigerujemo submit
         saveOrderForm.trigger('submit');

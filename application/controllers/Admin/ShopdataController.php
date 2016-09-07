@@ -15,6 +15,17 @@ class Admin_ShopdataController extends Zend_Controller_Action
         
         $informations = $cmsInformationsDbTable->search();
         
+          $cmsWorkingHoursDbTable = new Application_Model_DbTable_CmsWorkingHours();
+        
+        $workingHours = $cmsWorkingHoursDbTable->search(array(
+            'orders' => array(
+                'order_number' => 'asc',
+            ),
+        ));
+        
+        
+        $this->view->workingHours = $workingHours;
+        
         $this->view->informations = $informations;
         $this->view->systemMessages = $systemMessages;
 		
@@ -31,7 +42,7 @@ class Admin_ShopdataController extends Zend_Controller_Action
             'errors' => $flashMessenger->getMessages('errors'),
         );
 
-        $form = new Application_Form_Admin_MemberAdd();
+        $form = new Application_Form_Admin_ShopdataAdd ();
 
 
         $form->populate(array(
@@ -237,7 +248,7 @@ class Admin_ShopdataController extends Zend_Controller_Action
                 throw new Application_Model_Exception_InvalidInput('No data is found with id: ' . $id, 'errors');
             }
 
-            $cmsataTable->disableData($id);
+            $cmsDataTable->disableData($id);
 
 
             $flashMessenger->addMessage('Data has been disabled', 'success');
@@ -322,69 +333,127 @@ class Admin_ShopdataController extends Zend_Controller_Action
         }
     }
 
-    public function updateorderAction() {
+    
+    
+     
+      public function addhoursAction() {
+        
+        $request = $this->getRequest(); 
+        $flashMessenger = $this->getHelper('FlashMessenger');
+
+        $systemMessages = array(
+            'success' => $flashMessenger->getMessages('success'),
+            'errors' => $flashMessenger->getMessages('errors'),
+        );
+
+        $form = new Application_Form_Admin_WorkingHoursAdd();
+
+        $form->populate(array(
+        ));
+
+
+        if ($request->isPost() && $request->getPost('task') === 'save') {
+            try {
+
+                if (!$form->isValid($request->getPost())) {//sve sto je u post zahtevu prosledi formi na validaciju
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for new data');
+                }
+
+                $formData = $form->getValues();
+
+
+                //insertujemo zapis u bazu
+                $cmsWorkingHoursDbTable = new Application_Model_DbTable_CmsWorkingHours();
+
+                $workingHours = $cmsWorkingHoursDbTable->insertData($formData);
+
+                $flashMessenger->addMessage('Data has been saved', 'success');
+
+                //redirect to same or another page
+                $redirector = $this->getHelper('Redirector');
+                $redirector->setExit(true)
+                        ->gotoRoute(array(
+                            'controller' => 'admin_shopdata',
+                            'action' => 'index'
+                                ), 'default', true);
+            } catch (Application_Model_Exception_InvalidInput $ex) {
+                $systemMessages['errors'][] = $ex->getMessage();
+            }
+        }
+
+        $this->view->systemMessages = $systemMessages;
+        $this->view->form = $form;
+    }
+
+    public function edithoursAction() {
+
 
         $request = $this->getRequest();
 
-        if (!$request->isPost() || $request->getPost('task') != 'saveOrder') {
+        $id = (int) $request->getParam('id');
 
-    
-            $redirector = $this->getHelper('Redirector');
-            $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'admin_shopdata',
-                        'action' => 'index'
-                            ), 'default', true);
+        if ($id <= 0) {
+            //prekida se izvrsavanje proograma i prikazuje se page not found
+            throw new Zend_Controller_Router_Exception('Invalid data id: ' . $id, 404);
         }
+
+
+        $cmsWorkingHoursDbTable = new Application_Model_DbTable_CmsWorkingHours();
+        $workingHours = $cmsWorkingHoursDbTable->getHoursById($id);
+
+        if (empty($workingHours)) {
+            //prekida se izvrsavanje proograma i prikazuje se page not found
+            throw new Zend_Controller_Router_Exception('No data is found with id ' . $id, 404);
+        }
+
 
         $flashMessenger = $this->getHelper('FlashMessenger');
 
+        $systemMessages = array(
+            'success' => $flashMessenger->getMessages('success'),
+            'errors' => $flashMessenger->getMessages('errors'),
+        );
 
-        try {
+        $form = new Application_Form_Admin_WorkingHoursAdd();
 
-            $sortedIds = $request->getPost('sorted_ids');
+        //default form data//mi nemamo default vrednosti
+        $form->populate($workingHours);
 
 
-            if (empty($sortedIds)) {
 
-                throw new Application_Model_Exception_InvalidInput('Sorted ids are not sent');
+        if ($request->isPost() && $request->getPost('task') === 'update') {//ispitujemo da lije pokrenuta forma
+            try {
+
+                //check form is valid
+                if (!$form->isValid($request->getPost())) {//sve sto je u post zahtevu prosledi formi na validaciju
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for data');
+                }
+
+
+                $formData = $form->getValues();
+
+
+                $cmsWorkingHoursDbTable->updateData($workingHours['id'], $formData);
+
+                $flashMessenger->addMessage('Hours has been updated', 'success');
+
+                //redirect to same or another page
+                $redirector = $this->getHelper('Redirector');
+                $redirector->setExit(true)
+                        ->gotoRoute(array(
+                            'controller' => 'admin_shopdata',
+                            'action' => 'index'
+                                ), 'default', true);
+            } catch (Application_Model_Exception_InvalidInput $ex) {
+                $systemMessages['errors'][] = $ex->getMessage();
             }
-
-            $sortedIds = trim($sortedIds, ' ,');
-
-            if (!preg_match('/^[0-9]+(,[0-9]+)*$/', $sortedIds)) {
-                throw new Application_Model_Exception_InvalidInput('Invalid  sorted ids ' . $sortedIds);
-            }
-
-            $sortedIds = explode(',', $sortedIds);
-
-            $cmsDataTable = new Application_Model_DbTable_CmsShopData();
-
-            $cmsDataTable->updateDataOfOrder($sortedIds);
-
-
-            $flashMessenger->addMessage('Order is successfully saved', 'success');
-
-            //redirect on another page
-            $redirector = $this->getHelper('Redirector');
-            $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'admin_shopdata',
-                        'action' => 'index'
-                            ), 'default', true);
-        } catch (Application_Model_Exception_InvalidInput $ex) {
-
-            $flashMessenger->addMessage($ex->getMessage(), 'errors');
-
-            //redirect on another page
-            $redirector = $this->getHelper('Redirector');
-            $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'admin_shopdata',
-                        'action' => 'index'
-                            ), 'default', true);
         }
-    }   
+
+        $this->view->systemMessages = $systemMessages;
+        $this->view->form = $form;
+
+        $this->view->workingHours = $workingHours;
+    }
     
         
 }

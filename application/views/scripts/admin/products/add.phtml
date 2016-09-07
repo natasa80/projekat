@@ -1,5 +1,5 @@
 <?php
-$this->headTitle('New Data');
+$this->headTitle('Products - New Product');
 $form = $this->form;
 //
 $form->setElementDecorators(array('ViewHelper'));
@@ -7,7 +7,7 @@ $form->setElementDecorators(array('ViewHelper'));
 
 
 <div class="page-header">
-    <h1>Members <small>New Data</small></h1>
+    <h1>Products <small>New Product</small></h1>
 </div>
 
 <div class="row">
@@ -21,30 +21,31 @@ $form->setElementDecorators(array('ViewHelper'));
         <div class="panel panel-default">
             <div class="panel-heading text-right" >
                 <div class="btn-group" role="group" aria-label="...">
-                    <a  href="<?php echo $this->url(array('controller' => 'admin_shopdata', 'action' => 'index'), 'default', true); ?>" type="button" 
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'index'), 'default', true); ?>" type="button" 
                         class="btn btn-default"
-                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to shop data</a>
+                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to all products</a>
 
                 </div>  
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" method="post" action="" >
+                <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
                     <input type="hidden" name="task" value="save">
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>New Data</legend>
+                        <legend>New Product</legend>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="address">Address</label>  
+                            <label class="col-md-4 control-label" for="title">Product's Name</label>  
                             <div class="col-md-4">
                                 <?php
-                                echo $form->getElement('address')->setAttribs(array(
+                                echo $form->getElement('first_name')->setAttribs(array(
                                     'class' => 'form-control input-md',
-                                    'placeholder' => "enter address",
-                                    'id' => 'address',
+                                    'placeholder' => "enter product\'s name",
+                                    'id' => 'title',
+                                    'required' => 'required'
                                 ));
                                 ?>
 
@@ -52,9 +53,9 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
 
                             <div class="col-md-4">
-                                <?php if ($form->getElement('address')->hasErrors()) { ?>
+                                <?php if ($form->getElement('title')->hasErrors()) { ?>
                                     <div class="has-error">
-                                        <?php foreach ($form->getElement('address')->getMessages() as $message) { ?>
+                                        <?php foreach ($form->getElement('title')->getMessages() as $message) { ?>
                                             <p class="help-block"><?php echo $this->escape($message); ?></p>
                                         <?php } ?>
                                     </div>
@@ -62,43 +63,16 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
 
                         </div>
-                        
-                         <div class="form-group">
-                             
-                            <label class="col-md-4 control-label" for="city">City</label>  
-                            <div class="col-md-4">
-                                <?php
-                                echo $form->getElement('city')->setAttribs(array(
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => 'enter city',
-                                    'id' => 'city',
-                                ));
-                                ?>
-
-                                
-                                <span class="help-block">min 3 max 25 characters</span>  
-                            </div>
-                            <div class="col-md-4">
-                                <?php if ($form->getElement('city')->hasErrors()) { ?>
-                                    <div class="has-error">
-                                        <?php foreach ($form->getElement('city')->getMessages() as $message) { ?>
-                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                                
-                            </div>
-                        </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="phone">Phone</label>  
+                            <label class="col-md-4 control-label" for="price">Price</label>  
                             <div class="col-md-4">
                                 <?php
-                                echo $form->getElement('phone')->setAttribs(array(
+                                echo $form->getElement('price')->setAttribs(array(
                                     'class' => 'form-control input-md',
-                                    'placeholder' => 'enter phone',
-                                    'id' => 'phone',
+                                    'placeholder' => 'enter product\'s  price',
+                                    'id' => 'price',
                                 ));
                                 ?>
 
@@ -106,9 +80,9 @@ $form->setElementDecorators(array('ViewHelper'));
                                 <span class="help-block">min 3 max 25 characters</span>  
                             </div>
                             <div class="col-md-4">
-                                <?php if ($form->getElement('phone')->hasErrors()) { ?>
+                                <?php if ($form->getElement('price')->hasErrors()) { ?>
                                     <div class="has-error">
-                                        <?php foreach ($form->getElement('phone')->getMessages() as $message) { ?>
+                                        <?php foreach ($form->getElement('price')->getMessages() as $message) { ?>
                                             <p class="help-block"><?php echo $this->escape($message); ?></p>
                                         <?php } ?>
                                     </div>
@@ -125,7 +99,7 @@ $form->setElementDecorators(array('ViewHelper'));
                                  <?php
                                 echo $form->getElement('email')->setAttribs(array(
                                     'class' => 'form-control input-md',
-                                    'placeholder' => 'enter member\'s  email',
+                                    'placeholder' => 'enter product\'s  email',
                                     'id' => 'email',
                                     'required' => 'required'
                                 ));
@@ -146,17 +120,43 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
                         </div>
 
-                     
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="work_title">Work Title</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('work_title')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter product',
+                                    'id' => 'work_title',
+                                    
+                                ));
+                                ?>
+                                
+                                <span class="help-block">ex. "senior  web developer"</span>  
+                            </div>
+                            <div class="col-md-4">
+                                   <?php if ($form->getElement('work_title')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('work_title')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
 
                         <!-- Textarea -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="about_us">About Us</label>
+                            <label class="col-md-4 control-label" for="resume">Resume</label>
                             <div class="col-md-4"> 
                                 
                                  <?php
-                                echo $form->getElement('about_us')->setAttribs(array(
+                                echo $form->getElement('resume')->setAttribs(array(
                                     'class' => 'form-control',
-                                    'id' => 'about_us',
+                                    'id' => 'resume',
                                     'rows' => 12
                                     
                                 ));
@@ -164,9 +164,9 @@ $form->setElementDecorators(array('ViewHelper'));
                                 
                             </div>
                             <div class="col-md-4">
-                                 <?php if ($form->getElement('about_us')->hasErrors()) { ?>
+                                 <?php if ($form->getElement('resume')->hasErrors()) { ?>
                                     <div class="has-error">
-                                        <?php foreach ($form->getElement('about_us')->getMessages() as $message) { ?>
+                                        <?php foreach ($form->getElement('resume')->getMessages() as $message) { ?>
                                             <p class="help-block"><?php echo $this->escape($message); ?></p>
                                         <?php } ?>
                                     </div>
@@ -174,7 +174,28 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
                         </div>
                         
-                         <div class="form-group">
+                        
+                        <!-- Image -->
+                        
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="product_photo">Photo</label>
+                            <div class="col-md-4"> 
+                                
+                                <input type="file" name="product_photo" id="product_photo" class="form-control  input-md">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                 <?php if ($form->getElement('product_photo')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('product_photo')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             <label class="col-md-4 control-label" for="twitter">Twitter</label>  
                             <div class="col-md-4">
                                 <?php
@@ -250,7 +271,6 @@ $form->setElementDecorators(array('ViewHelper'));
                                 
                             </div>
                         </div>
-                        
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="linkedin">Linkedin</label>  
                             <div class="col-md-4">
@@ -277,16 +297,15 @@ $form->setElementDecorators(array('ViewHelper'));
                             </div>
                         </div>
                         
-                       
-                       
+                        
                         <!-- Button (Double) -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="new_data_cancel"></label>
+                            <label class="col-md-4 control-label" for="new_product_cancel"></label>
                             <div class="col-md-4 text-right">
                                 <a 
-                                    href ="<?php echo $this->url(array('controller'=> 'admin_shopdata', 'action'=> 'index'), 'default', true)?>"
-                                    id="new_data_cancel" name="new_data_cancel" class="btn btn-default">Cancel</a>
-                                <button type="submit" id="new_data_submit" name="new_data_submit" class="btn btn-success">Save</button>
+                                    href ="<?php echo $this->url(array('controller'=> 'admin_products', 'action'=> 'index'), 'default', true)?>"
+                                    id="new_product_cancel" name="new_product_cancel" class="btn btn-default">Cancel</a>
+                                <button type="submit" id="new_product_submit" name="new_product_submit" class="btn btn-success">Save</button>
                             </div>
 
                         </div>

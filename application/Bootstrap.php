@@ -53,6 +53,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
+                    'PetPage' => array(
+				'title' => 'Pet Page',
+				'subtypes' => array(
+					// 0 means unlimited number
+					'StaticPage' => 0
+				)
+			),
 		);
 		
 		$rootSitemapPageTypes = array(
@@ -63,6 +70,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'AboutUsPage' => 1,
                         'ContactPage' => 1,
                         'BlogPage' => 1,
+                        'PetPage' => 0,
                           
 		);
 		
@@ -102,13 +110,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
                                 
                                  $router->addRoute('member-route', new Zend_Controller_Router_Route(
-                        $sitemapPageMap['url'] . '/member/:id/:member_slug', array(
-                    'controller' => 'aboutus',
-                    'action' => 'member',
-                    'member_slug' => ''
-                        )
-                ));
-            }
+                                  $sitemapPageMap['url'] . '/member/:id/:member_slug', array(
+                                 'controller' => 'aboutus',
+                                 'action' => 'member',
+                                 'member_slug' => ''
+                                    )
+                            ));
+                        }
                         
                         //SERVICES ROUTE
                         if ($sitemapPageMap['type'] == 'ServicesPage') {
@@ -144,7 +152,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
                                 
                                 $router->addRoute('product-route', new Zend_Controller_Router_Route(
-                                $sitemapPageMap['url'] . '/product/:id/:product_slug', array(
+                                $sitemapPageMap['url'] . '/:id/:product_slug', array(
                                  'controller' => 'shop',
                                  'action' => 'product',
                                  'product_slug' => ''
@@ -207,6 +215,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                     )
                                 ));
 			}
+                        
+                        //Categories page
+                        if ($sitemapPageMap['type'] == 'PetPage') {
+				
+				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+					$sitemapPageMap['url'],
+					array(
+						'controller' => 'categories',
+						'action' => 'index',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+                                
+                                $router->addRoute('service-route', new Zend_Controller_Router_Route(
+                                $sitemapPageMap['url'] . '/:id/:pet_slug', array(
+                                 'controller' => 'pets',
+                                 'action' => 'pet',
+                                 'service_slug' => ''
+                                    )
+                                ));
+                        }
                   
                 }
 	}
