@@ -28,7 +28,7 @@ class Admin_ProductsController extends Zend_Controller_Action {
         $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
         $sitemapPagePets = $cmsSitemapPagesDbTable->search(array(
             'filters' => array(
-                'short_title' => 'Pet Page'
+                'short_title' => 'Categories'
             )
         ));
         $petsId = $sitemapPagePets[0]['id'];

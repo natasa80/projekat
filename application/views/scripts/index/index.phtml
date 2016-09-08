@@ -1,6 +1,7 @@
-<?php 
+<?php
 $services = $this->services;
 $servicesSitemapPages = $this->servicesSitemapPages;
+$shopSitemapPages = $this->shopSitemapPages;
 $members = $this->members;
 $indexSlides = $this->indexSlides;
 //print_r($members);
@@ -8,528 +9,688 @@ $indexSlides = $this->indexSlides;
 ?>
 
 <!-- CAROUSEL SLIDER START -->
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                 
-                
-                <ol class="carousel-indicators">
-                      
-                    <?php 
-                     $i = 0; 
-                     foreach ($indexSlides as $index=>$slide) { 
-                         ?>
-                        <li data-target="/front/#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0 ) ? "active" : ""; ?>"></li>
-                        <?php 
-                        $i++;
-                
-                    } 
-                    ?>
-               
-                </ol>
-                 
-                <!-- Wrapper for slides -->
-              
-                <div class="carousel-inner" role="listbox">
-                     <?php 
-                     $i = 0; 
-                     foreach ($indexSlides as $index=>$slide) { 
-                         ?>
-                        <div class="item <?php echo ($i == 0 ) ? "active" : ""; ?>">
-                            <img src="<?php echo $this->indexSlideImgUrl($slide); ?>" alt="<?php echo $this->escape($slide['title']); ?>"/>
-                            <div class="carousel-caption">
-                                <h3>DOG CAT PET CARE</h3>
-                                <p class="normalText">We Take Good Care For</p>
-                                <p class="normalText">Your Lovely Pet</p>
-                                <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
-                                <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>
-                                <button class="btn btn-default purchaseLear">PURCHASE</button>
-                                <button class="btn btn-default purchaseLear">LEARN MORE</button>
-                            </div>
-                        </div>
-                        <?php 
-                        $i++;
-                
-                    } 
-                    ?>
-                    
-                </div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <?php
+        $i = 0;
+        foreach ($indexSlides as $index => $slide) {
+            ?>
+            <li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0 ) ? "active" : ""; ?>"></li>
+            <?php
+            $i++;
+        }
+        ?>
+    </ol>
 
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="/front/#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="/front/#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-               
+    <div class="carousel-inner" role="listbox">
+        <?php
+        $i = 0;
+        foreach ($indexSlides as $index => $slide) {
+            ?>
+            <div class="item <?php echo ($i == 0 ) ? " active" : ""; ?>">
+                <img style="width: 100%; margin: 0 auto;" src="<?php echo $this->indexSlideImgUrl($slide); ?>"  alt="<?php echo $this->escape($slide['title']); ?>"/>
+                <div class="carousel-caption">
+                    <h3><?php echo $this->escape($slide['title']); ?></h3>
+                    <p class="normalText"><?php echo $this->escape($slide['description']); ?></p>
+                    <p class="normalText">For your Lovely Pet</p>
+    <!--                                <p class="smallText">Those were the days. And we know Flipper lives in a world full of wonder </p>
+                    <p class="smallText">flying there-under under the sea. The Love Boat soon will be making another</p>-->
+                    <!--                                <button class="btn btn-default purchaseLear">PURCHASE</button>-->
+                    <?php if ($slide['link_type'] != "NoLink") { ?>
+                        <a 
+                            target ="_blank" 
+                            href="<?php echo $this->indexSlideLinkUrl($slide); ?>"> 
+                            <button class="btn btn-default purchaseLear">LEARN MORE</button></a>
+                    <?php } ?>
+                </div>
             </div>
-            
+            <?php
+            $i++;
+        }
+        ?>
+
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
 
-            
+<!-- SECTION 5 START -->
+<section class="section5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <p class="text-uppercase">Have a visit to Our Store for a Movement</p>
+                <p class="text-uppercase">You Will Really Gets Satisfied with Our Largest Collection</p>
+            </div>
+            <div class="col-sm-4">
+                <?php if ($shopSitemapPages) { ?>
+                    <a
+                        target ="_blank" 
+                        href="<?php echo $this->sitemapPageUrl($shopSitemapPages['id']); ?>"> <button class="btn btn-default go">GO TO STORE</button></a>
+                    <?php } ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION 5 STOP -->
 
-            <!-- SECTION 5 START -->
-            <section class="section5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <p class="text-uppercase">Have a visit to Our Store for a Movement</p>
-                            <p class="text-uppercase">You Will Really Gets Satisfied with Our Largest Collection</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <button class="btn btn-default go">GO TO STORE</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 5 STOP -->
+<!-- SECTION 6 START -->
 
-            <!-- SECTION 6 START -->
-            <section class="section6 text-center">
-                <div class="container">
-                    <h3 class="sectionHeadline">WHY CHOOSE US</h3>
-                    <p class="sectionP">They will have to make the best of things its an uphill climb</p>
+<!-- SECTION 6 STOP -->
 
-                    <div class="row">
 
-                        <div class="col-xs-12 col-sm-6 col-md-3 img-div">
-                            <article class="section6Articles">
-                                <span class="fa fa-trophy"></span>
-                                <h4 class="h4Headline">BEST IN THE INDUSTRY</h4>
-                                <p class="sectionP">Rogers are blown out of their into an orbit which freezes his life </p>
-                                <a class="readMore" href="#">READ MORE</a>
-                            </article>   
+<!-- CAROUSEL SLIDER STOP -->
+<!-- SECTION 4 START -->
+<section class="section4">
+    <div class="container">
 
-                        </div>
+        <div class="offer">
 
-                        <div class="col-xs-12 col-sm-6 col-md-3 img-div">
-                            <article class="section6Articles">
-                                <span class="fa fa fa-plus-square"></span>
-                                <h4 class="h4Headline">CUSTOMER SUPPORT</h4>
-                                <p class="sectionP">Come and listen to a story about Jed a poor mountaineer barely kept his family fed buck rogers to </p>
-                                <a class="readMore" href="#">READ MORE</a>
-                            </article>  
+            <div class="row">
 
-                        </div>
-
-                        <div class="col-xs-12 col-sm-6 col-md-3 img-div">
-                            <article class="section6Articles">
-                                <span class="fa fa-home"></span>
-                                <h4 class="h4Headline">SPECIAL CARE ON PETS</h4>
-                                <p class="sectionP">The mate was a mighty sailin' man the two skipper brave and sure. Five </p>
-                                <a class="readMore" href="#">READ MORE</a>
-                            </article> 
-
-                        </div>
-
-                        <div class="col-xs-12 col-sm-6 col-md-3 img-div">
-                            <article class="section6Articles">
-                                <span class="fa fa-paw"></span>
-                                <h4 class="h4Headline">BEST QUALITY PRODUCTS</h4>
-                                <p class="sectionP">Mister we could use a man like Herbert Hoover again. They're </p>
-                                <a class="readMore" href="#">READ MORE</a>
-                            </article>  
-
-                        </div>
-                    </div>
-            </section>
-            <!-- SECTION 6 STOP -->
-
-            <!-- SECTION 7 STAR (SLIDER SECTION) -->
-            <section class="section7">
-                <div class="container">
+                <div class="col-md-7 section4Tabs">
+                    <h3 class="sectionHeadline2">SERVICES WE OFFER</h3>
+                    <p class="sectionP2">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div id="testimonial-slider" class="owl-carousel">
-                                <div class="testimonial">
+                        <!-- NAVIGATION BUTTONS -->
 
-                                    <div class="testimonial-content"> 
-                                        <h3 class="h3Slider">Our Client Says</h3>
-                                        <p class="testimonial-description">
-                                            Since we're together Fish don't fry in the kitchen and beans don't burn on the grill.
-                                            Took a whole lotta tryin' just to get up that hill. Michael Knight a young 
-                                            loner on a crusade to champion the cause of the innocent.
+                        <div class="col-md-4 navLeft">
 
+                            <ul class="nav nav-pills nav-stacked" id="myTabs">
+
+                                <?php foreach ($services as $service) { ?>
+                                    <li  id="nav" ><a href="#<?php echo $this->escape($service['id']); ?>" data-toggle="pill"><span class="<?php echo $this->escape($service['icon']); ?>"></span><?php echo $this->escape($service['title']); ?></a></li>
+                                <?php } ?>
+                            </ul>
+
+                        </div>
+                        <!-- CONTENT -->
+                        <div class="col-md-8">
+                            <div class="tab-content">
+                                <?php foreach ($services as $service) { ?>
+                                    <div   class="tab-pane" id="<?php echo $this->escape($service['id']); ?>">
+                                        <p>
+                                            <?php echo $this->escape($service['description']); ?>
                                         </p>
-                                        <div class="media">
-                                            <a class="media-left" href="#">
-                                                <span class="fa fa-quote-right quotes"></span>
-                                            </a>
-                                            <div class="media-body clientName">
-                                                <h4 class="media-heading">ROSLIN MIRIAM</h4>
-                                                <span class="client">Premium Client</span>
-                                            </div>
-                                        </div>
-
                                     </div>
-                                </div>
-
-                                <div class="testimonial">
-
-                                    <div class="testimonial-content">
-                                        <h3 class="h3Slider">Our Client Says</h3>
-                                        <p class="testimonial-description">
-                                            Since we're together Fish don't fry in the kitchen and beans don't burn on the grill.
-                                            Took a whole lotta tryin' just to get up that hill. Michael Knight a young 
-                                            loner on a crusade to champion the cause of the innocent.
-
-                                        </p>
-                                        <div class="media">
-                                            <a class="media-left" href="#">
-                                                <span class="fa fa-quote-right quotes"></span>
-                                            </a>
-                                            <div class="media-body clientName">
-                                                <h4 class="media-heading">NIKITA ABRASHKIN</h4>
-                                                <span class="client">Premium Client</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
+                                <?php } ?>
 
                             </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-sm-6 text-center">
-                                    <figure class="imageFigure">
-                                        <img class="img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
-                                    </figure>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-5 section4Img">
+                    <img class="img img-responsive sec4Img" src="<?php echo $this->baseUrl('/front/img/section4-img.jpg'); ?>" alt=""/>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- SECTION 4 STOP -->
+
+<section class="section3">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="sectionHeadline1">GET AN APPOINTMENT</h3>
+            <p class="sectionP1">They will have to make the best of things its an uphill climb</p>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-sm-3 ">
+
+                    <div class="form-group">                          
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="First Name">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">                          
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Last Name">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">  
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email adress">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">  
+                        <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="Phone Number">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <select class="form-control select">
+                        <option selected>Pet Category</option>
+                        <option>Category 1</option>
+                        <option>Category 2</option>
+                        <option>Category 3</option>
+                        <option>Category 4</option>
+                    </select>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <select class="form-control">
+                        <option selected>Service Type</option>
+                        <option>Type 1</option>
+                        <option>Type 2</option>
+                        <option>Type 3</option>
+                        <option>Type 4</option>
+                    </select>
+
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input2" value="" /><br/>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" /><br/>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-12">
+
+                    <div class="form-group">
+                        <textarea class="form-control textarea" rows="5" id="comment" placeholder="Anything we should know about your pet"></textarea>
+                    </div>   
+
+                </div> 
+
+            </div>
+        </form>
+        <div class="buttonGet">
+            <button class="btn btn-default appointmentButton">GET AN APPOINTMENT</button>
+        </div>
+    </div>
+</section>
+
+
+<!-- SECTION3 STOP -->
+<section class="section6 text-center">
+    <div class="container">
+        <h3 class="sectionHeadline">WHY CHOOSE US</h3>
+        <p class="sectionP">They will have to make the best of things its an uphill climb</p>
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-6 col-md-3 img-div">
+                <article class="section6Articles">
+                    <span class="fa fa-trophy"></span>
+                    <h4 class="h4Headline">BEST IN THE INDUSTRY</h4>
+                    <p class="sectionP">Rogers are blown out of their into an orbit which freezes his life </p>
+                    <a class="readMore" href="#">READ MORE</a>
+                </article>   
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 img-div">
+                <article class="section6Articles">
+                    <span class="fa fa fa-plus-square"></span>
+                    <h4 class="h4Headline">CUSTOMER SUPPORT</h4>
+                    <p class="sectionP">Come and listen to a story about Jed a poor mountaineer barely kept his family fed buck rogers to </p>
+                    <a class="readMore" href="#">READ MORE</a>
+                </article>  
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 img-div">
+                <article class="section6Articles">
+                    <span class="fa fa-home"></span>
+                    <h4 class="h4Headline">SPECIAL CARE ON PETS</h4>
+                    <p class="sectionP">The mate was a mighty sailin' man the two skipper brave and sure. Five </p>
+                    <a class="readMore" href="#">READ MORE</a>
+                </article> 
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 img-div">
+                <article class="section6Articles">
+                    <span class="fa fa-paw"></span>
+                    <h4 class="h4Headline">BEST QUALITY PRODUCTS</h4>
+                    <p class="sectionP">Mister we could use a man like Herbert Hoover again. They're </p>
+                    <a class="readMore" href="#">READ MORE</a>
+                </article>  
+
+            </div>
+        </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- SECTION 7 STAR (SLIDER SECTION) -->
+<section class="section7">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="testimonial-slider" class="owl-carousel">
+                    <div class="testimonial">
+
+                        <div class="testimonial-content"> 
+                            <h3 class="h3Slider">Our Client Says</h3>
+                            <p class="testimonial-description">
+                                Since we're together Fish don't fry in the kitchen and beans don't burn on the grill.
+                                Took a whole lotta tryin' just to get up that hill. Michael Knight a young 
+                                loner on a crusade to champion the cause of the innocent.
+
+                            </p>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <span class="fa fa-quote-right quotes"></span>
+                                </a>
+                                <div class="media-body clientName">
+                                    <h4 class="media-heading">ROSLIN MIRIAM</h4>
+                                    <span class="client">Premium Client</span>
                                 </div>
-                                <div class="col-sm-6 clientImgContainer">
-                                    <figure class="imageFigure">
-                                        <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
-                                    </figure>
-                                </div>
-                                <div class="col-sm-6 clientImgContainer">
-                                    <figure class="imageFigure">
-                                        <img class=" img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
-                                    </figure>
-                                </div>
-                                <div class="col-sm-6 clientImgContainer">
-                                    <figure class="imageFigure">
-                                        <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
-                                    </figure>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+
+                        <div class="testimonial-content">
+                            <h3 class="h3Slider">Our Client Says</h3>
+                            <p class="testimonial-description">
+                                Since we're together Fish don't fry in the kitchen and beans don't burn on the grill.
+                                Took a whole lotta tryin' just to get up that hill. Michael Knight a young 
+                                loner on a crusade to champion the cause of the innocent.
+
+                            </p>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <span class="fa fa-quote-right quotes"></span>
+                                </a>
+                                <div class="media-body clientName">
+                                    <h4 class="media-heading">NIKITA ABRASHKIN</h4>
+                                    <span class="client">Premium Client</span>
                                 </div>
                             </div>
                         </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <figure class="imageFigure">
+                            <img class="img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
+                        </figure>
+                    </div>
+                    <div class="col-sm-6 clientImgContainer">
+                        <figure class="imageFigure">
+                            <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
+                        </figure>
+                    </div>
+                    <div class="col-sm-6 clientImgContainer">
+                        <figure class="imageFigure">
+                            <img class=" img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
+                        </figure>
+                    </div>
+                    <div class="col-sm-6 clientImgContainer">
+                        <figure class="imageFigure">
+                            <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
+                        </figure>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-            </section>
-            <!-- SECTION 7 STOP (SLIDER SECTION) -->
+</section>
+<!-- SECTION 7 STOP (SLIDER SECTION) -->
 
-            <!-- SECTION 8 START -->
-            <section class="section8">
-                <div class="container text-center">
+<!-- SECTION 8 START -->
+<section class="section8">
+    <div class="container text-center">
 
-                    <h3 class="sectionHeadline">OUR TEAM ON SERVICE</h3>
-                    <p class="sectionP">They will have to make the best of things its an uphill climb</p>
+        <h3 class="sectionHeadline">OUR TEAM ON SERVICE</h3>
+        <p class="sectionP">They will have to make the best of things its an uphill climb</p>
 
-                    <div class="row">
-                        <?php foreach($members as $member) {
-                                    $memberImgUrl=$this->memberImgUrl($member);
-                                ?>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                             
-                            <figure class="imageSection8">
-                               
-                                 
-                                <img class="img img-responsive" src="<?php echo $memberImgUrl; ?>" alt="<?php echo $this->escape($member['first_name'])?>"/>
-                                <div class="imgContent">
-                                    <div class="drInfo">
-                                        <h4><?php echo $this->escape($member['first_name'] . ' ' .$member['last_name']); ?></h4>
-                                        <p class="sectionP"><?php echo $this->escape($member['work_title']); ?></p>
-                                    </div>
+        <div class="row">
+            <?php
+            foreach ($members as $member) {
+                $memberImgUrl = $this->memberImgUrl($member);
+                ?>
+                <div class="col-sm-6 col-md-6 col-lg-3">
 
-                                </div>
-                                <div class="doctorNetwork">
-                                    <a href="<?php echo $this->escape($member['twitter']); ?>" target="_blank"><span class="fa fa-twitter"></span></a>
-                                    <a href="<?php echo $this->escape($member['facebook']); ?>" target="_blank"><span class="fa fa-facebook"></span></a>
-                                    <a href="<?php echo $this->escape($member['google_plus']); ?>" target="_blank"><span class="fa fa-google-plus"></span></a>
-                                    <a href="<?php echo $this->escape($member['linkedin']); ?>" target="_blank"><span class="fa fa-linkedin"></span></a>
-                                </div>
-                                
-                            </figure>
-                           
+                    <figure class="imageSection8">
+
+
+                        <img class="img img-responsive" src="<?php echo $memberImgUrl; ?>" alt="<?php echo $this->escape($member['first_name']) ?>"/>
+                        <div class="imgContent">
+                            <div class="drInfo">
+                                <h4><?php echo $this->escape($member['first_name'] . ' ' . $member['last_name']); ?></h4>
+                                <p class="sectionP"><?php echo $this->escape($member['work_title']); ?></p>
+                            </div>
+
                         </div>
-                         <?php }?>
-<!--                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <figure class="imageSection8">
-                                <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
-                                <div class="imgContent">
-                                    <div class="drInfo">
-                                        <h4>DR. ZOYA MERLIN</h4>
-                                        <p class="sectionP">Veterinary Physician</p>
-                                    </div>
-
-                                </div>
-                                <div class="doctorNetwork">
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-facebook"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
-                                </div>
-                            </figure>
+                        <div class="doctorNetwork">
+                            <a href="<?php echo $this->escape($member['twitter']); ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+                            <a href="<?php echo $this->escape($member['facebook']); ?>" target="_blank"><span class="fa fa-facebook"></span></a>
+                            <a href="<?php echo $this->escape($member['google_plus']); ?>" target="_blank"><span class="fa fa-google-plus"></span></a>
+                            <a href="<?php echo $this->escape($member['linkedin']); ?>" target="_blank"><span class="fa fa-linkedin"></span></a>
                         </div>
 
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <figure class="imageSection8">
-                                <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
-                                <div class="imgContent">
-                                    <div class="drInfo">
-                                        <h4>DR. HENDRI WHEIN</h4>
-                                        <p class="sectionP">Veterinary Surgeon</p>
-                                    </div>
+                    </figure>
 
-                                </div>
-                                <div class="doctorNetwork">
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-facebook"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
-                                </div>
-                            </figure>
-                        </div>
-
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <figure class="imageSection8">
-                                <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
-                                <div class="imgContent">
-                                    <div class="drInfo">
-                                        <h4>DR. SCARLET WINSON</h4>
-                                        <p class="sectionP">Veterinary Examinist</p>
-                                    </div>
-
-                                </div>
-                                <div class="doctorNetwork">
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-facebook"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
-                                </div>
-                            </figure>
-
-                        </div>-->
-                    </div>
-            </section>
-
-            <!-- SECTION 8 STOP -->
-
-
-            <!-- SECTION 9 START -->
-            <section class="section9">
-                <div class="container text-center">
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-3">
-                            <article>
-                                <h4 class="text-uppercase">
-                                    <span class="fa fa-stethoscope"></span>
-                                    <span>3540</span>
-                                </h4>
-                                <p class="text-uppercase">Services We Done</p>
-                            </article>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-3">
-                            <article>
-                                <h4 class="text-uppercase">
-                                    <span class="fa fa fa-trophy"></span>
-                                    <span>1234</span>
-                                </h4>
-                                <p class="text-uppercase">Our Happy Clients</p>
-                            </article>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-3">
-                            <article>
-                                <h4 class="text-uppercase">
-                                    <span class="fa fa fa-user-md"></span>
-                                    <span>2200</span>
-                                </h4>
-                                <p class="text-uppercase">Talented Eployees</p>
-                            </article>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-3">
-                            <article>
-                                <h4 class="text-uppercase">
-                                    <span class="fa fa fa-home"></span>
-                                    <span>1234</span>
-                                </h4>
-                                <p class="text-uppercase">Branches We Have</p>
-                            </article>
-                        </div>
-                    </div>
                 </div>
-            </section>
-            <!-- SECTION 9 STOP -->
-
-            <!-- SECTION 10 START -->
-
-            <section class="section10">
-                <div class="container">
-                    <h3 class="sectionHeadline text-center">UPDATES FROM OUR SHOP</h3>
-                    <p class="sectionP text-center">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <article>
-                                <figure class="figureProducts">
-                                    <img class="img-responsive productImg" src="/front/img/product-img.jpg" alt=""/>                                    
-                                    <div class="contentAbsolute">
-                                        <button class="button toCart">ADD TO CART</button>
-                                        <div class="faAbsolute">
-                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
-                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>
-                                        </div>
+<?php } ?>
+            <!--                        <div class="col-sm-6 col-md-6 col-lg-3">
+                                        <figure class="imageSection8">
+                                            <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
+                                            <div class="imgContent">
+                                                <div class="drInfo">
+                                                    <h4>DR. ZOYA MERLIN</h4>
+                                                    <p class="sectionP">Veterinary Physician</p>
+                                                </div>
+            
+                                            </div>
+                                            <div class="doctorNetwork">
+                                                <a href="#"><span class="fa fa-twitter"></span></a>
+                                                <a href="#"><span class="fa fa-facebook"></span></a>
+                                                <a href="#"><span class="fa fa-google-plus"></span></a>
+                                                <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            </div>
+                                        </figure>
                                     </div>
-                                </figure>
-                                <div class="underContent">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            <article class="productName">
-                                                <h5>PET HARNESS</h5>
-                                                <ul class="list-inline list-unstyled">
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star-half-o" href="#"></a></li>
-                                                </ul>
-                                            </article>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <article class="productPrice">
-                                                <span class="price">$120.00</span>
-                                            </article>
-                                        </div>
+            
+                                    <div class="col-sm-6 col-md-6 col-lg-3">
+                                        <figure class="imageSection8">
+                                            <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
+                                            <div class="imgContent">
+                                                <div class="drInfo">
+                                                    <h4>DR. HENDRI WHEIN</h4>
+                                                    <p class="sectionP">Veterinary Surgeon</p>
+                                                </div>
+            
+                                            </div>
+                                            <div class="doctorNetwork">
+                                                <a href="#"><span class="fa fa-twitter"></span></a>
+                                                <a href="#"><span class="fa fa-facebook"></span></a>
+                                                <a href="#"><span class="fa fa-google-plus"></span></a>
+                                                <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            </div>
+                                        </figure>
                                     </div>
-                                </div>
-                            </article>
+            
+                                    <div class="col-sm-6 col-md-6 col-lg-3">
+                                        <figure class="imageSection8">
+                                            <img class="img img-responsive" src="/front/img/section8-img.png" alt=""/>
+                                            <div class="imgContent">
+                                                <div class="drInfo">
+                                                    <h4>DR. SCARLET WINSON</h4>
+                                                    <p class="sectionP">Veterinary Examinist</p>
+                                                </div>
+            
+                                            </div>
+                                            <div class="doctorNetwork">
+                                                <a href="#"><span class="fa fa-twitter"></span></a>
+                                                <a href="#"><span class="fa fa-facebook"></span></a>
+                                                <a href="#"><span class="fa fa-google-plus"></span></a>
+                                                <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            </div>
+                                        </figure>
+            
+                                    </div>-->
+        </div>
+</section>
+
+<!-- SECTION 8 STOP -->
+
+
+<!-- SECTION 9 START -->
+<section class="section9">
+    <div class="container text-center">
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <article>
+                    <h4 class="text-uppercase">
+                        <span class="fa fa-stethoscope"></span>
+                        <span>3540</span>
+                    </h4>
+                    <p class="text-uppercase">Services We Done</p>
+                </article>
+            </div>
+
+            <div class="col-xs-6 col-sm-3">
+                <article>
+                    <h4 class="text-uppercase">
+                        <span class="fa fa fa-trophy"></span>
+                        <span>1234</span>
+                    </h4>
+                    <p class="text-uppercase">Our Happy Clients</p>
+                </article>
+            </div>
+
+            <div class="col-xs-6 col-sm-3">
+                <article>
+                    <h4 class="text-uppercase">
+                        <span class="fa fa fa-user-md"></span>
+                        <span>2200</span>
+                    </h4>
+                    <p class="text-uppercase">Talented Eployees</p>
+                </article>
+            </div>
+
+            <div class="col-xs-6 col-sm-3">
+                <article>
+                    <h4 class="text-uppercase">
+                        <span class="fa fa fa-home"></span>
+                        <span>1234</span>
+                    </h4>
+                    <p class="text-uppercase">Branches We Have</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION 9 STOP -->
+
+<!-- SECTION 10 START -->
+
+<section class="section10">
+    <div class="container">
+        <h3 class="sectionHeadline text-center">UPDATES FROM OUR SHOP</h3>
+        <p class="sectionP text-center">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <article>
+                    <figure class="figureProducts">
+                        <img class="img-responsive productImg" src="/front/img/product-img.jpg" alt=""/>                                    
+                        <div class="contentAbsolute">
+                            <button class="button toCart">ADD TO CART</button>
+                            <div class="faAbsolute">
+                                <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
+                                <a href="#"><span class="fa fa-arrows-alt"></span></a>
+                            </div>
                         </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <article>
-                                <figure class="figureProducts">
-                                    <img class="img-responsive productImg" src="/front/img/product-img2.jpg" alt=""/>
-                                    <div class="contentAbsolute">
-                                        <button class="button toCart">ADD TO CART</button>
-                                        <div class="faAbsolute">
-                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
-                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                                <div class="underContent">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            <article class="productName">
-                                                <h5>PET TOYS</h5>
-                                                <ul class="list-inline list-unstyled">
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star-half-o" href="#"></a></li>
-                                                </ul>
-                                            </article>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <article class="productPrice">
-                                                <span class="price">$150.00</span>
-                                            </article>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                    </figure>
+                    <div class="underContent">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <article class="productName">
+                                    <h5>PET HARNESS</h5>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star-half-o" href="#"></a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                            <div class="col-xs-4">
+                                <article class="productPrice">
+                                    <span class="price">$120.00</span>
+                                </article>
+                            </div>
                         </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <article>
-                                <figure class="figureProducts">
-                                    <img class="img-responsive productImg" src="/front/img/product-img4.jpg" alt=""/>                                   
-                                    <p class="productP">NEW</p>
-                                    <div class="contentAbsolute">
-                                        <button class="button toCart">ADD TO CART</button>
-                                        <div class="faAbsolute">
-                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
-                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                                <div class="underContent">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            <article class="productName">
-                                                <h5>PET OUTFITS</h5>
-                                                <ul class="list-inline list-unstyled">
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star-half-o" href="#"></a></li>
-                                                </ul>
-                                            </article>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <article class="productPrice">
-                                                <span class="price">$280.00</span>
-                                            </article>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <article>
-                                <figure class="figureProducts">
-
-                                    <img class="img-responsive productImg" src="/front/img/product-img3.jpg" alt=""/>                                 
-                                    <p class="productP">NEW</p>
-                                    <div class="contentAbsolute">
-                                        <button class="button toCart">ADD TO CART</button>
-                                        <div class="faAbsolute">
-                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
-                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                                <div class="underContent">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            <article class="productName">
-                                                <h5>PET FOOD</h5>
-                                                <ul class="list-inline list-unstyled">
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star" href="#"></a></li>
-                                                    <li><a class="fa fa-star-half-o" href="#"></a></li>
-                                                </ul>
-                                            </article>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <article class="productPrice">
-                                                <span class="price">$280.00</span>
-                                            </article>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
                     </div>
-                </div>
-            </section>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article>
+                    <figure class="figureProducts">
+                        <img class="img-responsive productImg" src="/front/img/product-img2.jpg" alt=""/>
+                        <div class="contentAbsolute">
+                            <button class="button toCart">ADD TO CART</button>
+                            <div class="faAbsolute">
+                                <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
+                                <a href="#"><span class="fa fa-arrows-alt"></span></a>
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="underContent">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <article class="productName">
+                                    <h5>PET TOYS</h5>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star-half-o" href="#"></a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                            <div class="col-xs-4">
+                                <article class="productPrice">
+                                    <span class="price">$150.00</span>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article>
+                    <figure class="figureProducts">
+                        <img class="img-responsive productImg" src="/front/img/product-img4.jpg" alt=""/>                                   
+                        <p class="productP">NEW</p>
+                        <div class="contentAbsolute">
+                            <button class="button toCart">ADD TO CART</button>
+                            <div class="faAbsolute">
+                                <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
+                                <a href="#"><span class="fa fa-arrows-alt"></span></a>
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="underContent">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <article class="productName">
+                                    <h5>PET OUTFITS</h5>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star-half-o" href="#"></a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                            <div class="col-xs-4">
+                                <article class="productPrice">
+                                    <span class="price">$280.00</span>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article>
+                    <figure class="figureProducts">
+
+                        <img class="img-responsive productImg" src="/front/img/product-img3.jpg" alt=""/>                                 
+                        <p class="productP">NEW</p>
+                        <div class="contentAbsolute">
+                            <button class="button toCart">ADD TO CART</button>
+                            <div class="faAbsolute">
+                                <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
+                                <a href="#"><span class="fa fa-arrows-alt"></span></a>
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="underContent">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <article class="productName">
+                                    <h5>PET FOOD</h5>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star" href="#"></a></li>
+                                        <li><a class="fa fa-star-half-o" href="#"></a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                            <div class="col-xs-4">
+                                <article class="productPrice">
+                                    <span class="price">$280.00</span>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
-            <!-- SECTION 10 STOP -->
+<!-- SECTION 10 STOP -->
 
 
 <!--
@@ -555,7 +716,7 @@ $indexSlides = $this->indexSlides;
             </section>
              SECTION 11 STOP -->
 
-            <!-- SECTION 12 START -->
+<!-- SECTION 12 START -->
 
 <!--            <section class="section12">
                 <div class="container">
@@ -693,55 +854,54 @@ $indexSlides = $this->indexSlides;
                 </div>
             </section>-->
 
-            <!-- SECTION 12 STOP -->
+<!-- SECTION 12 STOP -->
 
-            <!-- SECTION 13 START -->
-            <section class="section13">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12">
-                            <h3 class="text-uppercase text-center">subscribe our newsletter</h3>
-                        </div>
+<!-- SECTION 13 START -->
+<section class="section13">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <h3 class="text-uppercase text-center">subscribe our newsletter</h3>
+            </div>
 
-                        <div class="col-lg-3 col-md-5">
-                            <div class="form-group">                              
-                                <input type="text" class="form-control subscribeInput" id="usr" placeholder="Your Name">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5">
-                            <div class="form-group">                              
-                                <input type="text" class="form-control subscribeInput" id="usr" placeholder="Your E-Mail">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <div class="form-group">                              
-                                <button class="btn btn-default buttonSubscribe">GO</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-
+            <div class="col-lg-3 col-md-5">
+                <div class="form-group">                              
+                    <input type="text" class="form-control subscribeInput" id="usr" placeholder="Your Name">
                 </div>
-            </section>
-            <!-- SECTION 13 STOP -->
-        
-<script>
-    <?php $this->inlineScript()->captureStart(); ?>
-        
-        
-        var selector1 = '#nav';
-        var selector2 = '.tab-pane';
+            </div>
 
-$(selector1).on('click', function(){
-   $(selector1).removeClass('active');
-   $(this).addClass('active');
-   
-   $(selector2).on('click', function(){
-   $(selector2).removeClass('active');
-   $(this).addClass('active');
-});
-    <?php $this->inlineScript()->captureEnd(); ?>
-    </script>
+            <div class="col-lg-3 col-md-5">
+                <div class="form-group">                              
+                    <input type="text" class="form-control subscribeInput" id="usr" placeholder="Your E-Mail">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2">
+                <div class="form-group">                              
+                    <button class="btn btn-default buttonSubscribe">GO</button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+<!-- SECTION 13 STOP -->
+
+<script>
+<?php $this->inlineScript()->captureStart(); ?>
+
+
+    var selector1 = '#nav';
+    var selector2 = '.tab-pane';
+
+    $(selector1).on('click', function(){
+    $(selector1).removeClass('active');
+            $(this).addClass('active');
+            $(selector2).on('click', function(){
+    $(selector2).removeClass('active');
+            $(this).addClass('active');
+            });
+<?php $this->inlineScript()->captureEnd(); ?>
+</script>

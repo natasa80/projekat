@@ -82,7 +82,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						//open uploaded photo in temporary directory
 						$indexSlidePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 						
-						$indexSlidePhoto->fit(600, 400);
+						$indexSlidePhoto->fit(1920, 800);
 						
 						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlideId . '.jpg');
 						
@@ -184,7 +184,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						//open uploaded photo in temporary directory
 						$indexSlidePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 						
-						$indexSlidePhoto->fit(600, 400);
+						$indexSlidePhoto->fit(1920, 800);
 						
 						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlide['id'] . '.jpg');
 						

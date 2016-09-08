@@ -58,13 +58,42 @@ class Admin_ShopdataController extends Zend_Controller_Action
 
                 $formData = $form->getValues();
 
+                 unset($formData['logo_photo']);
+
 
                 //insertujemo zapis u bazu
                 $cmsDataTable = new Application_Model_DbTable_CmsShopData();
 
-                //insert member returns ID of the new member
+                //insert logo returns ID of the new logo
                 $dataId = $cmsDataTable->insertData($formData);
+                  if ($form->getElement('logo_photo')->isUploaded()) {
+                    //photo is uploaded 
 
+                    $fileInfos = $form->getElement('logo_photo')->getFileInfo('logo_photo');
+                    $fileInfo = $fileInfos['logo_photo'];
+                    //$fileInfo = $_FILES["logo_photo"];
+
+
+                    try {
+                        //open uploaded photo in temporary directory
+                        $logoPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+
+                        $logoPhoto->fit(203, 62);
+                        $logoPhoto->save(PUBLIC_PATH . '/uploads/logos/' . $dataId . '.jpg');
+                    } catch (Exception $ex) {
+
+                        $flashMessenger->addMessage('Member has been saved, but error occured during image processing', 'errors');
+
+                        //redirect to same or another page
+                        $redirector = $this->getHelper('Redirector');
+                        $redirector->setExit(true)
+                                ->gotoRoute(array(
+                                    'controller' => 'admin_logos',
+                                    'action' => 'edit',
+                                    'id' => $logoId
+                                        ), 'default', true);
+                    }
+                }
                 // do actual task
                 //save to database etc
                 //set system message
@@ -119,8 +148,9 @@ class Admin_ShopdataController extends Zend_Controller_Action
 
         //default form data//mi nemamo default vrednosti
         $form->populate($data);
-
-
+       
+         
+          
 
         if ($request->isPost() && $request->getPost('task') === 'update') {//ispitujemo da lije pokrenuta forma
             try {
@@ -132,10 +162,31 @@ class Admin_ShopdataController extends Zend_Controller_Action
 
 
                 $formData = $form->getValues();
-
+                 unset($formData['logo_photo']);
 
                 $cmsDataTable->updateData($data['id'], $formData);
 
+                if ($form->getElement('logo_photo')->isUploaded()) {
+                    //photo is uploaded 
+
+                    $fileInfos = $form->getElement('logo_photo')->getFileInfo('logo_photo');
+                    $fileInfo = $fileInfos['logo_photo'];
+                    //$fileInfo = $_FILES["logo_photo"];
+
+
+                    try {
+                        //open uploaded photo in temporary directory
+                        $logoPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+
+                        $logoPhoto->fit(203, 62);
+
+                        $logoPhoto->save(PUBLIC_PATH . '/uploads/logos/' . $data['id'] . '.jpg');
+                    } catch (Exception $ex) {
+
+                        throw new Application_Model_Exception_InvalidInput('Error occured during image processing');
+                    }
+                }
+                
                 $flashMessenger->addMessage('Data has been updated', 'success');
 
                 //redirect to same or another page
@@ -414,7 +465,7 @@ class Admin_ShopdataController extends Zend_Controller_Action
             'errors' => $flashMessenger->getMessages('errors'),
         );
 
-        $form = new Application_Form_Admin_WorkingHoursAdd();
+        $form = new Application_Form_Admin_WorkingHoursEdit();
 
         //default form data//mi nemamo default vrednosti
         $form->populate($workingHours);

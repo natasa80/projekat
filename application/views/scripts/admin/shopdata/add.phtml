@@ -29,7 +29,7 @@ $form->setElementDecorators(array('ViewHelper'));
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" method="post" action="" >
+                <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
                     <input type="hidden" name="task" value="save">
                     <fieldset>
 
@@ -125,7 +125,7 @@ $form->setElementDecorators(array('ViewHelper'));
                                  <?php
                                 echo $form->getElement('email')->setAttribs(array(
                                     'class' => 'form-control input-md',
-                                    'placeholder' => 'enter member\'s  email',
+                                    'placeholder' => 'enter logo\'s  email',
                                     'id' => 'email',
                                     'required' => 'required'
                                 ));
@@ -278,6 +278,25 @@ $form->setElementDecorators(array('ViewHelper'));
                         </div>
                         
                        
+                       <!-- Image -->
+                        
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="logo_photo">Photo</label>
+                            <div class="col-md-4"> 
+                                
+                                <input type="file" name="logo_photo" id="logo_photo" class="form-control  input-md">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                 <?php if ($form->getElement('logo_photo')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('logo_photo')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
                        
                         <!-- Button (Double) -->
                         <div class="form-group">

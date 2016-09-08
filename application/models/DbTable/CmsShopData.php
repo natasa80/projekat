@@ -34,8 +34,8 @@ public function getDataById($id) {
 
     /**
      * 
-     * @param array $member
-     * @return int The new ID of new member (autoincrement)
+     * @param array $logo
+     * @return int The new ID of new logo (autoincrement)
      */
     public function insertData($info) {
 
@@ -52,10 +52,10 @@ public function getDataById($id) {
 
         if ($dataWithBiggestOrderNumber instanceof Zend_Db_Table_Row) {
 
-            $member['order_number'] = $dataWithBiggestOrderNumber['order_number'] + 1;
+            $logo['order_number'] = $dataWithBiggestOrderNumber['order_number'] + 1;
         } else {
-            //table was empty, we are inserting first member
-            $member['order_number'] = 1;
+            //table was empty, we are inserting first logo
+            $logo['order_number'] = 1;
         }
 
         $id = $this->insert($info);
@@ -65,13 +65,17 @@ public function getDataById($id) {
 
     /**
      * 
-     * @param int $id ID of member to delete
+     * @param int $id ID of logo to delete
      */
     public function deleteData($id) {
 
-       
+        $logoPhotoFilePath = PUBLIC_PATH . '/uploads/logos/' . $id . '.jpg';
 
-        //member to delete
+        if (is_file($logoPhotoFilePath)) {
+            unlink($logoPhotoFilePath);
+        }
+        
+        
         $info = $this->getDataById($id);
 
         $this->update(array(
@@ -84,7 +88,7 @@ public function getDataById($id) {
 
     /**
      * 
-     * @param nt $id ID of member to enable
+     * @param nt $id ID of logo to enable
      */
     public function disableData($id) {
 
@@ -95,7 +99,7 @@ public function getDataById($id) {
 
     /**
      * 
-     * @param nt $id ID of member to enable
+     * @param nt $id ID of logo to enable
      */
     public function enableData($id) {
 

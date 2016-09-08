@@ -1,74 +1,121 @@
 <?php
 
+class Zend_View_Helper_Footerdata extends Zend_View_Helper_Abstract {
 
-class Zend_View_Helper_Footerdata extends Zend_View_Helper_Abstract
-{
-    public function footerdata(){
-        
+    public function footerdata() {
+
+        $cmsShopData = new Application_Model_DbTable_CmsShopData();
+
+
+        $shopData = $cmsShopData->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsShopData::STATUS_ENABLED
+            ),
+            'limit' => 1
+        ));
+
+
+        $cmsWorkingHours = new Application_Model_DbTable_CmsWorkingHours ();
+        $workingHours = $cmsWorkingHours->search(array(
+            'orders' => array(
+                'order_number' => 'desc'
+            )
+        ));
         ?>
+
+
+        <?php foreach ($shopData as $shopInfo) { ?>
+            <h4 class="text-uppercase text-left footerh4padd">about us</h4>
+            <p class="text-left"><?php echo $this->view->escape($shopInfo['about_us']); ?></p>
             <div class="media media1">
-                            <div class="media-left blogMedia1">
-                                <a href="#">
-                                    <span class="media-object fa fa-map-o"></span>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p class="media-heading">Washington Square Park,</p>
-                                NY, United States
-                            </div>
-                        </div>
+                <div class="media-left blogMedia1">
+                    <a href="#">
+                        <span class="media-object fa fa-map-o"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading"><?php echo $this->view->escape($shopInfo['address']); ?></p>
+            <?php echo $this->view->escape($shopInfo['city']); ?>
+                </div>
+            </div>
 
-                        <div class="media media1">
-                            <div class="media-left blogMedia1">
-                                <a href="#">
-                                    <span class="media-object fa fa-phone"></span>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p class="media-heading">Customer Support :</p>
-                                + 124 45 76 678 
-                            </div>
-                        </div>
+            <div class="media media1">
+                <div class="media-left blogMedia1">
+                    <a href="#">
+                        <span class="media-object fa fa-phone"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">Customer Support :</p>
+            <?php echo $this->view->escape($shopInfo['phone']); ?>
+                </div>
+            </div>
 
-                        <div class="media media1">
-                            <div class="media-left blogMedia1">
-                                <a href="#">
-                                    <span class="media-object fa fa-envelope-o"></span>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p class="media-heading">Email:</p>
-                                mail@woodsman.com
-                            </div>
-                        </div>
-                    </div>
+            <div class="media media1">
+                <div class="media-left blogMedia1">
+                    <a href="#">
+                        <span class="media-object fa fa-envelope-o"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">Email:</p>
+            <?php echo $this->view->escape($shopInfo['email']); ?>
+                </div>
+            </div>
+            </div>
+        <?php } ?>
 
-                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
-                        <h4 class="text-uppercase footerh4padd">working time</h4>
-                        <ul class="list-unstyled">
-                            <li>MONDAY</li>
-                            <li>TUESDAY</li>
-                            <li>WEDNESDAY</li>
-                            <li>THURSDAY</li>
-                            <li>FRIDAY</li>
-                            <li>WEEK END</li>
-                            <li>EMERGENCY UNIT</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
 
-                        <ul class="list-unstyled openTime">
-                            <li>08:00 am  -  10:00 pm</li>
-                            <li>8:00 am  -  10:00 pm</li>
-                            <li>8:00 am  -  10:00 pm</li>
-                            <li>8:00 am  -  10:00 pm</li>
-                            <li>8:00 am  -  10:00 pm</li>
-                            <li>CLOSED</li>
-                            <li class="yellowOpen">OPEN ANY TIME</li>
-                        </ul>
-                    </div>
-        <?php
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <h4 class="text-uppercase footerh4padd">working time</h4>
+
+            <ul class="list-unstyled">
+        <?php foreach ($workingHours as $workingHour) { ?>
+                    <li><?php echo $this->view->escape($workingHour['day']); ?></li>
+
+        <?php } ?>
+            </ul>
+
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+
+            <ul class="list-unstyled openTime">
+        <?php foreach ($workingHours as $workingHour) { ?>
+
+                    <li><?php echo $this->view->escape($workingHour['time']); ?></li>
+
+        <?php } ?>
+            </ul>
+        </div>
+
        
+           <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footerSubscriber">
+                            <h4 class="text-uppercase">subscrive to mail!</h4>
+                            <p class="text-left">Get our Daily email newsletter with </p>
+                            <p class="text-left marginator">pecial Services, Updates, Offers and more!</p>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control footerInput" placeholder="EMAIL ADRESS">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default footerButton" type="button">SIGN UP</button>
+                                </span>
+                            </div><!-- /input-group -->
+
+                        </div>
+                        <div class="footerSocial">
+                            <?php foreach ($shopData as $shopInfo) { ?>
+                            <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['facebook']); ?>"><span class="fa fa-facebook"></span></a>
+                            <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['google_plus']); ?>"><span class="fa fa-google-plus"></span></a>
+                            <a class="aSocial" target="_blank" href="#"><span class="fa fa-tumblr"></span></a>
+                            <a class="aSocial" target="_blank" href="#"><span class="fa fa-dribbble"></span></a>
+                            <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['linkedin']); ?>"><span class="fa fa-linkedin"></span></a>
+                            <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['twitter']); ?>"><span class="fa fa-twitter"></span></a>
+                            <?php }?>
+                        </div>
+                    </div>
+            
+            <?php
     }
-  
+
 }

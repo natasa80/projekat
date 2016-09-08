@@ -50,6 +50,15 @@ class IndexController extends Zend_Controller_Action
         $servicesSitemapPages = !empty($servicesSitemapPages) ? $servicesSitemapPages[0] : null;
         
         
+        $shopSitemapPages = $cmsSitemapPagesDbTable->search(array(
+			'filters' => array(
+				'status' => Application_Model_DbTable_CmsSitemapPages::STATUS_ENABLED,
+				'type' => 'ShopPage'
+			),
+                        'limit'=> 1
+		));
+        $shopSitemapPages = !empty($shopSitemapPages) ? $shopSitemapPages[0] : null;
+        
         //prikay member-a
         $cmsMembersDbTable = new Application_Model_DbTable_CmsMembers();
 
@@ -61,6 +70,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->services = $services;
         $this->view->servicesSitemapPages = $servicesSitemapPages;
+        $this->view->shopSitemapPages = $shopSitemapPages;
         $this->view->members = $members;
         $this->view->indexSlides = $indexSlides;
         

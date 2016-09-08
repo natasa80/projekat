@@ -9,7 +9,7 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
         $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
         $sitemapPagePets = $cmsSitemapPagesDbTable->search(array(
             'filters' => array(
-                'short_title' => 'Pet Page'
+                'short_title' => 'Categories'
             )
         ));
         $petsId = $sitemapPagePets[0]['id'];
@@ -68,7 +68,7 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
 			$producerId->addMultiOption($producer['id'], $producer['short_title']);
 		}
 		
-		$this->addElement($petId);
+		$this->addElement($producerId);
                 
                 $categoryId = new Zend_Form_Element_Select('category_id');
 		$categoryId->addMultiOption('', '-- Select Category --')
