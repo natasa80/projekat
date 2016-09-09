@@ -22,7 +22,10 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
                                  
                                     <div class="img-hover<?php echo $i;?>" >
                                         <span class="spanHeadline"><?php echo $this->escape($service['title']);?></span>
-                                        <span class="spanSmall"><?php echo $this->escape($service['description']);?></span>
+<!--                                        <span class="spanSmall"><?php echo $this->escape($service['description']);?></span>-->
+                                        
+                                       <span class="spanSmall"><?php echo $this->escape(mb_strlen($service['description']) 
+                                                        > 300 ? mb_substr($service['description'], 0, 108) . "..." : $service['description']); ?></span>
                                         <span class="<?php echo $this->escape($service['icon']);?>"></span>
                                         <a href="#"><span class="readMore">READ MORE</span><span class="fa fa-angle-double-right"></span></a>
                                     </div>
