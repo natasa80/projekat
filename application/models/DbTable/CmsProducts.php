@@ -28,7 +28,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
         }
     }
 
-    public function updateMember($id, $product) {
+    public function updateProduct($id, $product) {
 
         //izbegavamo da se promeni id usera, brise se iz niza ukoliko je setovan
         if (isset($product['id'])) {

@@ -31,23 +31,29 @@ class Admin_ProductsController extends Zend_Controller_Action {
                 'short_title' => 'Categories'
             )
         ));
-        $petsId = $sitemapPagePets[0]['id'];
+        
+      $petsId = $sitemapPagePets[0]['id'];
+       
         $pets = $cmsSitemapPagesDbTable->search(array(
             'filters' => array(
                 'parent_id' => $petsId
             )
         ));
-
+//        print_r($petsId);
+//        die();
+//       
         $cmsCategoriesDbTable = new Application_Model_DbTable_CmsCategories();
         $categories = $cmsCategoriesDbTable->search();
         
         $cmsProducersDbTable = new Application_Model_DbTable_CmsProducers();
         $producers = $cmsProducersDbTable->search();
-
+//      print_r($categories);
+//     die();
         $this->view->products = $products;
         $this->view->categories = $categories;
         $this->view->pets = $pets;
         $this->view->producers = $producers;
+         $this->view->sitemapPagePets = $sitemapPagePets;
         $this->view->systemMessages = $systemMessages;
     }
 
@@ -155,8 +161,8 @@ class Admin_ProductsController extends Zend_Controller_Action {
         }
 
 
-        $cmsProductsDbTable = new Application_Form_Admin_ProductAdd();
-        $product = $cmsProductsTable->getProductById($id);
+       $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $product = $cmsProductsDbTable->getProductById($id);
 
         if (empty($product)) {
             //prekida se izvrsavanje proograma i prikazuje se page not found
@@ -212,7 +218,7 @@ class Admin_ProductsController extends Zend_Controller_Action {
                 }
 
 
-                $cmsProductsTable->updateProduct($product['id'], $formData);
+                $cmsProductsDbTable->updateProduct($product['id'], $formData);
 
                 // do actual task
                 //save to database etc

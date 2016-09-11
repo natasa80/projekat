@@ -27,20 +27,18 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
 
 
         $title = new Zend_Form_Element_Text('title');
-        
         $title->addFilter('StringTrim')
                 ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))//false znaci da ako posle ovog ima jos validatora da ne prekida ispitivanje i validaciju i ako ne prodje ovu
                 ->setRequired(true);
-       
         $this->addElement($title);
         
-        $price = new Zend_Form_Element_Text('price');//atribut je isti kao sa forme
         
-        
-        $price->addFilter('Digits')
-                ->addValidator('Digits')
+        $price = new Zend_Form_Element_Text('price');
+        $price->addFilter('StringTrim')
+                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))//false znaci da ako posle ovog ima jos validatora da ne prekida ispitivanje i validaciju i ako ne prodje ovu
                 ->setRequired(FALSE);
         $this->addElement($price);
+        
         
         $about = new Zend_Form_Element_Text('about');
         $about->addFilter('StringTrim')
@@ -64,8 +62,8 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
 		$producerId->addMultiOption('', '-- Select Category --')
                 ->setRequired(true);
 		
-		foreach ($peroducers as $producer) {
-			$producerId->addMultiOption($producer['id'], $producer['short_title']);
+		foreach ($producers as $producer) {
+			$producerId->addMultiOption($producer['id'], $producer['name']);
 		}
 		
 		$this->addElement($producerId);
@@ -75,7 +73,7 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
                 ->setRequired(true);
 		
 		foreach ($categories as $category) {
-			$categoryId->addMultiOption($category['id'], $category['short_title']);
+			$categoryId->addMultiOption($category['id'], $category['title']);
 		}
 		
 		$this->addElement($categoryId);

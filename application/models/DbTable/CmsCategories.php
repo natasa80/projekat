@@ -12,7 +12,7 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
      * @param int $id
      * @return null|array Associative array with keys as cms_categories table columns or NULL if not found
      */
-    public function getProducerById($id) {
+    public function getCategoryById($id) {
 
         $select = $this->select();
         $select->where('id =?', $id);
@@ -28,7 +28,7 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
         }
     }
 
-    public function updateProducer($id, $category) {
+    public function updateCategory($id, $category) {
 
         //izbegavamo da se promeni id usera, brise se iz niza ukoliko je setovan
         if (isset($category['id'])) {
@@ -43,7 +43,7 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
      * @param array $category
      * @return int The new ID of new category (autoincrement)
      */
-    public function insertProducer($category) {
+    public function insertCategory($category) {
 
 
         $select = $this->select();
@@ -52,13 +52,13 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
         //with biggest order number
         $select->order('order_number DESC');
 
-        $memebrWithBiggestOrderNumber = $this->fetchRow($select);
+        $categoryWithBiggestOrderNumber = $this->fetchRow($select);
 
 
 
-        if ($memebrWithBiggestOrderNumber instanceof Zend_Db_Table_Row) {
+        if ($categoryWithBiggestOrderNumber instanceof Zend_Db_Table_Row) {
 
-            $category['order_number'] = $memebrWithBiggestOrderNumber['order_number'] + 1;
+            $category['order_number'] = $categoryWithBiggestOrderNumber['order_number'] + 1;
         } else {
             //table was empty, we are inserting first category
             $category['order_number'] = 1;
@@ -73,16 +73,12 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
      * 
      * @param int $id ID of category to delete
      */
-    public function deleteProducer($id) {
+    public function deleteCategory($id) {
 
-        $categoryPhotoFilePath = PUBLIC_PATH . '/uploads/categories/' . $id . '.jpg';
 
-        if (is_file($categoryPhotoFilePath)) {
-            unlink($categoryPhotoFilePath);
-        }
 
         //category to delete
-        $category = $this->getProducerById($id);
+        $category = $this->getCategoryById($id);
 
         $this->update(array(
             'order_number' => new Zend_Db_Expr('order_number -1')
@@ -96,7 +92,7 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
      * 
      * @param nt $id ID of category to enable
      */
-    public function disableProducer($id) {
+    public function disableCategory($id) {
 
         $this->update(array(
             'status' => self::STATUS_DISABLED
@@ -107,14 +103,14 @@ class Application_Model_DbTable_CmsCategories extends Zend_Db_Table_Abstract {
      * 
      * @param nt $id ID of category to enable
      */
-    public function enableProducer($id) {
+    public function enableCategory($id) {
 
         $this->update(array(
             'status' => self::STATUS_ENABLED
                 ), 'id = ' . $id);
     }
 
-    public function updateProducerOfOrder($sortedIds) {
+    public function updateCategoryOfOrder($sortedIds) {
 
         foreach ($sortedIds as $orderNumber => $id) {
 

@@ -52,13 +52,13 @@ class Application_Model_DbTable_CmsProducers extends Zend_Db_Table_Abstract {
         //with biggest order number
         $select->order('order_number DESC');
 
-        $memebrWithBiggestOrderNumber = $this->fetchRow($select);
+        $producerWithBiggestOrderNumber = $this->fetchRow($select);
 
 
 
-        if ($memebrWithBiggestOrderNumber instanceof Zend_Db_Table_Row) {
+        if ($producerWithBiggestOrderNumber instanceof Zend_Db_Table_Row) {
 
-            $producer['order_number'] = $memebrWithBiggestOrderNumber['order_number'] + 1;
+            $producer['order_number'] = $producerWithBiggestOrderNumber['order_number'] + 1;
         } else {
             //table was empty, we are inserting first producer
             $producer['order_number'] = 1;

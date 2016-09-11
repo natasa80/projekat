@@ -1,3 +1,14 @@
+<?php
+$sitemapPage = $this->sitemapPage;
+$products = $this->products;
+$pets = $this->pets;
+$categories = $this->categories;
+$producers = $this->producers;
+
+
+$this->headTitle($sitemapPage['title']);
+$this->headMeta()->appendName('description', $sitemapPage['description']);
+?>
 <!-- SECTION 1 SHOP START -->
 
             <section class="section1Blog">
@@ -26,36 +37,14 @@
                                 <form>
                                     <h4 class="text-uppercase shopH4-1">select pet</h4>
                                     <ul class="list-unstyled">
+                                        <?php foreach ($pets as $pet) {?>
                                         <li>
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="">Maltese</label><span class="pull-right"><a class="checkboxText" href="">158</a></span>
+                                                <label><input type="checkbox" value=""><?php echo $this->escape($pet['title']);?></label><span class="pull-right"><a class="checkboxText" href="">158</a></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Pitt Bull</label><span class="pull-right"><a class="checkboxText" href="">430</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Sled Dogs</label><span class="pull-right"><a class="checkboxText" href="">279</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Purebred</label><span class="pull-right"><a class="checkboxText" href="">365</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Coonhound</label><span class="pull-right"><a class="checkboxText" href="">189</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Molosser</label><span class="pull-right"><a class="checkboxText" href="">763</a></span>
-                                            </div>
-                                        </li>
+
+                                        <?php }?>
                                     </ul>
                                 </form>
                             </article>
@@ -82,41 +71,16 @@
 
                             <article>
                                 <form>
-                                    <h4 class="text-uppercase shopH4-3">select pet</h4>
+                                    <h4 class="text-uppercase shopH4-3">select category</h4>
                                     <ul class="list-unstyled">
+                                         <?php foreach ($categories as $category) {?>
                                         <li>
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="">Hunting</label><span class="pull-right"><a class="checkboxText" href="">72</a></span>
+                                                <label><input type="checkbox" value=""><?php echo $this->escape($category['title']);?></label><span class="pull-right"><a class="checkboxText" href="">72</a></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Companion</label><span class="pull-right"><a class="checkboxText" href="">24</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Hairless</label><span class="pull-right"><a class="checkboxText" href="">10</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Fighting Breeds</label><span class="pull-right"><a class="checkboxText" href="">56</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Molossers</label><span class="pull-right"><a class="checkboxText" href="">12</a></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">Fluffy Hair</label><span class="pull-right"><a class="checkboxText" href="">88</a></span>
-                                            </div>
-                                        </li>
+                                            <?php }?>
                                     </ul>
-
-
                                 </form>
 
 
@@ -197,13 +161,16 @@
                                     <nav class="clearfix filterNav text-center">
                                         <ol class="list-unstyled text-center">
                                             <li class="filter" data-filter="all">All</li>
-                                            <li class="filter" data-filter=".hunting">Hunting</li>
-                                            <li class="filter" data-filter=".companion">Companion</li>
+                                            <?php foreach ($pets as $pet) {?>
+                                            <li class="filter" data-filter=".hunting"><?php echo $this->escape($pet['title']);?></li>
+<!--                                            <li class="filter" data-filter=".companion">Companion</li>
                                             <li class="filter" data-filter=".hairless">Hairless</li>
-                                            <li class="filter" data-filter=".fluffy-hair">Fluffy Hair</li>
+                                            <li class="filter" data-filter=".fluffy-hair">Fluffy Hair</li>-->
+                                            <?php }?>
                                         </ol>
                                     </nav>
                                     <div class="my-img">
+                                        
                                         <div class="col-md-6 col-lg-4 mix hunting" data-myorder="1">
                                             <article>
                                                 <figure class="figureProducts">

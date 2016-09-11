@@ -1,5 +1,5 @@
 <?php
-$this->headTitle('Members - Edit Member');
+$this->headTitle('Products - Edit Product');
 
 $form = $this->form;
 //
@@ -7,7 +7,7 @@ $form->setElementDecorators(array('ViewHelper'));
 ?>
 
 <div class="page-header">
-    <h1>Members <small>Edit Member </small></h1>
+    <h1>Products <small>Edit Product </small></h1>
 </div>
 
 <div class="row">
@@ -21,9 +21,9 @@ $form->setElementDecorators(array('ViewHelper'));
         <div class="panel panel-default">
             <div class="panel-heading text-right" >
                 <div class="btn-group" role="group" aria-label="...">
-                    <a  href="<?php echo $this->url(array('controller' => 'admin_members', 'action' => 'index'), 'default', true); ?>" type="button" 
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'index'), 'default', true); ?>" type="button" 
                         class="btn btn-default"
-                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to all members</a>
+                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to all products</a>
 
                 </div>  
             </div>
@@ -36,287 +36,214 @@ $form->setElementDecorators(array('ViewHelper'));
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Edit Member - <?php echo $this->escape($this->member['first_name'] . ' ' . $this->member['last_name']) ?></legend>
+                        <legend>Edit Product - <?php echo $this->escape($this->member['title']); ?></legend>
 
                        
 
                            
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="first_name">First Name</label>  
-                                <div class="col-md-4">
-                                    <?php
-                                    echo $form->getElement('first_name')->setAttribs(array(
-                                        'class' => 'form-control input-md',
-                                        'placeholder' => "enter member\'s first name",
-                                        'id' => 'first_name',
-                                        'required' => 'required'
-                                    ));
-                                    ?>
-
-                                    <span class="help-block">min 3 max 25 characters</span>  
-                                </div>
-
-                                <div class="col-md-4">
-                                    <?php if ($form->getElement('first_name')->hasErrors()) { ?>
-                                        <div class="has-error">
-                                            <?php foreach ($form->getElement('first_name')->getMessages() as $message) { ?>
-                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="last_name">Last Name</label>  
-                                <div class="col-md-4">
-                                    <?php
-                                    echo $form->getElement('last_name')->setAttribs(array(
-                                        'class' => 'form-control input-md',
-                                        'placeholder' => 'enter member\'s  last name',
-                                        'id' => 'last_name',
-                                        'required' => 'required'
-                                    ));
-                                    ?>
-
-
-                                    <span class="help-block">min 3 max 25 characters</span>  
-                                </div>
-                                <div class="col-md-4">
-                                    <?php if ($form->getElement('last_name')->hasErrors()) { ?>
-                                        <div class="has-error">
-                                            <?php foreach ($form->getElement('last_name')->getMessages() as $message) { ?>
-                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="email">Email</label>  
-                                <div class="col-md-4">
-
-                                    <?php
-                                    echo $form->getElement('email')->setAttribs(array(
-                                        'class' => 'form-control input-md',
-                                        'placeholder' => 'enter member\'s  email',
-                                        'id' => 'email',
-                                        'required' => 'required'
-                                    ));
-                                    ?>
-
-                                    <span class="help-block">username@domain</span>  
-                                </div>
-                                <div class="col-md-4">
-                                    <?php if ($form->getElement('email')->hasErrors()) { ?>
-                                        <div class="has-error">
-                                            <?php foreach ($form->getElement('email')->getMessages() as $message) { ?>
-                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-
-
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="work_title">Work Title</label>  
-                                <div class="col-md-4">
-
-                                    <?php
-                                    echo $form->getElement('work_title')->setAttribs(array(
-                                        'class' => 'form-control input-md',
-                                        'placeholder' => 'enter member',
-                                        'id' => 'work_title',
-                                    ));
-                                    ?>
-
-                                    <span class="help-block">ex. "senior  web developer"</span>  
-                                </div>
-                                <div class="col-md-4">
-                                    <?php if ($form->getElement('work_title')->hasErrors()) { ?>
-                                        <div class="has-error">
-                                            <?php foreach ($form->getElement('work_title')->getMessages() as $message) { ?>
-                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-
-                                </div>
-                            </div>
-
-                            <!-- Textarea -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="resume">Resume</label>
-                                <div class="col-md-4"> 
-
-                                    <?php
-                                    echo $form->getElement('resume')->setAttribs(array(
-                                        'class' => 'form-control',
-                                        'id' => 'resume',
-                                        'rows' => 12
-                                    ));
-                                    ?>
-
-                                </div>
-                                <div class="col-md-4">
-                                    <?php if ($form->getElement('resume')->hasErrors()) { ?>
-                                        <div class="has-error">
-                                            <?php foreach ($form->getElement('resume')->getMessages() as $message) { ?>
-                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            <!-- Image -->
-                        
+ <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="member_photo">Photo</label>
+                            <label class="col-md-4 control-label" for="title">Product's Name</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('title')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => "enter product\'s name",
+                                    'id' => 'title',
+                                    'required' => 'required'
+                                ));
+                                ?>
+
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('title')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('title')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="price">Price</label>  
+                            <div class="col-md-4">
+                                <?php
+                                echo $form->getElement('price')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter product\'s  price',
+                                    'id' => 'price',
+                                ));
+                                ?>
+
+                                
+                                <span class="help-block">min 3 max 25 characters</span>  
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('price')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('price')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="category_id">Category</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('category_id')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter product\'s  category',
+                                    'id' => 'category_id',
+                                    'required' => 'required'
+                                ));
+                                ?>
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('category_id')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('category_id')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                                
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="about">Description</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('about')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'about product',
+                                    'id' => 'about',
+                                    
+                                ));
+                                ?>
+                                
+                                <span class="help-block">ex. "senior  web developer"</span>  
+                            </div>
+                            <div class="col-md-4">
+                                   <?php if ($form->getElement('about')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('about')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+
+                       
+                          <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="producer_id">Producer</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('producer_id')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter product\'s  producer',
+                                    'id' => 'producer_id',
+                                    'required' => 'required'
+                                ));
+                                ?>
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('producer_id')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('producer_id')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                          
+                          <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="pet_id">Category</label>  
+                            <div class="col-md-4">
+                                
+                                 <?php
+                                echo $form->getElement('pet_id')->setAttribs(array(
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => 'enter pet',
+                                    'id' => 'pet_id',
+                                    'required' => 'required'
+                                ));
+                                ?>
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('pet_id')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('pet_id')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                                
+                                
+                            </div>
+                        </div>
+                        <!-- Image -->
+                        
+                       <div class="form-group">
+                            <label class="col-md-4 control-label" for="product_photo">Photo</label>
                             <div class="col-md-4"> 
                                 <div>
                                     <a href="#" class="thumbnail">
-                                        <img src="<?php echo $this->memberImgUrl($this->member);?>">
+                                        <img src="<?php echo $this->productImgUrl($this->product);?>">
                                     </a>
                                     
                                 </div>
-                                <input type="file" name="member_photo" id="member_photo" class="form-control  input-md">
+                                <input type="file" name="product_photo" id="product_photo" class="form-control  input-md">
                                 <span class="help-block">Change Photo</span>
                                 
                             </div>
                             <div class="col-md-4">
-                                 <?php if ($form->getElement('member_photo')->hasErrors()) { ?>
+                                 <?php if ($form->getElement('product_photo')->hasErrors()) { ?>
                                     <div class="has-error">
-                                        <?php foreach ($form->getElement('member_photo')->getMessages() as $message) { ?>
+                                        <?php foreach ($form->getElement('product_photo')->getMessages() as $message) { ?>
                                             <p class="help-block"><?php echo $this->escape($message); ?></p>
                                         <?php } ?>
                                     </div>
                                 <?php } ?>
                             </div>
                         </div>
-                            
-                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="twitter">Twitter</label>  
-                            <div class="col-md-4">
-                                <?php
-                                echo $form->getElement('twitter')->setAttribs(array(
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => 'enter twitter link',
-                                    'id' => 'twitter',
-                                ));
-                                ?>
-
-                                
-                                <span class="help-block">min 3 max 25 characters</span>  
-                            </div>
-                            <div class="col-md-4">
-                                <?php if ($form->getElement('twitter')->hasErrors()) { ?>
-                                    <div class="has-error">
-                                        <?php foreach ($form->getElement('twitter')->getMessages() as $message) { ?>
-                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                                
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="facebook">Facebook</label>  
-                            <div class="col-md-4">
-                                <?php
-                                echo $form->getElement('facebook')->setAttribs(array(
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => 'enter facebook link',
-                                    'id' => 'facebook',
-                                ));
-                                ?>
-
-                                
-                                <span class="help-block">min 3 max 25 characters</span>  
-                            </div>
-                            <div class="col-md-4">
-                                <?php if ($form->getElement('facebook')->hasErrors()) { ?>
-                                    <div class="has-error">
-                                        <?php foreach ($form->getElement('facebook')->getMessages() as $message) { ?>
-                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                                
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="google_plus">Google Plus</label>  
-                            <div class="col-md-4">
-                                <?php
-                                echo $form->getElement('google_plus')->setAttribs(array(
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => 'enter google_plus link',
-                                    'id' => 'google_plus',
-                                ));
-                                ?>
-
-                                
-                                <span class="help-block">min 3 max 25 characters</span>  
-                            </div>
-                            <div class="col-md-4">
-                                <?php if ($form->getElement('google_plus')->hasErrors()) { ?>
-                                    <div class="has-error">
-                                        <?php foreach ($form->getElement('google_plus')->getMessages() as $message) { ?>
-                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                                
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="linkedin">Linkedin</label>  
-                            <div class="col-md-4">
-                                <?php
-                                echo $form->getElement('linkedin')->setAttribs(array(
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => 'enter linkedin link',
-                                    'id' => 'linkedin',
-                                ));
-                                ?>
-
-                                
-                                <span class="help-block">min 3 max 25 characters</span>  
-                            </div>
-                            <div class="col-md-4">
-                                <?php if ($form->getElement('linkedin')->hasErrors()) { ?>
-                                    <div class="has-error">
-                                        <?php foreach ($form->getElement('linkedin')->getMessages() as $message) { ?>
-                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                                
-                            </div>
-                        </div> 
+                     
 
                             <!-- Button (Double) -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="new_member_cancel"></label>
+                                <label class="col-md-4 control-label" for="edit_product_cancel"></label>
                                 <div class="col-md-4 text-right">
                                     <a 
-                                        href ="<?php echo $this->url(array('controller'=> 'admin_members', 'action'=> 'index'), 'default', true)?>"
-                                        id="new_member_cancel" name="new_member_cancel" class="btn btn-default">Cancel</a>
-                                    <button type="submit" id="new_member_submit" name="new_member_submit" class="btn btn-success">Save</button>
+                                        href ="<?php echo $this->url(array('controller'=> 'admin_products', 'action'=> 'index'), 'default', true)?>"
+                                        id="edit_product_cancel" name="edit_product_cancel" class="btn btn-default">Cancel</a>
+                                    <button type="submit" id="new_product_submit" name="new_product_submit" class="btn btn-success">Save</button>
                                 </div>
 
                             </div>

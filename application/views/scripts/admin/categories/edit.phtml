@@ -1,0 +1,94 @@
+<?php
+$this->headTitle('Categories - Edit Category');
+
+$form = $this->form;
+//
+$form->setElementDecorators(array('ViewHelper'));
+?>
+
+<div class="page-header">
+    <h1>Categories <small>Edit Category </small></h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <?php echo $this->systemMessagesHtml($this->systemMessages); ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-right" >
+                <div class="btn-group" role="group" aria-label="...">
+                    <a  href="<?php echo $this->url(array('controller' => 'admin_categories', 'action' => 'index'), 'default', true); ?>" type="button" 
+                        class="btn btn-default"
+                        ><i class="glyphicon glyphicon-arrow-left"></i>Back to all categories</a>
+
+                </div>  
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" method="post" action="" >
+                    <input type="hidden" name="task" value="update">
+
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Edit Category - <?php echo $this->escape($this->category['title']) ?></legend>
+
+                       
+
+                           
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="title">Name</label>  
+                                <div class="col-md-4">
+                                    <?php
+                                    echo $form->getElement('title')->setAttribs(array(
+                                        'class' => 'form-control input-md',
+                                        'placeholder' => "enter category\'s title",
+                                        'id' => 'title',
+                                        'required' => 'required'
+                                    ));
+                                    ?>
+
+                                    <span class="help-block">min 3 max 25 characters</span>  
+                                </div>
+
+                                <div class="col-md-4">
+                                    <?php if ($form->getElement('title')->hasErrors()) { ?>
+                                        <div class="has-error">
+                                            <?php foreach ($form->getElement('title')->getMessages() as $message) { ?>
+                                                <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+
+                            </div>
+
+                      
+                            <!-- Button (Double) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="new_category_cancel"></label>
+                                <div class="col-md-4 text-right">
+                                    <a 
+                                        href ="<?php echo $this->url(array('controller'=> 'admin_categories', 'action'=> 'index'), 'default', true)?>"
+                                        id="new_category_cancel" name="new_category_cancel" class="btn btn-default">Cancel</a>
+                                    <button type="submit" id="new_category_submit" name="new_category_submit" class="btn btn-success">Save</button>
+                                </div>
+
+                            </div>
+
+
+
+                        </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
