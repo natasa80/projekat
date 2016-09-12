@@ -418,5 +418,23 @@ class Application_Model_DbTable_CmsSitemapPages extends Zend_Db_Table_Abstract
 		
 		return $countByTypes;
 	}
+        
+//        public   function getSitemapPageSlugById($id) {
+//		
+//		$select = $this->select();
+//		$select->where('id = ?', $id);
+//		
+//		$row = $this->fetchRow($select);
+//		
+//		if ($row instanceof Zend_Db_Table_Row) {
+//			
+////			 $row->toArray();
+////                        return  $slug = $row['url_slug'];
+//                    return $row['url_slug'];
+//		} else {
+//			// row is not found
+//			return null;
+//		}
+//	}
 }
 

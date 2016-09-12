@@ -32,20 +32,8 @@ class ShopController extends Zend_Controller_Action
             throw new Zend_Controller_Router_Exception('No sitemap page is disabled ', 404);
        }
        
-       //get all products
        
-        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
-
-        $products = $cmsProductsDbTable->search(array(
-            
-            'orders' => array(
-                'order_number' => 'ASC',
-            ),
-                //'limit' => 4,
-                //'page' => 2
-        ));
-        
-        
+       
         
         //get all pets
         $sitemapPagePets = $cmsSitemapPageDbTable->search(array(
@@ -62,6 +50,8 @@ class ShopController extends Zend_Controller_Action
             )
         ));
         
+        
+        
         //get all categories
         $cmsCategoriesDbTable = new Application_Model_DbTable_CmsCategories();
         $categories = $cmsCategoriesDbTable->search(array(
@@ -72,7 +62,9 @@ class ShopController extends Zend_Controller_Action
                 'order_number' => 'ASC',
             )
                     ));
-         //get all categories
+        
+        
+         //get all producers
         $cmsProducersDbTable = new Application_Model_DbTable_CmsProducers();
         $producers = $cmsProducersDbTable->search(array(
             'filters' => array(
@@ -84,7 +76,22 @@ class ShopController extends Zend_Controller_Action
                     ));
         
         
-//                    print_r($pets);
+        //get all products
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+
+        $products = $cmsProductsDbTable->search(array(
+//            'filters' => array(
+//                'pet_id' => 14,
+//            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            ),
+                //'limit' => 4,
+                //'page' => 2
+        ));
+        
+        
+//                   print_r($pets);
 //                    die();
         $this->view->systemMessages =  $systemMessages;
         $this->view->sitemapPage = $sitemapPage;

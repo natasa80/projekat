@@ -8,6 +8,9 @@ $producers = $this->producers;
 
 $this->headTitle($sitemapPage['title']);
 $this->headMeta()->appendName('description', $sitemapPage['description']);
+
+
+$cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
 ?>
 <!-- SECTION 1 SHOP START -->
 
@@ -162,7 +165,7 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
                                         <ol class="list-unstyled text-center">
                                             <li class="filter" data-filter="all">All</li>
                                             <?php foreach ($pets as $pet) {?>
-                                            <li class="filter" data-filter=".hunting"><?php echo $this->escape($pet['title']);?></li>
+                                            <li class="filter" data-filter=".<?php echo $this->escape($pet['url_slug']);?>"><?php echo $this->escape($pet['title']);?></li>
 <!--                                            <li class="filter" data-filter=".companion">Companion</li>
                                             <li class="filter" data-filter=".hairless">Hairless</li>
                                             <li class="filter" data-filter=".fluffy-hair">Fluffy Hair</li>-->
@@ -170,8 +173,8 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
                                         </ol>
                                     </nav>
                                     <div class="my-img">
-                                        
-                                        <div class="col-md-6 col-lg-4 mix hunting" data-myorder="1">
+                                        <?php foreach ($products as $product) {?>
+                                        <div class="col-md-6 col-lg-4 mix <?php echo $cmsSitemapPageDbTable->getSitemapPageById($product['pet_id'])['url_slug']; ?>" data-myorder="1">
                                             <article>
                                                 <figure class="figureProducts">
                                                     <img class="img-responsive productImg" src="/front/img/shopImg.png" alt=""/>                                    
@@ -206,6 +209,12 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
                                                 </div>
                                             </article>
                                         </div>
+                                        
+                                        <?php }?>
+                                        
+                                        
+                                        
+                                        
                                         <div class="col-md-6 col-lg-4 mix companion" data-myorder="2">
                                             <article>
                                                 <figure class="figureProducts">
