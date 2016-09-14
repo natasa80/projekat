@@ -35,7 +35,7 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
         
         $price = new Zend_Form_Element_Text('price');
         $price->addFilter('StringTrim')
-                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))//false znaci da ako posle ovog ima jos validatora da ne prekida ispitivanje i validaciju i ako ne prodje ovu
+                ->addValidator('StringLength')//false znaci da ako posle ovog ima jos validatora da ne prekida ispitivanje i validaciju i ako ne prodje ovu
                 ->setRequired(FALSE);
         $this->addElement($price);
         
