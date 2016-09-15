@@ -91,19 +91,7 @@ class Zend_View_Helper_Footerdata extends Zend_View_Helper_Abstract {
        
            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <div class="footerSubscriber">
-                            <h4 class="text-uppercase">subscrive to mail!</h4>
-                            <p class="text-left">Get our Daily email newsletter with </p>
-                            <p class="text-left marginator">pecial Services, Updates, Offers and more!</p>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control footerInput" placeholder="EMAIL ADRESS">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default footerButton" type="button">SIGN UP</button>
-                                </span>
-                            </div><!-- /input-group -->
-
-                        </div>
-                        <div class="footerSocial">
+                            <div class="footerSocial">
                             <?php foreach ($shopData as $shopInfo) { ?>
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['facebook']); ?>"><span class="fa fa-facebook"></span></a>
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['google_plus']); ?>"><span class="fa fa-google-plus"></span></a>
@@ -112,7 +100,10 @@ class Zend_View_Helper_Footerdata extends Zend_View_Helper_Abstract {
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['linkedin']); ?>"><span class="fa fa-linkedin"></span></a>
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['twitter']); ?>"><span class="fa fa-twitter"></span></a>
                             <?php }?>
+                        </div> 
+
                         </div>
+                       
                     </div>
             
             <?php

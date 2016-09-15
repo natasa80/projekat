@@ -39,6 +39,7 @@ $this->headTitle('Products');
                             <th></th>
                             <th class="text-center">Img</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Producer</th>
@@ -50,13 +51,19 @@ $this->headTitle('Products');
                     <tbody>
                         <?php
                         foreach ($this->products as $product) {
-                            if ($product['status'] == Application_Model_DbTable_CmsMembers::STATUS_DISABLED) {
+                            if ($product['status'] == Application_Model_DbTable_CmsProducts::STATUS_DISABLED) {
                                 ?>
 
-                                <tr data-product-id="<?php echo $this->escape($product['id']); ?>" class="danger">
+                                   <tr data-product-id="<?php echo $this->escape($product['id']); ?>" class="danger">
                                     <td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor:pointer;"></i></td>
                                     <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
                                     <td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                    <?php 
+                                     if ($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_DISABLED) {?>
+                                          <td class="text-center"><span class="badge alert-danger" title="off"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                    <?php }else if($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_ENABLED) {?>
+                                          <td class="text-center"><span class="badge alert-success" title="on"><i class="glyphicon glyphicon-ok"></i></span></td>
+                                    <?php } ?>
                                     <td><?php echo $this->escape($product['title']); ?></td>
                                     <td><?php echo $this->escape($product['price']); ?></td>
                                     <td><?php echo $this->escape($product['producer_id']); ?></td>
@@ -73,6 +80,12 @@ $this->headTitle('Products');
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                             <button data-productName="<?php echo $this->escape($product['title']);?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="enable" type="button" class="btn btn-default" title="enable"><i class="glyphicon glyphicon-ok"></i></button>
                                             <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                             <?php 
+                                     if ($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_DISABLED) {?>
+                                          <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="on" type="button" class="btn btn-default" title="ok"><i class="glyphicon glyphicon-star"></i></button>
+                                    <?php }else if($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_ENABLED) {?>
+                                          <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="off" type="button" class="btn btn-default" title="off"><i class="glyphicon glyphicon-star-empty"></i></button>
+                                    <?php } ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -83,6 +96,12 @@ $this->headTitle('Products');
                                     <td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor:pointer;"></i></td>
                                     <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
                                     <td class="text-center"><span class="badge alert-success" title="enabled"><i class="glyphicon glyphicon-ok"></i></span></td>
+                                    <?php 
+                                     if ($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_DISABLED) {?>
+                                          <td class="text-center"><span class="badge alert-danger" title="off"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                    <?php }else if ($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_ENABLED) {?>
+                                          <td class="text-center"><span class="badge alert-success" title="on"><i class="glyphicon glyphicon-ok"></i></span></td>
+                                    <?php } ?>
                                     <td><?php echo $this->escape($product['title']); ?></td>
                                     <td><?php echo $this->escape($product['price']); ?></td>
                                     <td><?php echo $this->escape($product['producer_id']); ?></td>
@@ -99,6 +118,12 @@ $this->headTitle('Products');
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                             <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="disable" type="button" class="btn btn-default" title="disable"><i class="glyphicon glyphicon-remove"></i></button>
                                             <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                                 <?php 
+                                     if ($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_DISABLED) {?>
+                                          <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="on" type="button" class="btn btn-default" title="ok"><i class="glyphicon glyphicon-star"></i></button>
+                                    <?php }else if($product['action'] == Application_Model_DbTable_CmsProducts::ACTION_ENABLED) {?>
+                                          <button data-productName="<?php echo $this->escape($product['title']); ?>" data-product-id="<?php echo $this->escape($product['id']); ?>" data-action="off" type="button" class="btn btn-default" title="off"><i class="glyphicon glyphicon-star-empty"></i></button>
+                                    <?php } ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -183,6 +208,47 @@ $this->headTitle('Products');
     </div><!-- /.modal-dialog -->
 </form><!-- /.modal -->
 
+<!-- /.modal-content je po defaultu sakriven MODAL DIALOG-->
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'off'), "default", true); ?>" id="off-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <input type="hidden" name="task" value="off">
+    <input type="hidden" name="id" value="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remove from Actions</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to move from actions product: <span class="osoba" class="btn btn-tumblr"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>Action Off</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<!-- /.modal-content je po defaultu sakriven MODAL DIALOG-->
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'on'), "default", true); ?>" id="on-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <input type="hidden" name="task" value="on">
+    <input type="hidden" name="id" value="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Insert into Actions</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to putn in actions product: <span class="osoba" class="btn btn-tumblr"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i>Action On</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
 
 
 <form method="post" action="<?php echo $this->url(array('controller' => 'admin_products', 'action' => 'updateorder'), "default", true); ?>" style="display: none;" id="save-order-form">
@@ -366,6 +432,57 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
         //trigerujemo submit
         saveOrderForm.trigger('submit');
 
+
+    });
+    
+    
+    
+    
+       $('#rows-table').on('click', '[data-action="off"]', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+
+        //calculate target element
+        var target = $(this).is('[data-action="off"]') ? $(this) : $(this).closest('[data-action="off"]');
+
+        var productId = target.attr('data-product-id');
+
+        //verzija preko datat fje
+        //var productId =target.data('productId');
+        //var productName = target.attr('data-product-id');
+        //alert(productId);
+        //set value for input field with name "id"
+        $('#off-warning-dialog').find('[name="id"]').val(productId);
+
+        $('#off-warning-dialog').modal('show');
+
+        var productData = target.attr('data-productName');
+        $('.osoba').text(productData);
+
+    });
+
+    $('#rows-table').on('click', '[data-action="on"]', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+
+        //calculate target element
+        var target = $(this).is('[data-action="on"]') ? $(this) : $(this).closest('[data-action="on"]');
+
+        var productId = target.attr('data-product-id');
+
+        //verzija preko datat fje
+        //var productId =target.data('productId');
+        //var productName = target.attr('data-product-id');
+        //alert(productId);
+        //set value for input field with name "id"
+        $('#on-warning-dialog').find('[name="id"]').val(productId);
+
+        $('#on-warning-dialog').modal('show');
+
+        var productData = target.attr('data-productName');
+        $('.osoba').text(productData);
 
     });
 

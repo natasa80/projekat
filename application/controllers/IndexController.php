@@ -68,7 +68,25 @@ class IndexController extends Zend_Controller_Action
         $select->where('status = ?', Application_Model_DbTable_CmsMembers::STATUS_ENABLED);
         $members = $cmsMembersDbTable->fetchAll($select);
         
+        
+        
+        
+        //prikaz proizvoda na akciji
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+       
+       
+        $actionProducts = $cmsProductsDbTable->search(array(
+           'filters' => array(
+               'action' => Application_Model_DbTable_CmsProducts::ACTION_ENABLED
+           ),
+           'orders' => array(
+                'order_number' => 'ASC',
+            ),
+            'limit'=> 4
+       ));
+        
         $this->view->services = $services;
+        $this->view->actionProducts = $actionProducts;
         $this->view->servicesSitemapPages = $servicesSitemapPages;
         $this->view->shopSitemapPages = $shopSitemapPages;
         $this->view->members = $members;

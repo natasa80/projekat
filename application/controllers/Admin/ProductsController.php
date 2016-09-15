@@ -520,5 +520,130 @@ class Admin_ProductsController extends Zend_Controller_Action {
         $this->view->activeProducts = $activeProducts;
         $this->view->totalNumberOfProducts = $totalNumberOfProducts;
     }
+    
+    
+    
+      public function onAction() {
+
+        $request = $this->getRequest();
+
+        if (!$request->isPost() || $request->getPost('task') != 'on') {
+
+            //request is not post, 
+            //or task is not delete
+            //redirecting to index page
+
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        }
+
+        $flashMessenger = $this->getHelper('FlashMessenger');
+
+        try {
+
+            //read $_POST
+            $id = (int) $request->getPost('id');
+
+
+            if ($id <= 0) {
+                throw new Application_Model_Exception_InvalidInput('Invalid product id: ' . $id, 'errors');
+            }
+
+            $cmsProductsTable = new Application_Model_DbTable_CmsProducts();
+            $product = $cmsProductsTable->getProductById($id);
+
+            if (empty($product)) {
+
+                throw new Application_Model_Exception_InvalidInput('No product is found with id: ' . $id, 'errors');
+            }
+
+            $cmsProductsTable->actionOnProduct($id);
+
+
+            $flashMessenger->addMessage('Product: ' . $product['title'] .  ' has been saved', 'success');
+
+            //redirect on another page
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        } catch (Application_Model_Exception_InvalidInput $ex) {
+
+            $flashMessenger->addMessage($ex->getMessage(), 'errors');
+
+            //redirect on another page
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        }
+    }
+
+    public function offAction() {
+
+        $request = $this->getRequest();
+
+        if (!$request->isPost() || $request->getPost('task') != 'off') {
+
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        }
+
+        $flashMessenger = $this->getHelper('FlashMessenger');
+
+        try {
+
+            $id = (int) $request->getPost('id');
+
+
+            if ($id <= 0) {
+                throw new Application_Model_Exception_InvalidInput('Invalid product id: ' . $id, 'errors');
+            }
+
+            $cmsProductsTable = new Application_Model_DbTable_CmsProducts();
+            $product = $cmsProductsTable->getProductById($id);
+
+            if (empty($product)) {
+
+                throw new Application_Model_Exception_InvalidInput('No product is found with id: ' . $id, 'errors');
+            }
+
+            $cmsProductsTable->actionOffProduct($id);
+
+
+            $flashMessenger->addMessage('Product: ' . $product['title']  . ' has been removed', 'success');
+
+            //redirect on another page
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        } catch (Application_Model_Exception_InvalidInput $ex) {
+
+            $flashMessenger->addMessage($ex->getMessage(), 'errors');
+
+            //redirect on another page
+            $redirector = $this->getHelper('Redirector');
+            $redirector->setExit(true)
+                    ->gotoRoute(array(
+                        'controller' => 'admin_products',
+                        'action' => 'index'
+                            ), 'default', true);
+        }
+    }
 
 }

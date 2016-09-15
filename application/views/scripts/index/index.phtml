@@ -4,6 +4,7 @@ $servicesSitemapPages = $this->servicesSitemapPages;
 $shopSitemapPages = $this->shopSitemapPages;
 $members = $this->members;
 $indexSlides = $this->indexSlides;
+$actionProducts = $this->actionProducts;
 //print_r($members);
 //die();
 ?>
@@ -92,26 +93,26 @@ $indexSlides = $this->indexSlides;
 
                 <div class="col-md-7 section4Tabs">
                     <h3 class="sectionHeadline2">SERVICES WE OFFER</h3>
-                    <p class="sectionP2">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
+                    <p class="sectionP2">We offer a wide range of veterinary services and surgical procedures in our pet clinic’s state-of-the-art surgical suite.</p>
 
-                    <div class="row">
+                    <div  class="row">
                         <!-- NAVIGATION BUTTONS -->
 
                         <div class="col-md-4 navLeft">
 
-                            <ul class="nav nav-pills nav-stacked" id="myTabs">
+                            <ul  style="background:gainsboro;" class="nav nav-pills nav-stacked" id="myTabs">
 
                                 <?php foreach ($services as $service) { ?>
-                                    <li  id="nav" ><a href="#<?php echo $this->escape($service['id']); ?>" data-toggle="pill"><span class="<?php echo $this->escape($service['icon']); ?>"></span><?php echo $this->escape($service['title']); ?></a></li>
+                                <li<?php if($service === reset($services)){?> class="active" <?php }?> ><a href="#<?php echo $this->escape($service['id']); ?>" data-toggle="pill"><span class="<?php echo $this->escape($service['icon']); ?>"></span><span class="text-justify""> <?php echo $this->escape($service['title']); ?></span></a></li>
                                 <?php } ?>
                             </ul>
 
                         </div>
                         <!-- CONTENT -->
-                        <div class="col-md-8">
+                          <div class="col-md-8">
                             <div class="tab-content">
                                 <?php foreach ($services as $service) { ?>
-                                    <div   class="tab-pane" id="<?php echo $this->escape($service['id']); ?>">
+                                <div  class="tab-pane <?php if($service === reset($services)){?>  active <?php }?> " id="<?php echo $this->escape($service['id']); ?>">
                                         <p>
                                             <?php echo $this->escape($service['description']); ?>
                                         </p>
@@ -247,7 +248,7 @@ $indexSlides = $this->indexSlides;
                     <span class="fa fa-trophy"></span>
                     <h4 class="h4Headline">BEST IN THE INDUSTRY</h4>
                     <p class="sectionP">Rogers are blown out of their into an orbit which freezes his life </p>
-                    <a class="readMore" href="#">READ MORE</a>
+<!--                    <a class="readMore" href="#">READ MORE</a>-->
                 </article>   
 
             </div>
@@ -257,7 +258,7 @@ $indexSlides = $this->indexSlides;
                     <span class="fa fa fa-plus-square"></span>
                     <h4 class="h4Headline">CUSTOMER SUPPORT</h4>
                     <p class="sectionP">Come and listen to a story about Jed a poor mountaineer barely kept his family fed buck rogers to </p>
-                    <a class="readMore" href="#">READ MORE</a>
+<!--                    <a class="readMore" href="#">READ MORE</a>-->
                 </article>  
 
             </div>
@@ -267,7 +268,7 @@ $indexSlides = $this->indexSlides;
                     <span class="fa fa-home"></span>
                     <h4 class="h4Headline">SPECIAL CARE ON PETS</h4>
                     <p class="sectionP">The mate was a mighty sailin' man the two skipper brave and sure. Five </p>
-                    <a class="readMore" href="#">READ MORE</a>
+<!--                    <a class="readMore" href="#">READ MORE</a>-->
                 </article> 
 
             </div>
@@ -277,7 +278,7 @@ $indexSlides = $this->indexSlides;
                     <span class="fa fa-paw"></span>
                     <h4 class="h4Headline">BEST QUALITY PRODUCTS</h4>
                     <p class="sectionP">Mister we could use a man like Herbert Hoover again. They're </p>
-                    <a class="readMore" href="#">READ MORE</a>
+<!--                    <a class="readMore" href="#">READ MORE</a>-->
                 </article>  
 
             </div>
@@ -474,45 +475,52 @@ $indexSlides = $this->indexSlides;
 <section class="section10">
     <div class="container">
         <h3 class="sectionHeadline text-center">UPDATES FROM OUR SHOP</h3>
-        <p class="sectionP text-center">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
+        <p class="sectionP text-center">Best products with best prices</p>
         <div class="row">
+            <?php foreach($actionProducts as $actionProduct) {?>
             <div class="col-md-6 col-lg-3">
+                
                 <article>
+                    
                     <figure class="figureProducts">
-                        <img class="img-responsive productImg" src="/front/img/product-img.jpg" alt=""/>                                    
+                        <img class="img-responsive productImg" src="<?php echo $this->productImgUrl($actionProduct);?>" alt=""/>                                    
                         <div class="contentAbsolute">
-                            <button class="button toCart">ADD TO CART</button>
+<!--                            <button class="button toCart">ADD TO CART</button>
                             <div class="faAbsolute">
                                 <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
                                 <a href="#"><span class="fa fa-arrows-alt"></span></a>
-                            </div>
+                            </div>-->
                         </div>
                     </figure>
                     <div class="underContent">
                         <div class="row">
                             <div class="col-xs-8">
                                 <article class="productName">
-                                    <h5>PET HARNESS</h5>
-                                    <ul class="list-inline list-unstyled">
+                                    <h5><?php echo $this->escape($actionProduct['title']);?></h5>
+<!--                                    <ul class="list-inline list-unstyled">
                                         <li><a class="fa fa-star" href="#"></a></li>
                                         <li><a class="fa fa-star" href="#"></a></li>
                                         <li><a class="fa fa-star" href="#"></a></li>
                                         <li><a class="fa fa-star" href="#"></a></li>
                                         <li><a class="fa fa-star-half-o" href="#"></a></li>
-                                    </ul>
+                                    </ul>-->
                                 </article>
                             </div>
                             <div class="col-xs-4">
                                 <article class="productPrice">
-                                    <span class="price">$120.00</span>
+                                    <span style="color:blue;" class="price"><?php echo $this->escape($actionProduct['price']);?></span>
+                   
                                 </article>
                             </div>
                         </div>
                     </div>
+                    
                 </article>
+                 
             </div>
+            <?php }?>
 
-            <div class="col-md-6 col-lg-3">
+<!--            <div class="col-md-6 col-lg-3">
                 <article>
                     <figure class="figureProducts">
                         <img class="img-responsive productImg" src="/front/img/product-img2.jpg" alt=""/>
@@ -621,7 +629,7 @@ $indexSlides = $this->indexSlides;
                         </div>
                     </div>
                 </article>
-            </div>
+            </div>-->
 
         </div>
     </div>
@@ -795,7 +803,7 @@ $indexSlides = $this->indexSlides;
 <!-- SECTION 12 STOP -->
 
 <!-- SECTION 13 START -->
-<section class="section13">
+<!--<section class="section13">
     <div class="container text-center">
         <div class="row">
             <div class="col-lg-4 col-md-12">
@@ -824,22 +832,22 @@ $indexSlides = $this->indexSlides;
 
 
     </div>
-</section>
+</section>-->
 <!-- SECTION 13 STOP -->
 
 <script>
 <?php $this->inlineScript()->captureStart(); ?>
 
-
-    var selector1 = '#nav';
-    var selector2 = '.tab-pane';
-
-    $(selector1).on('click', function(){
-    $(selector1).removeClass('active');
-            $(this).addClass('active');
-            $(selector2).on('click', function(){
-    $(selector2).removeClass('active');
-            $(this).addClass('active');
-            });
+//
+//    var selector1 = '#nav';
+//    var selector2 = '.tab-pane';
+//
+//    $(selector1).on('click', function(){
+//    $(selector1).removeClass('active');
+//            $(this).addClass('active');
+//            $(selector2).on('click', function(){
+//    $(selector2).removeClass('active');
+//            $(this).addClass('active');
+//            });
 <?php $this->inlineScript()->captureEnd(); ?>
 </script>

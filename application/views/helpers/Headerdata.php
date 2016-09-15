@@ -83,7 +83,7 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
                     <div class="row">
                         <div class="col-md-4">
                             <article>
-                                <img class="img-responsive Logo" src="<?php echo $this->view->logoImgUrl($shopData); ?>" alt="Logo"/>
+                                <a href="<?php echo $this->view->url(array('controller' => 'index', 'action' => 'index'), 'default', true);?>"><img class="img-responsive Logo" src="<?php echo $this->view->logoImgUrl($shopData); ?>" alt="Logo"/></a>
                             </article>
                         </div>
                         <div class="col-md-6 location">
@@ -134,11 +134,11 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+<!--                        <div class="col-md-2">
                             <article>
                                 <a class="shoppingCart" href="#"><span class="fa fa-shopping-basket"></span><span class="badge">10</span></a>
                             </article>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

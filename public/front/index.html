@@ -471,10 +471,17 @@
                                     <!-- NAVIGATION BUTTONS -->
                                     <div class="col-md-4 navLeft">
                                         <ul class="nav nav-pills nav-stacked" id="myTabs">
-                                            <li><a href="#care" data-toggle="pill"><span class="fa fa-heartbeat"></span>VETERINARY CARE</a></li>
-                                            <li class="active"><a href="#camp" data-toggle="pill"><span class="fa fa-dribbble"></span>PETS DAY CAMP</a></li>
+                                            
+                                <?php 
+                                $i = 0;
+                                foreach ($services as $service) { ?>
+                                <li class="<?php echo ($i == 0 ) ? "active" : ""; ?>"><a href="#care" data-toggle="pill"><span class="fa fa-heartbeat"></span>VETERINARY CARE</a></li>
+<!--                                            <li class="active"><a href="#camp" data-toggle="pill"><span class="fa fa-dribbble"></span>PETS DAY CAMP</a></li>
                                             <li><a href="#nutrition" data-toggle="pill"><span class="fa fa-futbol-o"></span>PET NUTRITION</a></li>
-                                            <li><a href="#insurance" data-toggle="pill"><span class="fa fa-smile-o"></span>PET INSURANCE</a></li>
+                                            <li><a href="#insurance" data-toggle="pill"><span class="fa fa-smile-o"></span>PET INSURANCE</a></li>-->
+                                         <?php }
+                                 $i++;
+                                 ?>
                                         </ul>
                                     </div>
                                     <!-- CONTENT -->

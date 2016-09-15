@@ -7,7 +7,7 @@ class Zend_View_Helper_ServiceUrl extends Zend_View_Helper_Abstract
         
         return $this->view->url(array(
             'id'=>$service['id'],
-            'service_slug'=>$service['title']
+            'service_slug'=>$service['title']->filter($service['title'])
             
         ), 'service-route', true);
        

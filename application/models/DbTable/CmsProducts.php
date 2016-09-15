@@ -4,6 +4,9 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
 
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
+    
+    const ACTION_ENABLED = 1;
+    const ACTION_DISABLED = 0;
 
     protected $_name = 'cms_products';
 
@@ -170,6 +173,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'order_number':
                     case 'status':
                     case 'pet_id':
+                    case 'action':
 
 
                         if ($orderDirection === 'DESC') {
@@ -248,6 +252,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'order_number':
                     case 'status':
                     case 'pet_id':
+                    case 'action':
 
                     if (is_array($value)) {
                         $select->where($field . ' IN (?)', $value);
@@ -286,6 +291,29 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                
             }
         }
+    }
+    
+    
+    /**
+     * 
+     * @param nt $id ID of member to enable
+     */
+    public function actionOffProduct($id) {
+
+        $this->update(array(
+            'action' => self::ACTION_DISABLED
+                ), 'id = ' . $id);
+    }
+
+    /**
+     * 
+     * @param nt $id ID of member to enable
+     */
+    public function actionOnProduct($id) {
+
+        $this->update(array(
+            'action' => self::ACTION_ENABLED
+                ), 'id = ' . $id);
     }
 
 }
