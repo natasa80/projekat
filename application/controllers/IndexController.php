@@ -37,7 +37,7 @@ class IndexController extends Zend_Controller_Action
             'limit'=> 4
        ));
         
-        //sitemappage
+        //sitemappage Services
         
         $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
         $servicesSitemapPages = $cmsSitemapPagesDbTable->search(array(
@@ -49,7 +49,7 @@ class IndexController extends Zend_Controller_Action
 		));
         $servicesSitemapPages = !empty($servicesSitemapPages) ? $servicesSitemapPages[0] : null;
         
-        
+        //sitemappage Shop
         $shopSitemapPages = $cmsSitemapPagesDbTable->search(array(
 			'filters' => array(
 				'status' => Application_Model_DbTable_CmsSitemapPages::STATUS_ENABLED,
@@ -85,6 +85,44 @@ class IndexController extends Zend_Controller_Action
             'limit'=> 4
        ));
         
+        
+        //prikaz proizvoda na akciji
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $cmsPhotogalleryDbTable = new Application_Model_DbTable_CmsPhotoGalleries();
+        
+         $photoUserGallery = $cmsPhotogalleryDbTable->search(array(
+           'filters' => array(
+               'status' => Application_Model_DbTable_CmsPhotoGalleries::STATUS_ENABLED,
+               'title' => 'Your Pets'
+           ),
+           'orders' => array(
+                'order_number' => 'ASC',
+            ),
+            'limit'=> 1
+       ));
+       
+         $photoUserGallery = !empty($photoUserGallery) ? $photoUserGallery[0] : null;
+         
+         
+          //prikaz photos od usera
+        $cmsPhotosUserDbTable = new Application_Model_DbTable_CmsPhotos();
+         
+        
+        
+        $userPhotos = $cmsPhotosUserDbTable->search(array(
+           'filters' => array(
+               'status' => Application_Model_DbTable_CmsPhotos::STATUS_ENABLED,
+               'photo_gallery_id'=> $photoUserGallery['id']
+           ),
+           'orders' => array(
+                'order_number' => 'ASC',
+            ),
+            'limit'=> 4
+       ));
+        
+       
+        $this->view->photoUserGallery = $photoUserGallery;
+        $this->view->userPhotos = $userPhotos;
         $this->view->services = $services;
         $this->view->actionProducts = $actionProducts;
         $this->view->servicesSitemapPages = $servicesSitemapPages;

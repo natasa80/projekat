@@ -5,6 +5,8 @@ $shopSitemapPages = $this->shopSitemapPages;
 $members = $this->members;
 $indexSlides = $this->indexSlides;
 $actionProducts = $this->actionProducts;
+$photoUserGallery = $this->photoUserGallery;
+$userPhotos = $this->userPhotos;
 //print_r($members);
 //die();
 ?>
@@ -350,26 +352,14 @@ $actionProducts = $this->actionProducts;
             </div>
             <div class="col-md-6">
                 <div class="row">
+                    <?php foreach ($userPhotos as $userPhoto) {?>
                     <div class="col-sm-6 text-center">
                         <figure class="imageFigure">
-                            <img class="img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
+                            <img class="img-responsive clientImg" src="<?php echo $this->photoUrl($userPhoto);?>" alt=""/>
                         </figure>
                     </div>
-                    <div class="col-sm-6 clientImgContainer">
-                        <figure class="imageFigure">
-                            <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
-                        </figure>
-                    </div>
-                    <div class="col-sm-6 clientImgContainer">
-                        <figure class="imageFigure">
-                            <img class=" img-responsive clientImg" src="/front/img/client1.jpg" alt=""/>
-                        </figure>
-                    </div>
-                    <div class="col-sm-6 clientImgContainer">
-                        <figure class="imageFigure">
-                            <img class="img-responsive clientImg" src="/front/img/client2.jpg" alt=""/>
-                        </figure>
-                    </div>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
