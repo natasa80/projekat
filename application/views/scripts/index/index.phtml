@@ -31,7 +31,7 @@ $userPhotos = $this->userPhotos;
         foreach ($indexSlides as $index => $slide) {
             ?>
             <div class="item <?php echo ($i == 0 ) ? " active" : ""; ?>">
-                <img style="width: 100%; margin: 0 auto;" src="<?php echo $this->indexSlideImgUrl($slide); ?>"  alt="<?php echo $this->escape($slide['title']); ?>"/>
+                <img style="width: 100%; margin: 0 auto;" src="<?php echo $this->indexSlideImgUrl($slide); ?>"  title="<?php echo $this->escape($slide['description']); ?>" alt="<?php echo $this->escape($slide['title']); ?>"/>
                 <div class="carousel-caption">
                     <h3><?php echo $this->escape($slide['title']); ?></h3>
                     <p class="normalText"><?php echo $this->escape($slide['description']); ?></p>
@@ -130,7 +130,7 @@ $userPhotos = $this->userPhotos;
                 </div>
 
                 <div class="col-md-5 section4Img">
-                    <img class="img img-responsive sec4Img" src="<?php echo $this->baseUrl('/front/img/section4-img.jpg'); ?>" alt=""/>
+                    <img class="img img-responsive sec4Img" src="<?php echo $this->baseUrl('/front/img/section4-img.jpg'); ?>" alt="Best products and care for your Pet" title="Best products and care for your Pet""/>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@ $userPhotos = $this->userPhotos;
                     <?php foreach ($userPhotos as $userPhoto) {?>
                     <div class="col-sm-6 text-center">
                         <figure class="imageFigure">
-                            <img class="img-responsive clientImg" src="<?php echo $this->photoUrl($userPhoto);?>" alt=""/>
+                            <img class="img-responsive clientImg" title="<?php echo $this->escape($userPhoto['description']);?>" src="<?php echo $this->photoUrl($userPhoto);?>" alt=""/>
                         </figure>
                     </div>
                     <?php } ?>
@@ -385,7 +385,7 @@ $userPhotos = $this->userPhotos;
                     <figure class="imageSection8">
 
 
-                        <img class="img img-responsive" src="<?php echo $memberImgUrl; ?>" alt="<?php echo $this->escape($member['first_name']) ?>"/>
+                        <img class="img img-responsive" title="<?php echo $this->escape($member['work_title']); ?>" src="<?php echo $memberImgUrl; ?>" alt="<?php echo $this->escape($member['first_name']) ?>"/>
                         <div class="imgContent">
                             <div class="drInfo">
                                 <h4><?php echo $this->escape($member['first_name'] . ' ' . $member['last_name']); ?></h4>

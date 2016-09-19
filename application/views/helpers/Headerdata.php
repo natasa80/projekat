@@ -83,7 +83,7 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
                     <div class="row">
                         <div class="col-md-4">
                             <article>
-                                <a href="<?php echo $this->view->url(array('controller' => 'index', 'action' => 'index'), 'default', true);?>"><img class="img-responsive Logo" src="<?php echo $this->view->logoImgUrl($shopData); ?>" alt="Logo"/></a>
+                                <a href="<?php echo $this->view->url(array('controller' => 'index', 'action' => 'index'), 'default', true);?>"><img class="img-responsive Logo" src="<?php echo $this->view->logoImgUrl($shopData); ?>" title="Pet Shop and Vet Care" alt="Dog PET Care"/></a>
                             </article>
                         </div>
                         <div class="col-md-6 location">

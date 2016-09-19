@@ -70,6 +70,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 				
 				//insert indexSlide returns ID of the new indexSlide
 				$indexSlideId = $cmsIndexSlidesTable->insertIndexSlide($formData);
+                                $indexSlide = $cmsIndexSlidesTable->search();
 				
 				if ($form->getElement('index_slide_photo')->isUploaded()) {
 					//photo is uploaded
@@ -84,7 +85,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						
 						$indexSlidePhoto->fit(1920, 800);
 						
-						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlideId . '.jpg');
+						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/pet-shop-vet-care/' . $indexSlideId . '.jpg');
 						
 					} catch (Exception $ex) {
 						
@@ -186,7 +187,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						
 						$indexSlidePhoto->fit(1920, 800);
 						
-						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlide['id'] . '.jpg');
+						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/pet-shop-vet-care/' . $indexSlide['id'] . '.jpg');
 						
 					} catch (Exception $ex) {
 						

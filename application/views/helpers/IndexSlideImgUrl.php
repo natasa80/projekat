@@ -6,7 +6,7 @@ class Zend_View_Helper_IndexSlideImgUrl extends Zend_View_Helper_Abstract
 		
 		$indexSlideImgFileName = $indexSlide['id'] . '.jpg';
 		
-		$indexSlideImgFilePath = PUBLIC_PATH . '/uploads/index-slides/' . $indexSlideImgFileName;                    ;
+		$indexSlideImgFilePath = PUBLIC_PATH . '/uploads/index-slides/pet-shop-vet-care/' . $indexSlideImgFileName;                    ;
 		
 		//Helper ima property view koji je Zend_View
 		// i preko kojeg pozivamo ostale view helpere
@@ -15,7 +15,7 @@ class Zend_View_Helper_IndexSlideImgUrl extends Zend_View_Helper_Abstract
 		
 		if (is_file($indexSlideImgFilePath)) {
 			
-			return $this->view->baseUrl('/uploads/index-slides/' . $indexSlideImgFileName);
+			return $this->view->baseUrl('/uploads/index-slides/pet-shop-vet-care/' . $indexSlideImgFileName);
 			
 		} else {
 			return '';
