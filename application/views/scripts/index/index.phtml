@@ -301,14 +301,14 @@ $userPhotos = $this->userPhotos;
         <div class="row">
             <div class="col-md-6">
                 <div id="testimonial-slider" class="owl-carousel">
+                    <?php foreach ($userPhotos as $userPhoto) {?>
                     <div class="testimonial">
-
+                        
                         <div class="testimonial-content"> 
                             <h3 class="h3Slider">Our Client Says</h3>
+                            
                             <p class="testimonial-description">
-                                Since we're together Fish don't fry in the kitchen and beans don't burn on the grill.
-                                Took a whole lotta tryin' just to get up that hill. Michael Knight a young 
-                                loner on a crusade to champion the cause of the innocent.
+                               <?php echo $this->escape($userPhoto['description']);?>
 
                             </p>
                             <div class="media">
@@ -316,14 +316,15 @@ $userPhotos = $this->userPhotos;
                                     <span class="fa fa-quote-right quotes"></span>
                                 </a>
                                 <div class="media-body clientName">
-                                    <h4 class="media-heading">ROSLIN MIRIAM</h4>
-                                    <span class="client">Premium Client</span>
+                                    <h4 class="media-heading"><?php echo $this->escape($userPhoto['title']);?></h4>
+<!--                                    //<span class="client">Premium Client</span>-->
                                 </div>
                             </div>
-
+                          
                         </div>
+                        
                     </div>
-
+<!--
                     <div class="testimonial">
 
                         <div class="testimonial-content">
@@ -346,8 +347,8 @@ $userPhotos = $this->userPhotos;
                         </div>
 
 
-                    </div>
-
+                    </div>-->
+                      <?php }?>
                 </div>
             </div>
             <div class="col-md-6">

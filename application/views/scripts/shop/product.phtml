@@ -1,12 +1,24 @@
+<?php
 
+$products = $this->products;
+$pets = $this->pets;
+$category = $this->category;
+$producer = $this->producer;
+$product = $this->product;
+$similiarProducts = $this->similiarProducts;
+$shopSitemapPages = $this->shopSitemapPages;
+
+
+$this->headTitle('Product - ' . $product['title']);
+?>
 
  <section class="section1Blog">
                 <div class="container">
                     <h3 class="text-uppercase">SHOP - CHEKOUT</h3>
                     <ul class="list-unstyled list-inline ShopList">
-                        <li><a href="#">Home</a><span>|</span></li>
-                        <li><a href="#">Shop</a><span>|</span></li>
-                        <li><a href="#">Pet List</a></li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'index','action'=> 'index'), 'default', true)?>">Home</a><span>|</span></li>
+                        <li><a href="<?php echo $this->sitemapPageUrl($shopSitemapPages['id']);?>">Shop</a><span>|</span></li>
+                        <li><a href="<?php echo $this->productUrl($product);?>"><?php echo $this->escape($product['title']);?></a></li>
                     </ul>
                 </div>
             </section>
@@ -21,7 +33,7 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-md-3 col-lg-3 filterMenu">
+<!--                        <div class="col-xs-12 col-md-3 col-lg-3 filterMenu">
                             <article>
                                 <form>
                                     <h4 class="text-uppercase shopH4-1">select pet</h4>
@@ -64,7 +76,7 @@
 
                                 <h4 class="text-uppercase shopH4-2">Filter by price</h4>
 
-                                <!-- RANGE SLIDER -->
+                                 RANGE SLIDER 
                                 <div class="rangeSliderForm">
                                     <form>
                                         <div class="nstSlider" data-range_min="5" data-range_max="3000" data-cur_min="500" data-cur_max="2500">
@@ -122,7 +134,7 @@
 
                                 <h4 class="text-uppercase mediaH4">recent post</h4>
 
-                                <!-- SIDE MEDIA 1 -->
+                                 SIDE MEDIA 1 
                                 <div class="media blogMedia">
                                     <div class="media-left">
                                         <a href="#">
@@ -142,7 +154,7 @@
                                     </div>
                                 </div>
 
-                                <!-- SIDE MEDIA 2 -->
+                                 SIDE MEDIA 2 
                                 <div class="media blogMedia">
                                     <div class="media-left">
                                         <a href="#">
@@ -162,7 +174,7 @@
                                     </div>
                                 </div>
 
-                                <!-- SIDE MEDIA 3 -->
+                                 SIDE MEDIA 3 
 
                                 <div class="media blogMedia">
                                     <div class="media-left">
@@ -183,7 +195,7 @@
                                     </div>
                                 </div>
                             </article>
-                        </div>
+                        </div>-->
 
                         <div class="col-xs-12 col-md-9 shopDetailsContent">
 
@@ -193,13 +205,13 @@
                                 </div>-->
 
                                 <div class="col-lg-6 articleDetails">
-                                    <img alt="" src="img/shopDetails-Img.png" class="img-responsive detailsImage">
+                                    <img alt="<?php echo $this->escape($product['title']); ?>" title="<?php echo $this->escape($product['title']); ?>" src="<?php echo $this->productImgUrl($product); ?>" class="img-responsive detailsImage">
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="fullreviews">
-                                        <h4 class="text-uppercase h4sideDetails">neck harness with bells</h4>
-                                        <span class="priceSpanDetails">$75</span>
-                                        <span class="priceOldSpanDetails">$85</span>
+                                        <h4 class="text-uppercase h4sideDetails"><?php echo $this->escape($product['title']);?></h4>
+                                        <span class="priceSpanDetails"><?php echo $this->escape($product['price']);?></span>
+<!--                                        <span class="priceOldSpanDetails">$85</span>
                                         <div class="reviewDetails">
                                             <a class="reviews" href="#"><span class="priceOldSpanDetails1">5 Review(s)</span></a>
                                             <span class="spanSplitter"> | </span>
@@ -213,17 +225,15 @@
                                                 <li><a class="fa fa-star-half-o" href="#"></a></li>
                                             </ul>
 
-                                        </div>
+                                        </div>-->
                                         <div class="aboutDetails">
                                             <p class="detailsParagraphs">
-                                                The ship set ground on the shore of this uncharted desert isle with Gilligan the Skipper too the millionaire and his wife.
-                                                And when the 
-                                                odds are against him and their dangers work to do.  
+                                                <?php echo $this->escape($product['about']);?>  
                                             </p>
                                         </div>
                                         <form>
                                             <div class="row colorsSizes">
-
+<!--
                                                 <div class="colorPicker col-xs-12 col-sm-6">
                                                     <h4 class="h4sideDetails">Color:</h4>
                                                     <ul class="list-inline list-unstyled colors">
@@ -234,20 +244,20 @@
                                                         <li class="colorPickerBorder"><a class="color5" href="#"></a></li>
                                                         <li class="colorPickerBorder"><a class="color6" href="#"></a></li>
                                                     </ul>
-                                                </div>
-                                                <div class="col-sm-6 likeCol">
+                                                </div>-->
+<!--                                                <div class="col-sm-6 likeCol">
                                                     <ul class="list-inline list-unstyled connectList">
                                                         <li class="likeDetails"><a class="fa fa-heart-o" href="javascript:void(0)"></a></li>
                                                         <li class="shareDetails"><a class="fa fa-share" href="javascript:void(0)"></a></li>
                                                         <li class="emailDetails"><a class="fa fa-envelope-o" href="mailto:example@mail.com"></a></li>
                                                     </ul>
-                                                </div>
+                                                </div>-->
 
 
 
                                             </div>
                                             <div class="row">
-
+<!--
                                                 <div class="col-xs-6 col-md-3 text-right">
                                                     <div class="form-group">
                                                         <span class="qtySpan">Qty: </span>
@@ -259,8 +269,8 @@
                                                             <option>5</option>
                                                         </select>
                                                     </div>
-                                                </div>
-
+                                                </div>-->
+<!--
                                                 <div class="col-xs-6 col-md-3 text-left">
                                                     <span class="sizeSpan">Size: </span>
                                                     <select class=" selectDetails" id="sel1">
@@ -270,14 +280,18 @@
                                                         <option>L</option>
                                                         <option>XL</option>
                                                     </select>
-                                                </div>
+                                                </div>-->
                                                 <div class="col-xs-12 col-md-6">
                                                     <button class="btn-default detailsButton">ADD TO CART</button>
                                                 </div>
 
                                                 <div class="col-xs-12 divAvailable">
-                                                    <span class="availableSpan text-left">Availability: </span>
-                                                    <span class="stockSpan text-left">in stock 20 Item(s)</span>
+                                                    <span class="availableSpan text-left">Producer: </span>
+                                                    <span class="stockSpan text-left"><?php echo $this->escape($producer['name']);?> </span>
+                                                    </div>
+                                                    <div class="col-xs-12 divAvailable">
+                                                    <span class="availableSpan text-left">Category: </span>
+                                                    <span class="stockSpan text-left"><?php echo $this->escape($category['title']);?></span>
                                                 </div>
 
                                             </div>
@@ -297,11 +311,7 @@
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane fade in active">
                                             <p class="tabsParagraphs">
-                                                Then along come two they got nothin' but their jeans. Flying away on a wing and a prayer.
-                                                Who could it be? Believe it or not its just me. 
-                                                Today still wanted by the government they survive as soldiers of fortune.
-                                                Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. 
-                                                Those were the days.
+                                                <?php echo $this->escape($product['about']); ?>
                                             </p>
                                         </div>
                                         <div id="menu1" class="tab-pane fade">
@@ -327,15 +337,20 @@
                             <h3 class="sectionHeadlineShop text-left shopHeadline">SIMILAR PRODUCTS</h3>
                             <p class="sectionP text-left">In a freak mishap ranger and its pilot captain william buck rogers are blown</p>
                             <div class="row">
+                                <?php foreach($similiarProducts as $similiarProduct) { ?>
                                 <div class="col-md-6 col-lg-4 mix companion" data-myorder="10">
                                     <article>
                                         <figure class="figureProducts">
-                                            <img class="img-responsive productImg" src="img/shopImg.png" alt=""/>                                    
+                                            <img class="img-responsive productImg" src="<?php echo $this->productImgUrl($similiarProduct);?>" title="<?php echo $this->escape($similiarProduct['title']);?>" alt="<?php echo $this->escape($similiarProduct['title']);?>"/> 
+                                            <?php if($similiarProduct['action']) {?>
+                                            <p class="productP">SALE</p>
+                                            <?php }?>
                                             <div class="contentAbsolute">
-                                                <button class="button toCart">ADD TO CART</button>
+                                                
                                                 <div class="faAbsolute">
                                                     <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
                                                     <a href="#"><span class="fa fa-arrows-alt"></span></a>
+                                                    
                                                 </div>
                                             </div>
                                         </figure>
@@ -343,7 +358,7 @@
                                             <div class="row">
                                                 <div class="col-xs-8">
                                                     <article class="productName">
-                                                        <h5>PET HARNESS</h5>
+                                                        <h5><?php echo $this->escape($similiarProduct['title']);?></h5>
                                                         <ul class="list-inline list-unstyled">
                                                             <li><a class="fa fa-star" href="#"></a></li>
                                                             <li><a class="fa fa-star" href="#"></a></li>
@@ -351,19 +366,24 @@
                                                             <li><a class="fa fa-star" href="#"></a></li>
                                                             <li><a class="fa fa-star-half-o" href="#"></a></li>
                                                         </ul>
+                                                        
                                                     </article>
+                                                    
                                                 </div>
+                                                
                                                 <div class="col-xs-4">
                                                     <article class="productPrice">
-                                                        <span class="price">$120.00</span>
+                                                        <span class="price"><?php echo $this->escape($similiarProduct['price']);?></span>
                                                     </article>
                                                 </div>
+                                                <a href="<?php $this->productImgUrl($similiarProduct); ?>" class="button toCart">SEE DETAILS</a>
                                             </div>
                                         </div>
                                     </article>
                                 </div>
+                                <?php }?>
 
-                                <div class="col-md-6 col-lg-4 mix hairless" data-myorder="11">
+<!--                                <div class="col-md-6 col-lg-4 mix hairless" data-myorder="11">
                                     <article>
                                         <figure class="figureProducts">
                                             <img class="img-responsive productImg" src="img/shopImg.png" alt=""/>                                    
@@ -402,7 +422,7 @@
                                 <div class="col-md-6 col-lg-4 mix fluffy-hair" data-myorder="12">
                                     <article>
                                         <figure class="figureProducts">
-                                            <img class="img-responsive productImg" src="img/shopImg.png" alt=""/>                               
+                                            <img class="img-responsive productImg" src="" alt=""/>                               
                                             <p class="productP">NEW</p>
                                             <div class="contentAbsolute">
                                                 <button class="button toCart">ADD TO CART</button>
@@ -434,7 +454,7 @@
                                             </div>
                                         </div>
                                     </article>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>

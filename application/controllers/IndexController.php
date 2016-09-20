@@ -86,7 +86,7 @@ class IndexController extends Zend_Controller_Action
        ));
         
         
-        //prikaz proizvoda na akciji
+        //prikaz slika od klijenata
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
         $cmsPhotogalleryDbTable = new Application_Model_DbTable_CmsPhotoGalleries();
         

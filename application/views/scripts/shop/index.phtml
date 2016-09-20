@@ -4,6 +4,7 @@ $products = $this->products;
 $pets = $this->pets;
 $categories = $this->categories;
 $producers = $this->producers;
+$actionProducts = $this->actionProducts;
 
 
 $this->headTitle($sitemapPage['title']);
@@ -20,7 +21,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                     <ul class="list-unstyled list-inline ShopList">
                         <li><a href="<?php echo $this->url(array('controller' => 'index','action'=> 'index'), 'default', true)?>">Home</a><span>|</span></li>
                         <li><a href="#">Shop</a><span>|</span></li>
-                        <li><a href="#">Pet List</a></li>
+<!--                        <li><a href="#">Pet List</a></li>-->
                     </ul>
                 </div>
             </section>
@@ -37,79 +38,92 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                     <div class="row">
                         <div class="col-xs-12 col-md-3 col-lg-3 filterMenu">
                             <article>
-                                <form>
+                                <form method="post" action="">
+                                    <input type="hidden" name="task" value="save">
+<!--                                    filtrirane po ceni-->
                                     <h4 class="text-uppercase shopH4-1">select pet</h4>
                                     <ul class="list-unstyled">
                                         <?php foreach ($pets as $pet) {?>
                                         <li>
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value=""><?php echo $this->escape($pet['title']);?></label><span class="pull-right"><a class="checkboxText" href="">158</a></span>
+                                                <label><input type="checkbox" value="<?php echo $this->escape($pet['id']);?>" for="pet_id"><?php echo $this->escape($pet['title']);?></label><span class="pull-right"></span>
                                             </div>
                                         </li>
 
                                         <?php }?>
                                     </ul>
-                                </form>
-                            </article>
+                                
+                            
 
-                            <article>
-
+                                    <h4 class="text-uppercase shopH4-3">select category</h4>
+                                    <ul class="list-unstyled">
+                                         <?php foreach ($categories as $category) {?>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="<?php echo $this->escape($category['id']);?>"><?php echo $this->escape($category['title']);?></label><span class="pull-right"><a class="checkboxText" href="">72</a></span>
+                                            </div>
+                                        </li>
+                                            <?php }?>
+                                    </ul>
+                                    
+                                    
+                                    
+                                    
                                 <h4 class="text-uppercase shopH4-2">Filter by price</h4>
 
                                 <!-- RANGE SLIDER -->
                                 <div class="rangeSliderForm">
-                                    <form>
+                                    
                                         <div class="nstSlider" data-range_min="5" data-range_max="3000" data-cur_min="500" data-cur_max="2500">
 
                                             <div class="bar"></div>
                                             <div class="leftGrip"></div>
                                             <div class="rightGrip"></div>
                                         </div>
+<!--                                     <input  type="hidden" name="priceMin" value="">-->
+<!--                                     <input  type="hidden" name="priceMax" value="">-->
                                         <span class="priceRange">Price: $ </span><span class="leftLabel"></span><span  class="priceRange"> - </span>
                                         <span class="priceRange">$ </span><span class="rightLabel"></span>
-                                        <button class="btn-default pull-right filterButton">FILTER</button>
-                                    </form>
+                                       
                                 </div>
-                            </article>
-
-                            <article>
-                                <form>
-                                    <h4 class="text-uppercase shopH4-3">select category</h4>
-                                    <ul class="list-unstyled">
-                                         <?php foreach ($categories as $category) {?>
-                                        <li>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value=""><?php echo $this->escape($category['title']);?></label><span class="pull-right"><a class="checkboxText" href="">72</a></span>
-                                            </div>
-                                        </li>
-                                            <?php }?>
-                                    </ul>
+                                <h4  style="background-color:white;" class="text-uppercase shopH4-2"></h4>
+                                <div>
+                                <button style="background-color:blue; height:6em; text-height: 8em" class="btn-default pull-right filterButton col-xs-12 ">FILTER</button>
+                                    </div>
+                                    
                                 </form>
-
-
-                                <h4 class="text-uppercase mediaH4">recent post</h4>
+                                 </article>
+                            
+                              
+                                  
+                                  
+                                  
+                                 <article>
+                                     <h4 class="text-uppercase shopH4-2"></h4>
+                                <h4 class="text-uppercase mediaH4">on sale</h4>
 
                                 <!-- SIDE MEDIA 1 -->
-                                <div class="media blogMedia">
+                                <div class="row">
+                                <?php foreach($actionProducts as $actionProduct) {?>
+                                <div  class="col-md-12 media blogMedia">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="/front/img/blogSide-img.png" alt=""/>
+                                        <a href="<?php echo $this->productUrl($actionProduct);?>">
+                                            <img style="width:10em; height:13em;" class="media-object"  src="<?php echo $this->productImgUrl($actionProduct);?>" alt="<?php echo $this->escape($actionProduct['title']);?>" title="<?php echo $this->escape($actionProduct['title']);?>"/>
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <p class="media-heading">PITT BULL</p>
-                                        <span class="blogSideSpan">$ 120.00</span>
+                                        <p class="media-heading"><strong><?php echo $this->escape($actionProduct['title']);?></strong></p>
+                                        <span class="blogSideSpan"><strong><?php echo $this->escape($actionProduct['price']);?></strong></span>
+                                        <br>
                                         <ul class="list-inline">
-                                            <li><a href="#"><span class="fa fa-star sideStar"></span></a></li>
-                                            <li><a href="#"><span class="fa fa-star sideStar"></span></a></li>
-                                            <li><a href="#"><span class="fa fa-star sideStar"></span></a></li>
-                                            <li><a href="#"><span class="fa fa-star sideStar"></span></a></li>
-                                            <li><a href="#"><span class="fa fa-star sideStarGray"></span></a></li>
+                                           <a class="button" href="<?php echo $this->productUrl($actionProduct);?>">SEE DETAILS</a>
                                         </ul>
                                     </div>
                                 </div>
+                                <?php }?>
+                                </div>
 
-                                <!-- SIDE MEDIA 2 -->
+<!--                                 SIDE MEDIA 2 
                                 <div class="media blogMedia">
                                     <div class="media-left">
                                         <a href="#">
@@ -129,7 +143,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                     </div>
                                 </div>
 
-                                <!-- SIDE MEDIA 3 -->
+                                 SIDE MEDIA 3 
 
                                 <div class="media blogMedia">
                                     <div class="media-left">
@@ -148,7 +162,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                             <li><a href="#"><span class="fa fa-star sideStarGray"></span></a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div>-->
                             </article>
                         </div>
 
@@ -177,12 +191,12 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                         <div class="col-md-6 col-lg-4 mix <?php echo $cmsSitemapPageDbTable->getSitemapPageById($product['pet_id'])['url_slug']; ?>" data-myorder="1">
                                             <article>
                                                 <figure class="figureProducts">
-                                                    <img class="img-responsive productImg" src="<?php echo $this->productImgUrl($product);?>" alt=""/>                                    
+                                                    <img class="img-responsive productImg" src="<?php echo $this->productImgUrl($product);?>" title="<?php echo $this->escape($product['title']);?>" alt="<?php echo $this->escape($product['title']); ?>"/>                                    
                                                     <div class="contentAbsolute">
-                                                        <button class="button toCart">ADD TO CART</button>
+                                                       
                                                         <div class="faAbsolute">
-                                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
-                                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>
+<!--                                                            <a href="javascript:void(0)"><span class="fa fa-heart-o"></span></a>
+                                                            <a href="#"><span class="fa fa-arrows-alt"></span></a>-->
                                                         </div>
                                                     </div>
                                                 </figure>
@@ -190,7 +204,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                                     <div class="row">
                                                         <div class="col-xs-8">
                                                             <article class="productName">
-                                                                <h5><?php echo $this->escape($product['title']); ?></h5>
+                                                                <h5><?php echo $this->escape($product['title']);?></h5>
                                                                 <ul class="list-inline list-unstyled">
 <!--                                                                    <li><a class="fa fa-star" href="#"></a></li>
                                                                     <li><a class="fa fa-star" href="#"></a></li>
@@ -203,8 +217,9 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                                         <div class="col-xs-4">
                                                             <article class="productPrice">
                                                                 <span class="price"><?php echo $this->escape($product['price']); ?></span>
-                                                            </article>
+                                                            </article>   
                                                         </div>
+                                                        <a class="button toCart" href="<?php echo $this->productUrl($product);?>">SEE DETAILS</a>
                                                     </div>
                                                 </div>
                                             </article>
@@ -280,6 +295,20 @@ $this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/jquery.mixitu
             $("a.showHideFilters").click(function () {
                 $("div.filterMenu").toggle('fade');
             });
+            
+            
+         $('.nstSlider').nstSlider({
+        "left_grip_selector": ".leftGrip",
+        "right_grip_selector": ".rightGrip",
+        "value_bar_selector": ".bar",
+        "value_changed_callback": function(cause, leftValue, rightValue) {
+           var minValue = $(this).parent().find('.leftLabel').text(leftValue);
+            var maxValue = $(this).parent().find('.rightLabel').text(rightValue);
+            
+        }
+        
+    });
+    
             <?php $this->inlineScript()->captureEnd(); ?>
         </script>
 

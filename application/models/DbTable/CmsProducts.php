@@ -169,7 +169,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'title':
                     case 'price':
                     case 'producer_id':
-                    case 'categorie_id':
+                    case 'category_id':
                     case 'order_number':
                     case 'status':
                     case 'pet_id':
@@ -248,7 +248,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'title':
                     case 'price':
                     case 'producer_id':
-                    case 'categorie_id':
+                    case 'category_id':
                     case 'order_number':
                     case 'status':
                     case 'pet_id':
