@@ -11,8 +11,10 @@ class ShopController extends Zend_Controller_Action
             'errors' =>  $flashMessenger->getMessages('errors'),
         );
         
+        
         $request = $this->getRequest();
-        //get sitemapPage
+        
+        //get sitemap page
         $sitemapPageId = (int) $request->getParam('sitemap_page_id');
         $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
         $sitemapPage = $cmsSitemapPageDbTable->getSitemapPageById($sitemapPageId);
@@ -33,9 +35,7 @@ class ShopController extends Zend_Controller_Action
        }
        
        
-       
-        
-        //get all pets
+       //get all pets
         $sitemapPagePets = $cmsSitemapPageDbTable->search(array(
             'filters' => array(
                 'short_title' => 'Categories'
@@ -52,6 +52,19 @@ class ShopController extends Zend_Controller_Action
         
         
         
+       
+         //get all producers
+        $cmsProducersDbTable = new Application_Model_DbTable_CmsProducers();
+        $producers = $cmsProducersDbTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsProducers::STATUS_ENABLED
+            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            )
+                    ));
+        
+       
         //get all categories
         $cmsCategoriesDbTable = new Application_Model_DbTable_CmsCategories();
         $categories = $cmsCategoriesDbTable->search(array(
@@ -64,19 +77,72 @@ class ShopController extends Zend_Controller_Action
                     ));
         
         
-         //get all producers
-        $cmsProducersDbTable = new Application_Model_DbTable_CmsProducers();
-        $producers = $cmsProducersDbTable->search(array(
-            'filters' => array(
-                'status' => Application_Model_DbTable_CmsProducers::STATUS_ENABLED
-            ),
-            'orders' => array(
+        
+        $form = new Application_Form_Front_FilterProducts();
+        
+        $form->populate(array(
+        ));
+        
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $actionProducts = $cmsProductsDbTable->search(array(
+           'filters' => array(
+               'action' => Application_Model_DbTable_CmsProducts::ACTION_ENABLED
+           ),
+           'orders' => array(
                 'order_number' => 'ASC',
-            )
-                    ));
+            ),
+            'limit'=> 4
+       ));
         
-        
-        //get all products
+        //ukoliko je izabran filter
+         if ($request->isPost() && $request->getPost('task') === 'save') {//ispitujemo da lije pokrenuta forma
+            try {
+                // die('forma');
+                //check form is valid
+                if (!$form->isValid($request->getPost())) {//sve sto je u post zahtevu prosledi formi na validaciju
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for products');
+                }
+
+                $formData = $form->getValues();
+//               print_r($formData);
+//                die();
+                 //get all products
+                
+                //ukoliko nije filtrirano po nekoj od kategorija
+                $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+                
+                        if(empty($formData['category_id'])){
+                           foreach ($categories as $category) {
+                               $formData['category_id'][] = $category['id'];
+                           }
+                        }
+                        if(empty($formData['pet_id'])){
+                           foreach ($pets as $pet) {
+                               $formData['pet_id'][] = $pet['id'];
+                           }
+                        }
+                        
+                        
+                $products = $cmsProductsDbTable->search(array(
+                    'filters' => array(
+                        'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED,
+                        'category_id' => $formData['category_id'],
+                        'pet_id' => $formData['pet_id'],
+                    ),
+                    'orders' => array(
+                        'order_number' => 'ASC',
+                    ),
+                        //'limit' => 4,
+                        //'page' => 2
+                ));
+              $this->view->products = $products;
+                
+            } catch (Application_Model_Exception_InvalidInput $ex) {
+                $systemMessages['errors'][] = $ex->getMessage();
+            }
+        } else {
+           
+            //get all products ukoliko nema filtera
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
 
         $products = $cmsProductsDbTable->search(array(
@@ -89,29 +155,19 @@ class ShopController extends Zend_Controller_Action
                 //'limit' => 4,
                 //'page' => 2
         ));
-        
-        //prikaz proizvoda na akciji
-        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $this->view->products =  $products;
+       
+        }
        
        
-        $actionProducts = $cmsProductsDbTable->search(array(
-           'filters' => array(
-               'action' => Application_Model_DbTable_CmsProducts::ACTION_ENABLED
-           ),
-           'orders' => array(
-                'order_number' => 'ASC',
-            ),
-            'limit'=> 4
-       ));
-        
-        
         $this->view->actionProducts =  $actionProducts;
         $this->view->systemMessages =  $systemMessages;
         $this->view->sitemapPage = $sitemapPage;
-        $this->view->products =  $products;
+        
         $this->view->pets =  $pets;
         $this->view->categories =  $categories;
         $this->view->producers =  $producers;
+        $this->view->form =  $form;
     }
     
      public function productAction()
