@@ -49,7 +49,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                     <div class="row">
                         <div class="col-xs-12 col-md-3 col-lg-3 filterMenu">
                             <article>
-                                <form method="post" action="">
+                                <form method="post" action="" id="getrange">
                                     <input type="hidden" name="task" value="save">
 
                                     <h4 class="text-uppercase shopH4-1">select pet</h4>
@@ -64,7 +64,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                                     ));
                                                     ?>
                                                 </label>
-                                                <span class="pull-right"></span>
+                                                
                                             </div>
                                         </li>
                                     </ul>
@@ -94,8 +94,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
 
                                     <!-- RANGE SLIDER -->
                                     <div class="rangeSliderForm">
-                                        <input  type="hidden" name="priceMin" value="">
-                                        <input  type="hidden" name="priceMax" value="">
+                                        
                                         <div class="nstSlider" data-range_min="5" data-range_max="3000" data-cur_min="500" data-cur_max="2500">
 
 
@@ -103,7 +102,10 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                             <div class="leftGrip"></div>
                                             <div class="rightGrip"></div>
                                         </div>
-
+                                        
+                                        <input  type="hidden" name="pricemin" value="">
+                                        <input  type="hidden" name="priceMax" value="">
+                                        
                                         <span class="priceRange">Price: $ </span><span class="leftLabel"></span><span  class="priceRange"> - </span>
                                         <span class="priceRange">$ </span><span class="rightLabel"></span>
 
@@ -209,6 +211,11 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                         </ol>
                                     </nav>
                                     <div class="my-img">
+                                        <?php if(empty($products)) {?>
+                                        
+                                        <p class="sectionHeadline text-center shopHeadline">There are no products for this filters</p>
+
+                                        <?php } else{?>
                                         <?php foreach ($products as $product) {?>
                                         <div class="col-md-6 col-lg-4 mix <?php echo $cmsSitemapPageDbTable->getSitemapPageById($product['pet_id'])['url_slug']; ?>" data-myorder="1">
                                             <article>
@@ -247,7 +254,7 @@ $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
                                             </article>
                                         </div>
                                         
-                                        <?php }?>
+                                        <?php }}?>
                                         
                                         
                                     </div>
@@ -317,26 +324,7 @@ $this->inlineScript()->appendFile($this->baseUrl('/front/js/vendor/jquery.mixitu
                 $("div.filterMenu").toggle('fade');
             });
             
-            
-        $('.nstSlider').nstSlider({
-            "crossable_handles": false,
-            "left_grip_selector": ".leftGrip",
-            "right_grip_selector": ".rightGrip",
-            "value_bar_selector": ".bar",
-            "value_changed_callback": function(cause, leftValue, rightValue) {
-                var leftValue = $(this).parent().find('.leftLabel').text(leftValue);
-                var rightValue = $(this).parent().find('.rightLabel').text(rightValue);
-             alert(rightValue);
-            }
-           
-        });
         
-        $('.rangeSliderForm').get_current_min_value(){
-            alert('sfs');
-        }
-
-         
-
         
    
     

@@ -94,6 +94,8 @@ class ShopController extends Zend_Controller_Action
             'limit'=> 4
        ));
         
+   
+        
         //ukoliko je izabran filter
          if ($request->isPost() && $request->getPost('task') === 'save') {//ispitujemo da lije pokrenuta forma
             try {
@@ -104,7 +106,7 @@ class ShopController extends Zend_Controller_Action
                 }
 
                 $formData = $form->getValues();
-//               print_r($formData);
+//             print_r($formData);
 //                die();
                  //get all products
                 

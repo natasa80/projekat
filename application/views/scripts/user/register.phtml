@@ -1,0 +1,308 @@
+<?php
+
+$form = $this->form;
+$form->setElementDecorators(array('ViewHelper'));
+
+?>
+  <!-- SECTION 1 SHOP START -->
+
+            <section class="section1Blog">
+                <div class="container">
+                    <h3 class="text-uppercase">contact us</h3>
+                    <ul class="list-unstyled list-inline ShopList">
+                        <li><a href="#">Home</a><span>|</span></li>
+                        <li><a href="#">Contact Us</a>
+                    </ul>
+                </div>
+               
+            </section>
+
+            <!-- SECTION 1 SHOP STOP -->
+
+
+            <section class="accountSection">
+                 <?php echo $this->systemMessagesHtml($this->systemMessages); ?>
+                <h3 class="text-left text-uppercase">create an account</h3>
+                <p class="text-left accountsP">Please fill out all the fields wich are marked with <span class="requiredFieldCheck">*</span></p>
+
+                <div class="row">
+
+                   
+                    <div class="tab-content">
+                        <!-- TAB 1  -->
+                        <div class="tab-pane active" id="menu1">
+                            <form method="post" action="" data-toggle="validator" role="form" id="mainForm">
+                                <input type="hidden" name="task" value="save">
+                                <div class="row mainForm">
+                                    <div class="col-sm-6">
+                                        <!-- Name -->
+                                        <div class="form-group">
+                                            <?php 
+                                            echo $form->getElement('first_name')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Name',
+                                                    'id' => 'inputName',
+                                                    'pattern' => '[_A-Z,_a-z]{1,}$',
+                                                    'data-error' => 'Invalid name! Maximum 30 characters. Letters only.',
+                                                    'required' => 'required'
+                                            ));
+                                            ?>
+                                            <span class="requiredField">*</span>
+                                            <div class="help-block">Maximum 15 characters.</div>
+                                            <div class="help-block with-errors">
+                                                <?php if ($form->getElement('first_name')->hasErrors()) {?>
+                                                    <div class="has-error">
+                                                            <?php foreach ($form->getElement('first_name')->getMessages() as $message) {?>
+                                                            <p class="help-block"><?php echo $this->escape($message);?></p>
+                                                            <?php }?>
+                                                </div>
+                                                <?php }?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- Surname -->
+                                        <div class="form-group">
+
+                                            <?php 
+                                            echo $form->getElement('last_name')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Last Name',
+                                                    'id' => 'inputSurname',
+                                                    'pattern' => '[_A-Z,_a-z]{1,}$',
+                                                    'data-error' => 'Invalid name! Maximum 30 characters. Letters only.',
+                                                    'required' => 'required',
+                                                    'type' => 'text'
+                                            ));
+                                            ?>
+                                            <span class="requiredField">*</span>
+                                            <div class="help-block">Maximum 15 characters.</div>
+                                            <div class="help-block with-errors">
+                                                 <?php if ($form->getElement('last_name')->hasErrors()) { ?>
+                                                    <div class="has-error">
+                                                        <?php foreach ($form->getElement('last_name')->getMessages() as $message) { ?>
+                                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!--Address-->
+                                        <div class="form-group">
+                                            
+                                            <?php 
+                                            echo $form->getElement('address')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Address',
+                                                    'id' => 'inputAddress',
+                                                    'pattern' => '[_A-Z,_a-z,_0-9]{1,}$',
+                                                    'data-error' => 'Invalid address! Maximum 30 characters.',
+                                                    'required' => 'required',
+                                                    'type' => 'text'
+                                            ));
+                                            ?>
+                                            <span class="requiredField">*</span>
+                                           
+
+                                            <div class="help-block with-errors">
+                                            <?php if ($form->getElement('address')->hasErrors()) { ?>
+                                                <div class="has-error">
+                                                    <?php foreach ($form->getElement('address')->getMessages() as $message) { ?>
+                                                        <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- Phone -->
+                                        <div class="form-group">
+                                            
+                                            <?php 
+                                            echo $form->getElement('telephone')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Telephone',
+                                                    'id' => 'inputNum',
+                                                    'pattern' => '[_0-9]{1,}$',
+                                                    'data-error' => 'Invalid phone! Maximum 30 characters.',
+                                                    'required' => 'required',
+                                                    'type' => 'text'
+                                            ));
+                                            ?>
+                                            <span class="requiredField">*</span>
+                                           
+                                            <div class="help-block with-errors">
+                                                
+                                            <?php if ($form->getElement('telephone')->hasErrors()) { ?>
+                                                    <div class="has-error">
+                                                        <?php foreach ($form->getElement('telephone')->getMessages() as $message) { ?>
+                                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                        <?php } ?>
+                                                    </div>
+                                            <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- Username -->
+                                        <div class="form-group">
+                                            <?php 
+                                            echo $form->getElement('username')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Username',
+                                                    'id' => 'inputUsername',
+                                                    'pattern' => '[_A-Z,_a-z,_0-9]{1,}$',
+                                                    'data-error' => 'Invalid username! Maximum 30 characters.',
+                                                    'required' => 'required',
+                                                    'type' => 'text'
+                                            ));
+                                            ?>
+                                            <span class="requiredField">*</span>
+                                            
+                                            <div class="help-block with-errors">
+                                            <?php if ($form->getElement('username')->hasErrors()) { ?>
+                                                <div class="has-error">
+                                                    <?php foreach ($form->getElement('username')->getMessages() as $message) { ?>
+                                                        <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <!-- Email address -->
+                                        <div class="form-group">
+                                             <?php 
+                                            echo $form->getElement('email')->setAttribs(array(
+                                                    'class' => 'contactInputs2 form-control accountName',
+                                                    'placeholder' => 'Email',
+                                                    'id' => 'inputEmail',
+                                                    'data-error' => 'Email address you entered is invalid.',
+                                                    'required' => 'required',
+                                                    'type' => 'text'
+                                            ));
+                                            ?>
+                                            <span class="requiredFieldEmail">*</span>
+                                            <div class="help-block with-errors">
+                                            <?php if ($form->getElement('email')->hasErrors()) { ?>
+                                           <div class="has-error">
+                                               <?php foreach ($form->getElement('email')->getMessages() as $message) { ?>
+                                                   <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                               <?php } ?>
+                                           </div>
+                                       <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <div class="form-group">
+                                            
+                                             <?php 
+                                            echo $form->getElement('password')->setAttribs(array(
+                                                    'class' => 'form-control contactInputs2 accountPass',
+                                                    'placeholder' => 'Password',
+                                                    'id' => 'inputEmail',
+                                                    'data-error' => 'Please enter your passoword.',
+                                                    'required' => 'required',
+                                                    'type' => 'password'
+                                            ));
+                                            ?>
+                                            <span class="requiredFieldPass">*</span>
+                                            <div class="help-block with-errors">
+                                                <?php if ($form->getElement('password')->hasErrors()) { ?>
+                                                    <div class="has-error">
+                                                        <?php foreach ($form->getElement('password')->getMessages() as $message) { ?>
+                                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <div class="form-group">
+                                            <?php 
+                                            echo $form->getElement('password_confirm')->setAttribs(array(
+                                                    'class' => 'form-control contactInputs2 accountPass',
+                                                    'placeholder' => 'Confirm Password',
+                                                    'id' => 'inputEmail',
+                                                    'data-error' => 'Please confirm your passoword.',
+                                                    'required' => 'required',
+                                                    'type' => 'password'
+                                            ));
+                                            ?>
+                                            <span class="requiredFieldPass">*</span>
+                                            <div class="help-block with-errors">
+                                            <?php if ($form->getElement('password_confirm')->hasErrors()) { ?>
+                                               <div class="has-error">
+                                                   <?php foreach ($form->getElement('password_confirm')->getMessages() as $message) { ?>
+                                                       <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                   <?php } ?>
+                                               </div>
+                                           <?php } ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                          
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php 
+                                            echo $form->getElement('newsletter')->setAttribs(array(
+                                                    'type' => 'checkbox'
+                                            ));
+                                            ?>
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php 
+                                            echo $form->getElement('terms_and_conditions')->setAttribs(array(
+                                                    'type' => 'checkbox'
+                                            ));
+                                            ?>
+                                            Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type<span class="requiredFieldCheck">*</span></label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                   <?php 
+                                            echo $form->getElement('personal_data')->setAttribs(array(
+                                                    'type' => 'checkbox'
+                                            ));
+                                            ?>
+                                               Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<span class="requiredFieldCheck">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group dugme col-xs-12 logInDugme">
+                                            <button type="save" class="btn btn-primary buttonSubmit">Register</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </section>
+
