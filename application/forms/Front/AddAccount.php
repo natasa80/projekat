@@ -44,7 +44,7 @@ class Application_Form_Front_AddAccount extends Zend_Form
 		$email = new Zend_Form_Element_Text('email');
 		$email->addFilter('StringTrim')
 			->addValidator('EmailAddress', false, array('domain' => false))
-			->setRequired(false);
+			->setRequired(true);
 		$this->addElement($email);
                 
                 
@@ -64,7 +64,7 @@ class Application_Form_Front_AddAccount extends Zend_Form
 		$this->addElement($passwordConfirm);
                 
                 $newslatter = new Zend_Form_Element_Checkbox('newsletter');
-                $newslatter->setRequired(false);
+                $newslatter->setRequired(true);
                 $this->addElement($newslatter);
                 
                 $termsCondition = new Zend_Form_Element_Checkbox('terms_and_conditions');

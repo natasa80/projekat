@@ -1,0 +1,574 @@
+ <section class="section4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <ul class="nav nav-stacked nav-pills ">
+                                <li><a href="#tab1" data-toggle="tab">Moji Podaci</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Izmena Podataka</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Izmena Lozinke</a></li>
+<!--                                <li><a href="#tab4" data-toggle="tab">Moje Poruke 3/8</a></li>-->
+<!--                                <li><a href="#tab5" data-toggle="tab">Moje Kupovine</a></li>-->
+                            </ul>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="tab-content userTabContent">
+                                <!-- TAB 1 -->
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <h2 class="userInfoHeadline">Moji Podaci</h2>
+                                    <div class="media">
+                                        <a class="media-left userImage" href="#">
+<!--                                            <figure class="userfigureImg">
+                                                <img src="img/client2.jpg" class="edia-object img-circle userProfilePic" alt=""/>
+                                            </figure>-->
+
+                                        </a>
+                                        <div class="media-body userInfo">
+                                            <p class="userInfoP">Petar Petrovic</p>
+                                            <p class="userInfoP">Bul. Kralja Aleksandra 345b, Belgrade</p>
+                                            <p class="userInfoP">064/123 45 67</p>
+                                            <p class="userInfoP">064/123 54 76 </p>
+                                            <a href="mailto:example@mail.com" class="userInfoEmail">example@mail.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TAB 2 -->
+                                <div class="tab-pane fade" id="tab2">
+                                    <h2 class="userInfoHeadline">Izmena Podataka</h2>
+                                    <form data-toggle="validator" role="form" id="mainForm">
+
+                                        <div class="row mainForm">
+                                            <div class="col-sm-6">
+                                                <!-- Name -->
+                                                <div class="form-group">
+                                                    <input data-error="Invalid name! Maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="contactInputs2 form-control accountName" id="inputName" placeholder="Name" data-maxlength="15" required><span class="requiredField">*</span>
+                                                    <div class="help-block">Maximum 15 characters.</div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- Surname -->
+                                                <div class="form-group">
+
+                                                    <input data-error="Invalid surname! Maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="contactInputs2 form-control accountSurname" id="inputSurname" placeholder="Surname" data-maxlength="15" required><span class="requiredField">*</span>
+                                                    <div class="help-block">Maximum 15 characters.</div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <!-- Street Name -->
+                                                <div class="form-group">
+                                                    <input  pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control accountStreet contactInputs2" id="inputName" placeholder="Street Name" required><span class="requiredField">*</span>
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <!-- Street number -->
+                                                <div class="form-group">
+                                                    <input data-error="Invalid street number" pattern="[_0-9]{1,}$" type="text" class="contactInputs2 form-control accountStreetNum" id="inputNum" placeholder="No." required><span class="requiredField">*</span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control contactInputs2" id="sel1">
+                                                        <option selected>Choose City</option>
+                                                        <option>Belgrade 11000</option>
+                                                        <option>Belgrade 11000</option>
+                                                        <option>Belgrade 11000</option>
+                                                        <option>Belgrade 11000</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <!-- Entrance -->
+                                                        <input data-error="Invalid street number" pattern="[_0-9]{1,}$" type="text" class="contactInputs2 form-control accountStreetNum" id="inputEnrance" placeholder="Entrance">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <!-- Floor -->
+                                                        <input pattern="[_0-9]{1,}$" type="text" class="form-control accountStreetNum contactInputs2" id="inputFloor" placeholder="Floor">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <!-- Apartment -->
+                                                        <input pattern="[_0-9]{1,}$" type="text" class="contactInputs2 form-control accountStreetNum" id="inputApartment" placeholder="Apartment">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <!-- Phone number -->
+                                                <div class="form-group">
+                                                    <input data-error="Invalid phone number" pattern="[_0-9]{1,}$" type="text" class="contactInputs2 form-control accountPhone" id="inputPhone" placeholder="Phone number" required><span class="requiredFieldPhone">*</span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- Phone number -->
+                                                <div class="form-group">
+                                                    <input data-error="Invalid phone number" pattern="[_0-9]{1,}$" type="text" class="contactInputs2 form-control accountPhone" id="inputPhone" placeholder="Other phone number">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 text-center genderDiv">
+                                                <span class="gender">Gender: </span> <label class="radio-inline"><input type="radio" name="optradio">Male</label>
+                                                <label class="radio-inline"><input type="radio" name="optradio">Female</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="gender text-center">Date of birth </p>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control contactInputs2" id="sel1">
+                                                            <option value="" selected="selected">Day</option>
+                                                            <option value="1"  >1</option>
+                                                            <option value="2"  >2</option>
+                                                            <option value="3"  >3</option>
+                                                            <option value="4"  >4</option>
+                                                            <option value="5"  >5</option>
+                                                            <option value="6"  >6</option>
+                                                            <option value="7"  >7</option>
+                                                            <option value="8"  >8</option>
+                                                            <option value="9"  >9</option>
+                                                            <option value="10"  >10</option>
+                                                            <option value="11"  >11</option>
+                                                            <option value="12"  >12</option>
+                                                            <option value="13"  >13</option>
+                                                            <option value="14"  >14</option>
+                                                            <option value="15"  >15</option>
+                                                            <option value="16"  >16</option>
+                                                            <option value="17"  >17</option>
+                                                            <option value="18"  >18</option>
+                                                            <option value="19"  >19</option>
+                                                            <option value="20"  >20</option>
+                                                            <option value="21"  >21</option>
+                                                            <option value="22"  >22</option>
+                                                            <option value="23"  >23</option>
+                                                            <option value="24"  >24</option>
+                                                            <option value="25"  >25</option>
+                                                            <option value="26"  >26</option>
+                                                            <option value="27"  >27</option>
+                                                            <option value="28"  >28</option>
+                                                            <option value="29"  >29</option>
+                                                            <option value="30"  >30</option>
+                                                            <option value="31"  >31</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control contactInputs2" id="sel1">
+                                                            <option value="" selected="selected">Month</option>
+                                                            <option value="1" >1</option>
+                                                            <option value="2" >2</option>
+                                                            <option value="3" >3</option>
+                                                            <option value="4" >4</option>
+                                                            <option value="5" >5</option>
+                                                            <option value="6" >6</option>
+                                                            <option value="7" >7</option>
+                                                            <option value="8" >8</option>
+                                                            <option value="9" >9</option>
+                                                            <option value="10" >10</option>
+                                                            <option value="11" >11</option>
+                                                            <option value="12" >12</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control contactInputs2" id="sel1">
+                                                            <option value="" selected="selected">Year</option>
+                                                            <option value="1920" >1920</option>
+                                                            <option value="1921" >1921</option>
+                                                            <option value="1922" >1922</option>
+                                                            <option value="1923" >1923</option>
+                                                            <option value="1924" >1924</option>
+                                                            <option value="1925" >1925</option>
+                                                            <option value="1926" >1926</option>
+                                                            <option value="1927" >1927</option>
+                                                            <option value="1928" >1928</option>
+                                                            <option value="1929" >1929</option>
+                                                            <option value="1930" >1930</option>
+                                                            <option value="1931" >1931</option>
+                                                            <option value="1932" >1932</option>
+                                                            <option value="1933" >1933</option>
+                                                            <option value="1934" >1934</option>
+                                                            <option value="1935" >1935</option>
+                                                            <option value="1936" >1936</option>
+                                                            <option value="1937" >1937</option>
+                                                            <option value="1938" >1938</option>
+                                                            <option value="1939" >1939</option>
+                                                            <option value="1940" >1940</option>
+                                                            <option value="1941" >1941</option>
+                                                            <option value="1942" >1942</option>
+                                                            <option value="1943" >1943</option>
+                                                            <option value="1944" >1944</option>
+                                                            <option value="1945" >1945</option>
+                                                            <option value="1946" >1946</option>
+                                                            <option value="1947" >1947</option>
+                                                            <option value="1948" >1948</option>
+                                                            <option value="1949" >1949</option>
+                                                            <option value="1950" >1950</option>
+                                                            <option value="1951" >1951</option>
+                                                            <option value="1952" >1952</option>
+                                                            <option value="1953" >1953</option>
+                                                            <option value="1954" >1954</option>
+                                                            <option value="1955" >1955</option>
+                                                            <option value="1956" >1956</option>
+                                                            <option value="1957" >1957</option>
+                                                            <option value="1958" >1958</option>
+                                                            <option value="1959" >1959</option>
+                                                            <option value="1960" >1960</option>
+                                                            <option value="1961" >1961</option>
+                                                            <option value="1962" >1962</option>
+                                                            <option value="1963" >1963</option>
+                                                            <option value="1964" >1964</option>
+                                                            <option value="1965" >1965</option>
+                                                            <option value="1966" >1966</option>
+                                                            <option value="1967" >1967</option>
+                                                            <option value="1968" >1968</option>
+                                                            <option value="1969" >1969</option>
+                                                            <option value="1970" >1970</option>
+                                                            <option value="1971" >1971</option>
+                                                            <option value="1972" >1972</option>
+                                                            <option value="1973" >1973</option>
+                                                            <option value="1974" >1974</option>
+                                                            <option value="1975" >1975</option>
+                                                            <option value="1976" >1976</option>
+                                                            <option value="1977" >1977</option>
+                                                            <option value="1978" >1978</option>
+                                                            <option value="1979" >1979</option>
+                                                            <option value="1980" >1980</option>
+                                                            <option value="1981" >1981</option>
+                                                            <option value="1982" >1982</option>
+                                                            <option value="1983" >1983</option>
+                                                            <option value="1984" >1984</option>
+                                                            <option value="1985" >1985</option>
+                                                            <option value="1986" >1986</option>
+                                                            <option value="1987" >1987</option>
+                                                            <option value="1988" >1988</option>
+                                                            <option value="1989" >1989</option>
+                                                            <option value="1990" >1990</option>
+                                                            <option value="1991" >1991</option>
+                                                            <option value="1992" >1992</option>
+                                                            <option value="1993" >1993</option>
+                                                            <option value="1994" >1994</option>
+                                                            <option value="1995" >1995</option>
+                                                            <option value="1996" >1996</option>
+                                                            <option value="1997" >1997</option>
+                                                            <option value="1998" >1998</option>
+                                                            <option value="1999" >1999</option>
+                                                            <option value="2000" >2000</option>
+                                                            <option value="2001" >2001</option>
+                                                            <option value="2002" >2002</option>
+                                                            <option value="2003" >2003</option>
+                                                            <option value="2004" >2004</option>
+                                                            <option value="2005" >2005</option>
+                                                            <option value="2006" >2006</option>
+                                                            <option value="2007" >2007</option>
+                                                            <option value="2008" >2008</option>
+                                                            <option value="2009" >2009</option>
+                                                            <option value="2010" >2010</option>
+                                                            <option value="2011" >2011</option>
+                                                            <option value="2012" >2012</option>
+                                                            <option value="2013" >2013</option>
+                                                            <option value="2014" >2014</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <!-- Email address -->
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control accountMail contactInputs2" id="inputEmail" placeholder="Email" data-error="Email address you entered is invalid" required><span class="requiredFieldEmail">*</span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    <input class="form-control contactInputs2 accountPass" data-error="Please enter your passowrd"  name="pass" placeholder="Password" type="password" id="passwordField" required><span class="requiredFieldPass">*</span>
+                                                    <div class="help-block with-errors"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    <input class="form-control contactInputs2 accountPass" data-error="Please confirm your passowrd"  name="pass"  placeholder="Confirm Password" type="password" id="confirmPasswordField" data-match="#passwordField" data-match-error="Incorrect Password" required ><span class="requiredFieldPass">*</span>
+                                                    <div class="help-block with-errors"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12 text-center">
+                                                <input type="text" class="form-control contactInputs2 accountCodeVerification" id="logInEmail" placeholder="Verification Code" data-error="You must enter the code from the picture below" required>
+                                                <div class="help-block with-errors"></div>
+                                                <i>Please enter the code from the picture below</i>
+                                                <img class="img-responsive verifyCode" src="img/verification-code.png" alt=""/><span>Refresh code: </span><a class="refresh-a" href="#javascript:void(0)"><span class="resetCode fa fa-refresh text-left"></span></a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group dugme col-xs-12 logInDugme">
+                                                <button type="submit" class="btn btn-primary buttonSubmit">Prihvati Izmene</button>
+                                            </div>
+                                        </div>
+
+
+
+                                    </form>              
+                                </div>
+
+                                <!-- TAB 3 -->
+                                <div class="tab-pane fade" id="tab3">
+                                    <h2 class="userInfoHeadline">Izmena Lozinke</h2>
+                                    <form data-toggle="validator" role="form" id="mainForm">
+
+                                        <div class="row mainForm text-center">
+                                            <div class="col-sm-6">
+
+                                                <div class="row mainForm">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input class="form-control contactInputs2 accountPass" data-error="Please enter your passowrd"  name="pass" placeholder="Old Password" type="password" required><span class="requiredFieldPass">*</span>
+                                                            <div class="help-block with-errors"></div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mainForm">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input class="form-control contactInputs2 accountPass" data-error="Please enter new password"  name="pass" id="passwordField2"  placeholder="New Password" type="password" required ><span class="requiredFieldPass">*</span>
+                                                            <div class="help-block with-errors"></div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mainForm">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input class="form-control contactInputs2 accountPass" data-error="Please confirm your new password"  name="pass" data-match="#passwordField2" data-match-error="Incorect Password"  placeholder="Confirm New Password" type="password" required ><span class="requiredFieldPass">*</span>
+                                                            <div class="help-block with-errors"></div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mainForm">
+                                                    <div class="form-group dugme col-xs-12 logInDugme">
+                                                        <button type="submit" class="btn btn-primary buttonSubmit text-uppercase">Reset Password</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </form>
+                                </div>
+<!--                                <div class="tab-pane fade" id="tab4">
+                                    <h2 class="userInfoHeadlineMessage">Moje Poruke</h2><a href="#"><span class="fa fa-trash pull-right"></span></a>
+                                    <div class="row message">
+                                        <div class="col-md-11">
+                                            <span class="userMessage">Vladan.cubes</span><span class="messageDate">13.04.2015</span><span class="messageTime">at 14:05</span><a href="#javascript:void(0)" id="replyMessage"><span class="fa fa-reply messageReply"><i class="reply">Reply</i></span></a>
+                                            <p class="inboxMessage">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value=""></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <textarea class="form-control" id="comment" placeholder="Reply to a message"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row message">
+                                        <div class="col-md-11">
+                                            <span class="userMessage">Mire.cubes</span><span class="messageDate">13.04.2015</span><span class="messageTime">at 15:19</span><a href="#javascript:void(0)" id="replyMessage2"><span class="fa fa-reply messageReply"><i class="reply">Reply</i></span></a>
+                                            <p class="inboxMessage">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value=""></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <textarea class="form-control" id="comment2" placeholder="Reply to a message"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="ifReplayed">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <span class="userMessage">Tanja.cubes</span><span class="messageDate">replied 13.04.2015</span><span class="messageTime">at 15:24</span><a href="#javascript:void(0)" id="replyMessage3"><span class="fa fa-reply messageReply"><i class="reply">Reply</i></span></a>
+                                                    <p class="inboxMessage">
+                                                        It is a long established fact that a reader will be distracted by the readable content of a 
+                                                        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                                                        of letters, as opposed to using 'Content here, content here.
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" value=""></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <textarea class="form-control" id="comment3" placeholder="Reply to a message"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="tab-pane fade" id="tab5">
+
+
+                                    <!-- Show / Hide rows -->
+
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>Redni Broj</th>
+                                                <th>Broj Fakture</th>
+                                                <th>Ime Proizvoda</th>
+                                                <th>Datum</th>
+                                                <th>Vreme</th>
+                                                <th>Cena</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr class="redovi">
+                                                <td>1</td>
+                                                <td>1/2016</td>
+                                                <td>Artikl 1</td>
+                                                <td>1.1.2016</td>
+                                                <td>13:01</td>
+                                                <td>$50.00</td>
+                                            </tr>
+                                            <tr class="redovi">
+                                                <td>2</td>
+                                                <td>2/2016</td>
+                                                <td>Artikl 2</td>
+                                                <td>2.1.2016</td>
+                                                <td>13:02</td>
+                                                <td>$150.00</td>
+                                            </tr>
+
+                                            <tr class="redovi article1">
+                                                <td>3</td>
+                                                <td>3/2016</td>
+                                                <td>Artikl 3</td>
+                                                <td>3.1.2016</td>
+                                                <td>13:03</td>
+                                                <td>$250.00</td>
+                                            </tr>
+                                            <tr class="redovi">
+                                                <td>1</td>
+                                                <td>4/2016</td>
+                                                <td>Artikl 4</td>
+                                                <td>4.1.2016</td>
+                                                <td>15:23</td>
+                                                <td>$120.00</td>
+                                            </tr>
+                                            <tr class="redovi article2">
+                                                <td>2</td>
+                                                <td>5/2016</td>
+                                                <td>Artikl 5</td>
+                                                <td>5.1.2016</td>
+                                                <td>17:32</td>
+                                                <td>$70.00</td>
+                                            </tr>
+                                            <tr class="redovi hiddenTr">
+                                                <td>1</td>
+                                                <td>1/2016</td>
+                                                <td>Artikl 1</td>
+                                                <td>1.1.2016</td>
+                                                <td>13:01</td>
+                                                <td>$50.00</td>
+                                            </tr>
+                                            <tr class="redovi hiddenTr">
+                                                <td>2</td>
+                                                <td>2/2016</td>
+                                                <td>Artikl 2</td>
+                                                <td>2.1.2016</td>
+                                                <td>13:02</td>
+                                                <td>$150.00</td>
+                                            </tr>
+
+                                            <tr class="redovi article1 hiddenTr">
+                                                <td>3</td>
+                                                <td>3/2016</td>
+                                                <td>Artikl 3</td>
+                                                <td>3.1.2016</td>
+                                                <td>13:03</td>
+                                                <td>$250.00</td>
+                                            </tr>
+                                            <tr class="redovi hiddenTr">
+                                                <td>1</td>
+                                                <td>4/2016</td>
+                                                <td>Artikl 4</td>
+                                                <td>4.1.2016</td>
+                                                <td>15:23</td>
+                                                <td>$120.00</td>
+                                            </tr>
+                                            <tr class="redovi article2 hiddenTr">
+                                                <td>2</td>
+                                                <td>5/2016</td>
+                                                <td>Artikl 5</td>
+                                                <td>5.1.2016</td>
+                                                <td>17:32</td>
+                                                <td>$70.00</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="container text-center">
+                                        <button class="btn btn-default Show_Hide pull-left">Show more</button>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SECTION USER PANEL STOP -->
+
+<?php
+
+$this->headLink()->appendStylesheet($this->baseUrl('/front/css/user-Panel.css'));
+$this->headLink()->appendStylesheet($this->baseUrl('/front/css/responsive.css'));
+
+?>
+
+
+

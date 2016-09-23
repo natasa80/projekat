@@ -31,7 +31,7 @@ $form->setElementDecorators(array('ViewHelper'));
                     <div class="tab-content">
                         <!-- TAB 1  -->
                         <div class="tab-pane active" id="menu1">
-                            <form method="post" action="" data-toggle="validator" role="form" id="mainForm">
+                            <form method="post" action="" data-toggle="validator" role="form" id="mainForm" autocomplete="on">
                                 <input type="hidden" name="task" value="save">
                                 <div class="row mainForm">
                                     <div class="col-sm-6">
@@ -159,7 +159,6 @@ $form->setElementDecorators(array('ViewHelper'));
                                                     'class' => 'contactInputs2 form-control accountName',
                                                     'placeholder' => 'Username',
                                                     'id' => 'inputUsername',
-                                                    'pattern' => '[_A-Z,_a-z,_0-9]{1,}$',
                                                     'data-error' => 'Invalid username! Maximum 30 characters.',
                                                     'required' => 'required',
                                                     'type' => 'text'
@@ -274,7 +273,8 @@ $form->setElementDecorators(array('ViewHelper'));
                                             <label>
                                                 <?php 
                                             echo $form->getElement('terms_and_conditions')->setAttribs(array(
-                                                    'type' => 'checkbox'
+                                                    'type' => 'checkbox',
+                                                    'required' => 'required',
                                             ));
                                             ?>
                                             Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type<span class="requiredFieldCheck">*</span></label>
@@ -283,7 +283,8 @@ $form->setElementDecorators(array('ViewHelper'));
                                             <label>
                                                    <?php 
                                             echo $form->getElement('personal_data')->setAttribs(array(
-                                                    'type' => 'checkbox'
+                                                    'type' => 'checkbox',
+                                                    'required' => 'required',
                                             ));
                                             ?>
                                                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<span class="requiredFieldCheck">*</span></label>

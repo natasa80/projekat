@@ -24,13 +24,12 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
         
     
 
+
+$user = Zend_Auth::getInstance()->getIdentity();
+
+
     ?>
     
-    
-    
-    
-    
-   
                     <!-- MODAL STOP -->
                     <div class="container clearfix headerMain">
                 <section class="headerTop">
@@ -58,6 +57,8 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
                     </div>
                         <span>Leave A Message: </span>
                     <a class="mail" href="mailto:<?php echo $this->view->escape($shopData['email']); ?>"><?php echo $this->view->escape($shopData['email']); ?></a>
+                    
+                    
                 </section>
                 <section class="headerSocial">
                     <a class="twitter" 
@@ -73,6 +74,25 @@ class Zend_View_Helper_Headerdata extends Zend_View_Helper_Abstract {
                     <a class="linkedIn"
                        target="_blank"
                        href="<?php echo $this->view->escape($shopData['linkedin']); ?>"><span class="fa fa-linkedin social"></span></a>
+                       
+                       <ul class="list-inline">
+                        <li>
+                            <a href="<?php echo $this->view->url(array('controller' => 'user', 'action' => 'index'), 'default', true);?>">Account</a>
+                        </li>
+                      <?php  if (Zend_Auth::getInstance()->hasIdentity()) {?>
+                        <li>
+                            <a href="<?php echo $this->view->url(array('controller' => 'session', 'action' => 'logout'), 'default', true);?>">Logout</a>
+                        </li>
+                      <?php }else {?>
+                          <li>
+                            <a href="<?php echo $this->view->url(array('controller' => 'session', 'action' => 'login'), 'default', true);?>">Login</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->view->url(array('controller' => 'user', 'action' => 'register'), 'default', true);?>">Register</a>
+                        </li>
+                      <?php }?>
+                        
+                    </ul>
                 </section>
 
             </div>
