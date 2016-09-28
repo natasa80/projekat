@@ -674,7 +674,7 @@ div.faAbsolute span:hover, div.faAbsolute span:focus{
 .productPrice span{
     color: #b6d4a2;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .productName{
@@ -1876,7 +1876,7 @@ span.availableSpan{
 }
 
 span.stockSpan{
-    color: #bebebe;
+    color: #FF8C00;
 }
 
 
@@ -1886,7 +1886,7 @@ span.stockSpan{
 /* Contact page START */
 
 .help-block {
-    font-size: 9px;
+    font-size: 13px;
 }
 
 div.dugme{
@@ -2227,7 +2227,7 @@ input.accountCodeVerification{
 
 input.contactInputs2{
     border-radius: 0;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 input.contactInputs2:hover,input.contactInputs2:focus{

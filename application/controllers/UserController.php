@@ -4,119 +4,100 @@ class UserController extends Zend_Controller_Action
 {
 	public function indexAction() {
             
-            $request = $this->getRequest();
+            $flashMessenger = $this->getHelper('FlashMessenger');
+
+		$systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
             
-            $cmsFrontUsersDbTable = new Application_Model_DbTable_CmsFrontUsers();
-            
-            $request = $this->getRequest();
-        
-        $cmsFrontUsersDbTable = new Application_Model_DbTable_CmsFrontUsers();
-        
-        $loggedInUser = Zend_Auth::getInstance()->getIdentity();
-        
-        if (!empty($loggedInUser)){
-            $frontUsers = $cmsFrontUsersDbTable->search(array(
-                'filters' => array(
-                    'id' => $loggedInUser['id'],
-                    'status' => Application_Model_DbTable_CmsFrontUsers::STATUS_ENABLED,
+          $request = $this->getRequest();
+          $cmsUserDbTable = new Application_Model_DbTable_CmsFrontUsers();
+          
+          $loggedInUser = Zend_Auth::getInstance()->getIdentity();
+          
+            if (!empty($loggedInUser)){
+//               print_r($loggedInUser);
+//           die('ff');
+                $frontUsers = $cmsUserDbTable->search(array(
+                    'filters' => array(
+                        'id' => $loggedInUser['id'],
                     ),
-                'orders' => array(
-                    'order_number' => 'ASC'
-                ),
-            ));
-            
-            $frontUser = $frontUsers[0];
-            
-            $user = $cmsFrontUsersDbTable->getFrontUserById($loggedInUser['id']);
-            
-            $form = new Application_Form_EditFrontUser();
-            
-            $form->populate($user);
-            
-            if ($request->isPost() && $request->getPost('task') === 'update') {
+                    'orders' => array(
+                        'order_number' => 'ASC'
+                    ),
+                    'limit' => 1
+                ));
+          
+          
+          //dobijamo niz vrednosti za logovanog usera
+          $frontUser = $frontUsers[0];
+          
+          $user = $cmsUserDbTable->getUserById($loggedInUser['id']);
+          
+
+          //podaci potrebni ya editovanje user-a
+          $form = new Application_Form_Front_EditAccount();
+          $form->populate($user);
+          
+          
+          if ($request->isPost() && $request->getPost('task') === 'update'){
+             
                 $form->populate($request->getPost());
                 $formData = $form->getValues();
-                
+
                 unset($formData['password']);
                 
                 $cmsUsersTable = new Application_Model_DbTable_CmsFrontUsers();
-                $cmsUsersTable->updateFrontUser($user['id'], $formData);
-
+                $cmsUsersTable->updateUser($user['id'], $formData);
+                
+                
                 $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'frontuser',
-                        'action' => 'index'
-                        ), 'default', true);
-            }
-            
-            $formPassword = new Application_Form_ChangePassword();
-            
-            if ($request->isPost() && $request->getPost('task') === 'newpassword') {
+                        ->gotoRoute(array(
+                                'controller' => 'user',
+                                'action' => 'index'
+                                ), 'default', true);
+          }
+          
+          //izmena lozinke
+          $formPassword = new Application_Form_Front_ChangePassword();
+          
+          if ($request->isPost() && $request->getPost('task') === 'newpassword') {
+               
                 $formPassword->populate($request->getPost());
                 $formData = $formPassword->getValues();
-                
-                unset($formData['password_confirm']);
-                
-                $cmsUsersTable = new Application_Model_DbTable_CmsFrontUsers();
-                $cmsUsersTable->changeFrontUserPassword($user['id'], $formData['password']);
 
+                unset($formData['password_confirm']);
+
+                $cmsUsersTable = new Application_Model_DbTable_CmsFrontUsers();
+                $cmsUsersTable->changeUserPassword($user['id'], $formData['password']);
+                
+                $flashMessenger->addMessage('Password has been chnged', 'success');
                 $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'frontuser',
-                        'action' => 'index'
+                        ->gotoRoute(array(
+                                'controller' => 'user',
+                                'action' => 'index'
+                                ), 'default', true);
+		}
+                
+                } else {
+                $redirector = $this->getHelper('Redirector');
+                $redirector instanceof Zend_Controller_Action_Helper_Redirector;
+                $redirector->setExit(true)
+                        ->gotoRoute(array(
+                                'controller' => 'session',
+                                'action' => 'login'
                         ), 'default', true);
-            }
-            
-        } else {
-            $redirector = $this->getHelper('Redirector');
-            $redirector instanceof Zend_Controller_Action_Helper_Redirector;
-            $redirector->setExit(true)
-                ->gotoRoute(array(
-                    'controller' => 'session',
-                    'action' => 'login'
-                ), 'default', true);
-        }
-        
-        $this->view->form = $form;
-        $this->view->frontUser = $frontUser;
-		
-		//provera da li je korisnik ulogovan
-//		if (Zend_Auth::getInstance()->hasIdentity()) {
-//			//ulogovan je
-//			
-//			//redirect na admin_dasboard kontroler i index akciju
-//			$redirector = $this->getHelper('Redirector');
-//			$redirector instanceof Zend_Controller_Action_Helper_Redirector;
-//
-//			$redirector->setExit(true)
-//				->gotoRoute(array(
-//					'controller' => 'user',
-//					'action' => 'index'
-//
-//				), 'default', true);
-//			
-//		} else {
-//			// nije ulogovan
-//			
-//			// redirect na login stranu
-//			$redirector = $this->getHelper('Redirector');
-//			$redirector instanceof Zend_Controller_Action_Helper_Redirector;
-//
-//			$redirector->setExit(true)
-//				->gotoRoute(array(
-//
-//					'controller' => 'session',
-//					'action' => 'login'
-//
-//				), 'default', true);
-//		}
-			
-		
+                
 	}
-	
-	
+        
+	$this->view->form = $form;
+        $this->view->frontUser = $frontUser;
+        $this->view->systemMessages = $systemMessages;
+        
+        }
 	
         
         public function registerAction(){
@@ -174,7 +155,7 @@ class UserController extends Zend_Controller_Action
 				$redirector->setExit(true)
 					->gotoRoute(array(
 						'controller' => 'user',
-						'action' => 'register'
+						'action' => 'index'
 						), 'default', true);
 			} catch (Application_Model_Exception_InvalidInput $ex) {
 				$systemMessages['errors'][] = $ex->getMessage();

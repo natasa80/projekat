@@ -60,13 +60,16 @@ class SessionController extends Zend_Controller_Action
 //                            print_r($loginForm);
 //                            die();
 				$authAdapter = new Zend_Auth_Adapter_DbTable();
-				$authAdapter->setTableName('cms_users')
+				$authAdapter->setTableName('cms_front_users')
 					->setIdentityColumn('email')
 					->setCredentialColumn('password')
-					->setCredentialTreatment('MD5(?) AND status != 0');
-				
+					->setCredentialTreatment('MD5(?)');
+                                
+				$authAdapter->getDbSelect()->where('role =?', 'user');
+                                
 				$authAdapter->setIdentity($loginForm->getValue('email'));
 				$authAdapter->setCredential($loginForm->getValue('password'));
+                                 
 				
 				$auth = Zend_Auth::getInstance();
 				

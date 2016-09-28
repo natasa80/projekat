@@ -1,4 +1,13 @@
- <!-- SECTION 1 SHOP STOP -->
+ <?php
+$this->headTitle('Contacts');
+
+$form = $this->form;
+$form->setElementDecorators(array('ViewHelper'));
+$systemMessages = $this->systemMessages;
+?>
+
+
+<!-- SECTION 1 SHOP STOP -->
 
             <div class="locationMap">
                 <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5659.11172986437!2d20.406708!3d44.830612!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x293617553f646009!2sCubes!5e0!3m2!1sen!2srs!4v1470412218313" width="800" height="470" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -15,24 +24,59 @@
 
 
                     <div class="row mainForm">
+                        <?php if ($systemMessages == 'init') { ?>
+                        <form action="" method="POST" id="contact-form">
+                             <input type="hidden" name="task" value="contact">
                         <div class="col-sm-4">
                             <!-- Name -->
                             <div class="form-group">
-                                <input data-error="Invalid name! Minimum 4 and maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control contactInputs" id="inputName" placeholder="First Name" data-minlength="4" data-maxlength="15" required>                      
-                                <div class="help-block with-errors"></div>
+                                 <?php
+                                    echo $form->getElement('name')->setAttribs(array(
+                                        'class' => 'form-control contactInputs',
+                                        'placeholder' => "enter your name",
+                                        'id' => 'name',
+                                        'required' => 'required',
+                                        'data-error' => 'Invalid name! Minimum 4 and maximum 15 characters. Letters only.',
+                                        'pattern' => '[_A-Z,_a-z]{1,}$',
+                                        'data-minlength' => 4,
+                                        'data-maxlength' => 15
+                                    ));
+                                    ?>
+                                                     
+                                <div class="help-block with-errors">
+                                     <?php if ($form->getElement('name')->hasErrors()) { ?>
+                                            <div class="has-error">
+                                                <?php foreach ($form->getElement('name')->getMessages() as $message) { ?>
+                                                    <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } ?>
+                                </div>
                             </div>
                         </div>
                         <!-- Surname -->
-                        <div class="form-group col-sm-4">
+<!--                        <div class="form-group col-sm-4">
+                            <?php
+                                    echo $form->getElement('name')->setAttribs(array(
+                                        'class' => 'form-control contactInputs',
+                                        'placeholder' => "enter your name",
+                                        'id' => 'name',
+                                        'required' => 'required',
+                                        'data-error' => 'Invalid name! Minimum 4 and maximum 15 characters. Letters only.',
+                                        'pattern' => '[_A-Z,_a-z]{1,}$',
+                                        'data-minlength' => 4,
+                                        'data-maxlength' => 15
+                                    ));
+                                    ?>
                             <input data-error="Invalid lastname! Minimum 4 and maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control contactInputs" id="inputSurname" placeholder="Last Name" data-minlength="4" data-maxlength="15" required> 
                             <div class="help-block with-errors"></div>
                         </div>
 
-                        <!-- Phone number -->
+                         Phone number 
                         <div class="form-group col-sm-4">
                             <input data-error="Invalid phone number. Minimum 4 characters. Numbers only!" data-minlength="4" pattern="[_0-9]{1,}$" type="text" class="form-control contactInputs" id="inputPhone" placeholder="Phone number" required>
                             <div class="help-block with-errors"></div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="row mainForm">
                         <!-- Email address -->
@@ -62,6 +106,15 @@
                         </div>
                     </div>
                 </form>
+                        <?php
+                            } else {
+                                if ($systemMessages == 'Success'){
+                                    echo 'Uspesno poslata poruka';
+                                } else {
+                                    echo "Doslo je do greske prilikom slanja poruke.";
+                                }
+                            }
+                            ?>
                     </div>
             </section>
 
