@@ -183,7 +183,7 @@ class Admin_MembersController extends Zend_Controller_Action {
                         //open uploaded photo in temporary directory
                         $memberPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 
-                        $memberPhoto->fit(273, 408);
+                        $memberPhoto->fit(270, 400);
 
                         $memberPhoto->save(PUBLIC_PATH . '/uploads/members/' . $member['id'] . '.jpg');
                     } catch (Exception $ex) {

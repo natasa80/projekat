@@ -20,6 +20,12 @@ class Application_Form_Front_Contact extends Zend_Form
                 ->setRequired(true);
         $this->addElement($email);
         
+        $subject = new Zend_Form_Element_Text('subject');
+        $subject->addFilter('StringTrim')
+                ->addFilter('StripTags')
+                ->setRequired(true);
+        $this->addElement($subject);
+        
         
         $message = new Zend_Form_Element_Textarea('message');
         $message->addFilter('StringTrim')

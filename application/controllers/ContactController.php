@@ -31,11 +31,12 @@ class ContactController extends Zend_Controller_Action
                 $mailHelper = new Application_Model_Library_MailHelper();
                 
                 $from_email = $formData['email'];
+                $subject = $formData['subject'];
                 $to_email = 'natasa80lukic@gmail.com';
                 $from_name = $formData['name'];
                 $message = $formData['message'];
                 
-                $result = $mailHelper->sendmail($to_email, $from_email, $from_name, $message);
+                $result = $mailHelper->sendmail($to_email, $from_email, $from_name, $subject, $message);
                 
                 if (!$result){
                     $systemMessages = 'Error';
@@ -45,7 +46,8 @@ class ContactController extends Zend_Controller_Action
                 
                
             } catch (Application_Model_Exception_InvalidInput $ex) {
-                $systemMessages['errors'][] = $ex->getMessage();
+                //$systemMessages['errors'][] = $ex->getMessage();
+                echo 'greska';
             }
         }
 

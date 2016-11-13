@@ -19,21 +19,20 @@ $systemMessages = $this->systemMessages;
                 <h3 class="text-uppercase text-center contactH3">keep in touch</h3>
                 <p class="contactP text-center">They will have to make the best of things its an uphill climb</p>
                 <div class="container">
-                <form data-toggle="validator" role="form" id="mainForm">
 
 
 
                     <div class="row mainForm">
                         <?php if ($systemMessages == 'init') { ?>
-                        <form action="" method="POST" id="contact-form">
+                        <form action="" method="POST" id="contact-form" role="form" data-toggle="validator">
                              <input type="hidden" name="task" value="contact">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <!-- Name -->
                             <div class="form-group">
                                  <?php
                                     echo $form->getElement('name')->setAttribs(array(
                                         'class' => 'form-control contactInputs',
-                                        'placeholder' => "enter your name",
+                                        'placeholder' => "Name",
                                         'id' => 'name',
                                         'required' => 'required',
                                         'data-error' => 'Invalid name! Minimum 4 and maximum 15 characters. Letters only.',
@@ -54,58 +53,82 @@ $systemMessages = $this->systemMessages;
                                 </div>
                             </div>
                         </div>
-                        <!-- Surname -->
-<!--                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-6">
                             <?php
-                                    echo $form->getElement('name')->setAttribs(array(
+                                    echo $form->getElement('email')->setAttribs(array(
                                         'class' => 'form-control contactInputs',
-                                        'placeholder' => "enter your name",
-                                        'id' => 'name',
+                                        'placeholder' => "Email",
+                                        'id' => 'email',
+                                        'data-error' => 'Email address you entered is invalid.',
+                                        'required' => 'required'
+                                    ));
+                            ?>
+                            <div class="help-block with-errors">
+                                     <?php if ($form->getElement('email')->hasErrors()) { ?>
+                                            <div class="has-error">
+                                                <?php foreach ($form->getElement('email')->getMessages() as $message) { ?>
+                                                    <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } ?>
+                               </div>
+                        </div>
+                       <div class="col-sm-12">
+                            <!-- Name -->
+                            <div class="form-group">
+                                 <?php
+                                    echo $form->getElement('subject')->setAttribs(array(
+                                        'class' => 'form-control contactInputs',
+                                        'placeholder' => "Subject",
+                                        'type' => "text",
+                                        'id' => 'subject',
                                         'required' => 'required',
-                                        'data-error' => 'Invalid name! Minimum 4 and maximum 15 characters. Letters only.',
-                                        'pattern' => '[_A-Z,_a-z]{1,}$',
-                                        'data-minlength' => 4,
-                                        'data-maxlength' => 15
+                                        'data-error' => 'Invalid subject! Minimum 4 and maximum 15 characters. Letters only.',
                                     ));
                                     ?>
-                            <input data-error="Invalid lastname! Minimum 4 and maximum 15 characters. Letters only." pattern="[_A-Z,_a-z]{1,}$" type="text" class="form-control contactInputs" id="inputSurname" placeholder="Last Name" data-minlength="4" data-maxlength="15" required> 
-                            <div class="help-block with-errors"></div>
-                        </div>
-
-                         Phone number 
-                        <div class="form-group col-sm-4">
-                            <input data-error="Invalid phone number. Minimum 4 characters. Numbers only!" data-minlength="4" pattern="[_0-9]{1,}$" type="text" class="form-control contactInputs" id="inputPhone" placeholder="Phone number" required>
-                            <div class="help-block with-errors"></div>
-                        </div>-->
-                    </div>
-                    <div class="row mainForm">
-                        <!-- Email address -->
-                        <div class="form-group col-sm-6">
-                            <input type="email" class="form-control contactInputs" id="inputEmail" placeholder="Email" data-error="Email address you entered is invalid" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="col-sm-6">
-
-                            <!-- Subject -->
-                            <div class="form-group">
-                                <input type="text" class="form-control contactInputs" id="inputSubject" placeholder="Subject" required>
-                                <div class="help-block with-errors"></div>
+                                                     
+                                <div class="help-block with-errors">
+                                     <?php if ($form->getElement('subject')->hasErrors()) { ?>
+                                            <div class="has-error">
+                                                <?php foreach ($form->getElement('subject')->getMessages() as $message) { ?>
+                                                    <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mainForm">
+                   
+                   
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <textarea class="form-control contactInputs" rows="5" placeholder="Message"></textarea>
+                                    <?php
+                                    echo $form->getElement('message')->setAttribs(array(
+                                        'class' => 'form-control contactInputs',
+                                        'placeholder' => "Message",
+                                        'id' => 'message',
+                                        'required' => 'required',
+                                        'rows' => 5
+                                    ));
+                                    ?>
+                                 <div class="help-block with-errors">
+                                     <?php if ($form->getElement('message')->hasErrors()) { ?>
+                                            <div class="has-error">
+                                                <?php foreach ($form->getElement('message')->getMessages() as $message) { ?>
+                                                    <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } ?>
+                               </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mainForm">
+                    
                         <div class="form-group dugme col-xs-12">
-                            <button type="submit" class="btn btn-primary buttonSubmit">SUBMIT</button>
+                            <input type="submit" value="Send Message" class="btn btn-primary buttonSubmit">
                         </div>
-                    </div>
+                    
                 </form>
+                        </div>
                         <?php
                             } else {
                                 if ($systemMessages == 'Success'){
@@ -115,7 +138,8 @@ $systemMessages = $this->systemMessages;
                                 }
                             }
                             ?>
-                    </div>
+                         </div>
+                  
             </section>
 
 
