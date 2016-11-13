@@ -97,7 +97,7 @@ class Zend_View_Helper_Footerdata extends Zend_View_Helper_Abstract {
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['google_plus']); ?>"><span class="fa fa-google-plus"></span></a>
                             <a class="aSocial" target="_blank" href="#"><span class="fa fa-tumblr"></span></a>
                             <a class="aSocial" target="_blank" href="#"><span class="fa fa-dribbble"></span></a>
-                            <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['linkedin']); ?>"><span class="fa fa-linkedin"></span></a>
+                            <a class="aSocial" target="_blank" href="https://rs.linkedin.com/in/natasa-lukic-930081123"<?php echo $this->view->escape($shopInfo['linkedin']); ?>"><span class="fa fa-linkedin"></span></a>
                             <a class="aSocial" target="_blank" href="<?php echo $this->view->escape($shopInfo['twitter']); ?>"><span class="fa fa-twitter"></span></a>
                             <?php }?>
                         </div> 
